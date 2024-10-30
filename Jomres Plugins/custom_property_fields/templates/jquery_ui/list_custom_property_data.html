@@ -1,0 +1,51 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_custom_property_fields').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+</script>
+<h2>{TITLE}</h2>
+<p>{INSTRUCTIONS}</p>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table id="list_custom_property_fields" border="0" width="100%">
+	<thead>
+        <tr>
+        	<th>&nbsp;</th>
+            <th>{HFIELDNAME}</th>
+            <th>{HDEFAULTVALUE}</th>
+            <th>{HDESCRIPTION}</th>
+            <!--<th>{HREQUIRED}</th>-->
+			<th>{HPROPERTY_TYPES}</th>
+            <!--<th>{HORDER}</th>-->
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <tr>
+        	<td>{EDITLINK}</td>
+            <td>{FIELDNAME}</td>
+            <td>{DEFAULT_VALUE}</td>
+            <td>{DESCRIPTION}</td>
+            <!--<td>{REQUIRED}</td>-->
+			<td>{PROPERTY_TYPES}</td>
+            <!--<td>{ORDER}</td>-->
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
+</table>
+<input type="hidden" name="task" value="edit_custom_field" />
+</form>
+<br />
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+    	<td>
+        	<h3>Edit the custom property fields template</h3>
+			<p>{_JOMRES_CUSTOM_PROPERTY_FIELDS_INSTRUCTIONS}</p>
+        </td>
+    </tr>
+</table>
+</patTemplate:tmpl>

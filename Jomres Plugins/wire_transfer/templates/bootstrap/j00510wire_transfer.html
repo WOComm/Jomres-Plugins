@@ -1,0 +1,142 @@
+<patTemplate:tmpl name="edit_gateway" unusedvars="strip">
+<h2 class="page-header">{GATEWAYNAME} {GATEWAYLOGO}</h2>
+<form action="" method="post" name="adminForm" class="form-horizontal">
+<div class="control-group">
+	<div class="control-label">
+		{JR_GATEWAY_CONFIG_ACTIVE}
+	</div>
+	<div class="controls">
+		{ACTIVE}
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HACCOUNT_HOLDER}
+	</div>
+	<div class="controls">
+		<input type="text" name="accountholder" value="{ACCOUNT_HOLDER}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_IBAN}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankiban" value="{BANK_IBAN}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_SWIFT}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankswift" value="{BANK_SWIFT}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_BIC}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankbic" value="{BANK_BIC}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_NAME}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankname" value="{BANK_NAME}" />
+	</div>
+</div>
+<hr />
+<div class="control-group">
+	<div class="control-label">
+		{HACCOUNT_HOLDER1}
+	</div>
+	<div class="controls">
+		<input type="text" name="accountholder1" value="{ACCOUNT_HOLDER1}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_IBAN1}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankiban1" value="{BANK_IBAN1}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_SWIFT1}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankswift1" value="{BANK_SWIFT1}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_BIC1}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankbic1" value="{BANK_BIC1}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_NAME1}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankname1" value="{BANK_NAME1}" />
+	</div>
+</div>
+<hr />
+<div class="control-group">
+	<div class="control-label">
+		{HACCOUNT_HOLDER2}
+	</div>
+	<div class="controls">
+		<input type="text" name="accountholder2" value="{ACCOUNT_HOLDER2}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_IBAN2}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankiban2" value="{BANK_IBAN2}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_SWIFT2}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankswift2" value="{BANK_SWIFT2}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_BIC2}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankbic2" value="{BANK_BIC2}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HBANK_NAME2}
+	</div>
+	<div class="controls">
+		<input type="text" name="bankname2" value="{BANK_NAME2}" />
+	</div>
+</div>
+<div class="form-actions">
+	<input type="submit" value="Submit" class="button" />
+</div>
+{JOMRESTOKEN}
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="save_plugin" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

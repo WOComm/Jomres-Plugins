@@ -1,0 +1,115 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#admin_jintours_tour_bookings').dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "headerSortDown",
+		"sSortDesc": "headerSortUp",
+		"sSortable": "header"
+	} );
+} );
+//-->
+</script>
+<h2 class="page-header">Tour Bookings</h2>
+{JOMRESTOOLBAR}
+<div class="well">
+	<div class="row-fluid">
+		<div class="span5">
+			<strong>{HPROFILE_TITLE}</strong>
+		</div>
+		<div class="span7">
+			{TITLE}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span5">
+			<strong>{HDATE}</strong>
+		</div>
+		<div class="span7">
+			{TOURDATE}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span5">
+			<strong>{HPRICE_ADULTS}</strong>
+		</div>
+		<div class="span7">
+			{PRICE_ADULTS}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span5">
+			<strong>{HPRICE_KIDS}</strong>
+		</div>
+		<div class="span7">
+			{PRICE_KIDS}
+		</div>
+	</div>
+</div>
+<h3 class="page-header">{HAVLSPACES}</h3>
+<div class="well">
+	<div class="row-fluid">
+		<div class="span5">
+			<strong>{HADULTSPACES}</strong>
+		</div>
+		<div class="span7">
+			{SPACES_AVAILABLE_ADULTS}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span5">
+			<strong>{HCHILDSPACES}</strong>
+		</div>
+		<div class="span7">
+			{SPACES_AVAILABLE_KIDS}
+		</div>
+	</div>
+</div>
+<h3 class="page-header">Bookings List</h3>
+<table id="admin_jintours_tour_bookings" width="100%" class="table table-striped">
+	<thead>
+        <tr>
+            <th></th>
+            <th>Description</th>
+            <th>Guest name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="editlink" unusedvars="nbsp">
+        <tr>
+            <td>{EDITLINK}</td>
+            <td>{DESCRIPTION}</td>
+            <td>{GUEST_NAME}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
+</table>
+</patTemplate:tmpl>

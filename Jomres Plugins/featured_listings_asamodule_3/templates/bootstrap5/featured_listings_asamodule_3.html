@@ -1,0 +1,107 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<script type="text/javascript" language="javascript">
+jomresJquery( document ).ready( function() {
+  // init Isotope
+  var $container = jomresJquery('.featured_listings3-container').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    getSortData: {
+      name: '.name',
+      town: '.town',
+      region: '.region',
+      country: '.country',
+      price: function( itemElem ) {
+        var price = jomresJquery( itemElem ).find('.price').text().replace(',', '');
+        return parseFloat( price.replace( /[\(\)]/g, '') );
+      }
+    }
+  });
+
+  // filter functions
+  var filterFns = {
+    // show if number is greater than 50
+    /*numberGreaterThan50: function() {
+      var number = jomresJquery(this).find('.number').text();
+      return parseInt( number, 10 ) > 50;
+    },*/
+    // show if name ends with -ium
+    ium: function() {
+      var name = jomresJquery(this).find('.name').text();
+      return name.match( /ium$/ );
+    }
+  };
+
+  // bind filter button click
+  jomresJquery('#featured_listings3-filters').on( 'click', 'button', function() {
+    var filterValue = jomresJquery( this ).attr('data-filter');
+    // use filterFn if matches value
+    filterValue = filterFns[ filterValue ] || filterValue;
+    $container.isotope({ filter: filterValue });
+  });
+
+  // bind sort button click
+  jomresJquery('#sorts').on( 'click', 'button', function() {
+    var sortByValue = jomresJquery(this).attr('data-sort-by');
+    $container.isotope({ sortBy: sortByValue });
+  });
+  
+  // change is-checked class on buttons
+  jomresJquery('.featured_listings3-buttons').each( function( i, buttonGroup ) {
+    var $buttonGroup = jomresJquery( buttonGroup );
+    $buttonGroup.on( 'click', 'button', function() {
+      $buttonGroup.find('.btn-primary').removeClass('btn-primary');
+      jomresJquery( this ).addClass('btn-primary');
+    });
+  });  
+});
+</script>
+
+
+
+
+<div class="row mb-5">
+	<div class="col-sm-6 text-start">
+		<h5>{_JOMRES_HFILTER}</h5>
+		<div id="featured_listings3-filters" class="featured_listings3-buttons btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-default btn-primary" data-filter="*">{HSHOW_ALL}</button>
+			<patTemplate:tmpl name="ptype_filter_rows" unusedvars="strip">
+				<button type="button" class="btn btn-default" data-filter=".{PTYPE_ID}">{PTYPE}</button>
+			</patTemplate:tmpl>
+		</div>
+	</div>
+	<div class="col-sm-6 text-end">
+		<h5>{JRPORTAL_FEATUREDLISTINGS_ASAMODULE_SORTBY}</h5>
+		<div id="sorts" class="featured_listings3-buttons btn-group">
+			<button type="button" class="btn btn-default btn-primary" data-sort-by="original-order">{HDEFAULT_ORDER}</button>
+			<button type="button" class="btn btn-default" data-sort-by="name">{HNAME}</button>
+			<button type="button" class="btn btn-default" data-sort-by="town">{HTOWN}</button>
+			<button type="button" class="btn btn-default" data-sort-by="region">{HREGION}</button>
+			<button type="button" class="btn btn-default" data-sort-by="country">{HCOUNTRY}</button>
+			<button type="button" class="btn btn-default" data-sort-by="price">{HPRICE}</button>
+		</div>
+	</div>
+</div>
+
+<div class="featured_listings3-container row">
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+		<div class="col-md-3 element-item {PTYPE_ID}" data-category="{PTYPE_ID}">
+			<div class="card" style="width: 21rem; height: 20rem;">
+
+				<a href="{URL}" title="{NAME}"><img src="{IMAGE}" alt="{NAME}" class="" style="max-height:200px;object-fit: cover;height: 15vw;width: 100%;" /></a>
+				<div class="card-body">
+
+					<div class="card-title">
+						<h4 class="name">{NAME}&nbsp;{STARSIMAGES} {SUPERIOR}</h4>
+					</div>
+					<div class="card-text">
+
+						<p><span class="town">{TOWN}</span>, <span class="region">{REGION}</span>, <span class="country">{COUNTRY}</span></p>
+						<p>{PRICE_PRE_TEXT} <span class="price">{PRICE_PRICE}</span> {PRICE_POST_TEXT}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>

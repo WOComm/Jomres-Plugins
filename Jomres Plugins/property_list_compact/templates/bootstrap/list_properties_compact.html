@@ -1,0 +1,96 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+{JOMRES_POPUPURL_GLOBALVAR}
+
+{HEADER}
+
+<style>
+.opa {
+	background-color:white; 
+	z-index:0; 
+	opacity:0.85;
+    border: 2px solid;
+    border-radius: 5px;
+	border-color:White;
+}
+</style>
+
+<patTemplate:comment>
+<div class="row-fluid">
+	<div class="span12">
+		{PAGING}
+	</div>
+</div>
+</patTemplate:comment>
+
+<patTemplate:tmpl name="property_details" unusedvars="strip">
+
+<div class="jomres_property_list_propertywrapper" id="{UID}" >
+	<div class="panel {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}" style="background-image: url('{IMAGEMEDIUM}') ;  background-repeat: no-repeat; width:100%; min-height:150px; background-size: 59%;">
+		<div class="panel-heading" style="padding: 3px 3px;">
+			<div class="row-fluid">
+				<div class="span9" style="text-shadow: 0px 0px 1px #000;">
+					<h4><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h4>
+				</div>
+				<div class="span3 hidden-phone">
+					<div class="jomres-compare" align="right">
+						<a href="{PROPERTY_TYPE_SEARCH_URL}" class="btn btn-mini btn-default">{PROPERTY_TYPE}</a> <span class="small">{STARS}</span> <em>{SUPERIOR}</em>
+						<input type="checkbox" name="compare" value="{UID}" autocomplete="off" /> {_JOMRES_COMPARE}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body"> 
+			<div class="row-fluid">
+				<div class="span7  opa">
+					<p>{PROPERTYDESC}</p>
+					<p class="jomres_message">{LASTMINUTE}</p>
+				</div>
+				<div class="span3">
+				
+					<div class="align-center">
+						{PRICE_PRE_TEXT}
+						<span class="big-price">{PRICE_PRICE}</span>
+						{PRICE_POST_TEXT}
+					</div>
+					
+					<p class="small align-center"><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></p>
+					
+				</div>
+				<div class="span2">
+					<div class="btn-group-vertical">
+						<a href="{LINK}" class="btn btn-primary btn-small">{BOOKTHIS_TEXT}</a>
+						<a href="{MOREINFORMATIONLINK}" class="btn btn-info btn-small">{MOREINFORMATION}</a>
+						<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn hidden-phone btn-small">{SHORTLIST}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden" id="property_reviews{UID}" title="{PROPERTYNAME}">
+			<img src="{JOMRES_IMAGES_RELPATH}ajax_animation/broken_circle.gif" alt="ajax_animation_image" />
+		</div>
+	</div>
+</div>
+
+<div class="modal hide" id="module_{RANDOM_IDENTIFIER}_popup">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">x</button>
+		<h4>{PROPERTYNAME}</h4>
+	</div>
+	<div class="modal-body">
+		<div  style="padding:20px">
+			<img src="{JOMRES_IMAGES_RELPATH}ajax_animation/broken_circle.gif" alt="ajax_animation_image"/>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>
+
+<div id = "livescrolling_results" ></div>
+
+<div class="row-fluid">
+	<div class="span12">
+		{PAGING}
+	</div>
+</div>
+
+<patTemplate:comment>{HEADER}</patTemplate:comment>
+</patTemplate:tmpl>

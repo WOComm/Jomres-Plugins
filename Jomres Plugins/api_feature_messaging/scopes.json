@@ -1,0 +1,8 @@
+{
+  "_OAUTH_SCOPE_MESSAGING": [{
+    "scope": "messaging",
+    "user_type": "user",
+    "definition": "_OAUTH_SCOPE_MESSAGING",
+    "description": "_OAUTH_SCOPE_MESSAGING_DESC"
+  }]
+}

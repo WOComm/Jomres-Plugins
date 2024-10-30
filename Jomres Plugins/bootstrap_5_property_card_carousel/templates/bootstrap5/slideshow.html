@@ -1,0 +1,143 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<style>
+		.MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
+		.MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
+		.MultiCarousel .MultiCarousel-inner .item { float: left;}
+		.MultiCarousel .MultiCarousel-inner .item > div { text-align: center; padding:10px; margin:10px; background:#f1f1f1; color:#666;}
+		.MultiCarousel .leftLst, .MultiCarousel .rightLst { position:absolute; border-radius:50%;top:calc(50% - 20px); }
+		.MultiCarousel .leftLst { left:0; }
+		.MultiCarousel .rightLst { right:0; }
+
+		.MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }
+
+	</style>
+	<div class="container">
+		<div class="row">
+			<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+				<div class="MultiCarousel-inner">
+					<patTemplate:tmpl name="rows" unusedvars="strip">
+						<div class="item">
+							<div class="pad15">
+								{PROPERTY}
+							</div>
+						</div>
+					</patTemplate:tmpl>
+				</div>
+				<button class="btn btn-primary leftLst"><</button>
+				<button class="btn btn-primary rightLst">></button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		jomresJquery(document).ready(function () {
+			var itemsMainDiv = ('.MultiCarousel');
+			var itemsDiv = ('.MultiCarousel-inner');
+			var itemWidth = "";
+
+			jomresJquery('.leftLst, .rightLst').click(function () {
+				var condition = jomresJquery(this).hasClass("leftLst");
+				if (condition)
+					click(0, this);
+				else
+					click(1, this)
+			});
+
+			ResCarouselSize();
+
+			jomresJquery(window).resize(function () {
+				ResCarouselSize();
+			});
+
+			//this function define the size of the items
+			function ResCarouselSize() {
+				var incno = 0;
+				var dataItems = ("data-items");
+				var itemClass = ('.item');
+				var id = 0;
+				var btnParentSb = '';
+				var itemsSplit = '';
+				var sampwidth = jomresJquery(itemsMainDiv).width();
+				var bodyWidth = jomresJquery('body').width();
+				jomresJquery(itemsDiv).each(function () {
+					id = id + 1;
+					var itemNumbers = jomresJquery(this).find(itemClass).length;
+					btnParentSb = jomresJquery(this).parent().attr(dataItems);
+					itemsSplit = btnParentSb.split(',');
+					jomresJquery(this).parent().attr("id", "MultiCarousel" + id);
+
+
+					if (bodyWidth >= 1200) {
+						incno = itemsSplit[3];
+						itemWidth = sampwidth / incno;
+					}
+					else if (bodyWidth >= 992) {
+						incno = itemsSplit[2];
+						itemWidth = sampwidth / incno;
+					}
+					else if (bodyWidth >= 768) {
+						incno = itemsSplit[1];
+						itemWidth = sampwidth / incno;
+					}
+					else {
+						incno = itemsSplit[0];
+						itemWidth = sampwidth / incno;
+					}
+
+					// Vince : I prefer a fixed size for the cards
+					itemWidth = 250;
+
+					jomresJquery(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+					jomresJquery(this).find(itemClass).each(function () {
+						jomresJquery(this).outerWidth(itemWidth);
+					});
+
+					jomresJquery(".leftLst").addClass("over");
+					jomresJquery(".rightLst").removeClass("over");
+
+				});
+			}
+
+
+			//this function used to move the items
+			function ResCarousel(e, el, s) {
+				var leftBtn = ('.leftLst');
+				var rightBtn = ('.rightLst');
+				var translateXval = '';
+				var divStyle = jomresJquery(el + ' ' + itemsDiv).css('transform');
+				var values = divStyle.match(/-?[\d\.]+/g);
+				var xds = Math.abs(values[4]);
+				if (e == 0) {
+					translateXval = parseInt(xds) - parseInt(itemWidth * s);
+					jomresJquery(el + ' ' + rightBtn).removeClass("over");
+
+					if (translateXval <= itemWidth / 2) {
+						translateXval = 0;
+						jomresJquery(el + ' ' + leftBtn).addClass("over");
+					}
+				}
+				else if (e == 1) {
+					var itemsCondition = jomresJquery(el).find(itemsDiv).width() - jomresJquery(el).width();
+					translateXval = parseInt(xds) + parseInt(itemWidth * s);
+					jomresJquery(el + ' ' + leftBtn).removeClass("over");
+
+					if (translateXval >= itemsCondition - itemWidth / 2) {
+						translateXval = itemsCondition;
+						jomresJquery(el + ' ' + rightBtn).addClass("over");
+					}
+				}
+				jomresJquery(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+			}
+
+			//It is used to get some elements from btn
+			function click(ell, ee) {
+				var Parent = "#" + jomresJquery(ee).parent().attr("id");
+				var slide = jomresJquery(Parent).attr("data-slide");
+				ResCarousel(ell, Parent, slide);
+			}
+
+		});
+	</script>
+</patTemplate:tmpl>
+

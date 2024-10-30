@@ -1,0 +1,49 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('admin_list_coupons', '{PAGETITLE}', '{LIVESITE}');
+});
+//-->
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+<div id="tour_target_coupons"></div><div id="tour_target_table_tools"></div>
+<!-- <p>{INFO}</p> -->
+<p class="alert alert-warning">{INFO_ADMIN}</p>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table id="admin_list_coupons" width="100%" class="table tabble-striped">
+	<thead>
+	<tr>
+		<th>{HEDITLINK}</th>
+		<th>{HCOUPONCODE}</th>
+		<th>{HVALIDFROM}</th>
+		<th>{HVALIDTO}</th>
+		<th>{_JRPORTAL_COUPONS_BOOKING_VALIDFROM}</th>
+		<th>{_JRPORTAL_COUPONS_BOOKING_VALIDTO}</th>
+		<th>{HAMOUNT}</th>
+		<th>{HISPERCENTAGE}</th>
+		<th>{_JRPORTAL_COUPONS_GUESTNAME}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="couponcode">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{COUPONCODE}</td>
+			<td>{VALIDFROM}</td>
+			<td>{VALIDTO}</td>
+			<td>{BOOKING_VALIDFROM}</td>
+			<td>{BOOKING_VALIDTO}</td>
+			<td>{AMOUNT}</td>
+			<td>{ISPERCENTAGE}</td>
+			<td>{GUEST_NAME}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+<input type="hidden" name="task" value="edit_coupon"/>
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

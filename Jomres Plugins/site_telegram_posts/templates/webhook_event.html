@@ -1,0 +1,23 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<patTemplate:comment>
+		Only this markup is supported by Telegram
+		
+		<b>bold</b>, <strong>bold</strong>
+		<i>italic</i>, <em>italic</em>
+		<a href="URL">inline URL</a>
+		<code>inline fixed-width code</code>
+		<pre>pre-formatted fixed-width code block</pre>
+	
+	</patTemplate:comment>
+	
+	{SITE_TELEGRAM_BOT_MESSAGE_WEBHOOK_EVENT_TRIGGERED} : <strong>{WEBHOOK_EVENT}</strong>
+	
+	{SITE_TELEGRAM_BOT_MESSAGE_PROPERTY} : <a href="{JOMRES_SITEPAGE_URL_NOSEF}{PROPERTY_DASHBOARD}">{PROPERTY_NAME}</a>
+	
+	{SITE_TELEGRAM_BOT_MESSAGE_MANAGER} : <a href="{MANAGER_LINK}">{MANAGER_USERNAME}</a>
+	{SITE_TELEGRAM_BOT_MESSAGE_USER} : <a href="{USER_LINK}">{USER_USERNAME}</a>
+	
+	{SITE_TELEGRAM_BOT_MESSAGE_WEBHOOK_EVENT_SERIALIZED} : <code>{EVENT_SERIALISED}</code>
+
+	
+</patTemplate:tmpl>

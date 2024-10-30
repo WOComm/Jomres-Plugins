@@ -1,0 +1,391 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<h1>{_JOMRES_SEARCH_FORM_ELEMENTS_TITLE}</h1>
+	
+	<p class="alert alert-info">{_JOMRES_SEARCH_FORM_ELEMENTS_INTRO}</p>
+	
+	<p class="alert alert-info"><i class="fas fa-exclamation-triangle"></i> {_JOMRES_SEARCH_FORM_ELEMENTS_NOTE_1}</p>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="form_start" type="text" value="{OPEN_BRACE}jomres search_form_start{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=form_start}
+		</div>
+		<div class="col-sm-4">
+		
+		</div>
+		<div class="col">
+		
+		</div>
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_autocomplete" type="text" value="{OPEN_BRACE}jomres search_form_label_autocomplete{CLOSE_BRACE}" class="required form-control" readonly />
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_autocomplete}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_autocomplete" type="text" value="{OPEN_BRACE}jomres search_form_autocomplete{CLOSE_BRACE}" class="required form-control" readonly />
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_autocomplete}
+		</div>
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_checkin" type="text" value="{OPEN_BRACE}jomres search_form_label_checkin{CLOSE_BRACE}" class="required form-control" readonly />
+		</div>
+		
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_checkin}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_checkin" type="text" value="{OPEN_BRACE}jomres search_form_checkin{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_checkin}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_checkout" type="text" value="{OPEN_BRACE}jomres search_form_label_checkout{CLOSE_BRACE} " class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_checkout}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_checkout" type="text" value="{OPEN_BRACE}jomres search_form_checkout{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_checkout}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_countries" type="text" value="{OPEN_BRACE}jomres search_form_label_countries{CLOSE_BRACE} " class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_countries}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_countries" type="text" value="{OPEN_BRACE}jomres search_form_countries{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_countries}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_regions" type="text" value="{OPEN_BRACE}jomres search_form_label_regions{CLOSE_BRACE} " class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_regions}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_regions" type="text" value="{OPEN_BRACE}jomres search_form_regions{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_regions}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_towns" type="text" value="{OPEN_BRACE}jomres search_form_label_towns{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_towns}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_towns" type="text" value="{OPEN_BRACE}jomres search_form_towns{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_towns}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_features" type="text" value="{OPEN_BRACE}jomres search_form_label_features{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_features}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_features" type="text" value="{OPEN_BRACE}jomres search_form_features{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_features}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_price_ranges" type="text" value="{OPEN_BRACE}jomres search_form_label_price_ranges{CLOSE_BRACE} " class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_price_ranges}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_priceranges" type="text" value="{OPEN_BRACE}jomres search_form_priceranges{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_priceranges}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_property_types" type="text" value="{OPEN_BRACE}jomres search_form_label_property_types{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_property_types}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_property_types" type="text" value="{OPEN_BRACE}jomres search_form_property_types{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_property_types}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_stars" type="text" value="{OPEN_BRACE}jomres search_form_label_stars{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_stars}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_stars" type="text" value="{OPEN_BRACE}jomres search_form_stars{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_stars}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_sleeps_adults" type="text" value="{OPEN_BRACE}jomres search_form_label_sleeps_adults{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_sleeps_adults}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_sleeps_adults" type="text" value="{OPEN_BRACE}jomres search_form_sleeps_adults{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_sleeps_adults}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_label_sleeps_children" type="text" value="{OPEN_BRACE}jomres search_form_label_sleeps_children{CLOSE_BRACE}" class="required form-control" readonly />
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_label_sleeps_children}
+		</div>
+		<div class="col-sm-4">
+			<input id="search_form_sleeps_children" type="text" value="{OPEN_BRACE}jomres search_form_sleeps_children{CLOSE_BRACE}" class="required form-control" readonly />
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_sleeps_children}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_button" type="text" value="{OPEN_BRACE}jomres search_form_button{CLOSE_BRACE}" class="required form-control" readonly />
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_button}
+		</div>
+		<div class="col-sm-4">
+		
+		</div>
+		<div class="col">
+		
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<input id="search_form_end" type="text" value="{OPEN_BRACE}jomres search_form_end{CLOSE_BRACE}" class="required form-control" readonly />
+			
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=search_form_end}
+		</div>
+		<div class="col-sm-4">
+		
+		</div>
+		<div class="col">
+		
+		</div>
+	</div>
+	
+	<hr/>
+	
+	<h2>{_JOMRES_SEARCH_FORM_ELEMENTS_AVAILABLE_SHORTCODES}</h2>
+	
+	<div class="row">
+		<div class="col-sm-11">
+			<textarea id="all_shortcodes" name="all_shortcodes" class="w-100"  rows="17" style="height:100%;">
+			
+			{jomres search_form_start}
+			{jomres search_form_label_autocomplete} {jomres search_form_autocomplete}
+			{jomres search_form_label_checkin} {jomres search_form_checkin}
+			{jomres search_form_label_checkout} {jomres search_form_checkout}
+			{jomres search_form_label_countries} {jomres search_form_countries}
+			{jomres search_form_label_regions} {jomres search_form_regions}
+			{jomres search_form_label_towns}{jomres search_form_towns}
+			{jomres search_form_label_features}{jomres search_form_features}
+			{jomres search_form_label_price_ranges} {jomres search_form_priceranges}
+			{jomres search_form_label_property_types}{jomres search_form_property_types}
+			{jomres search_form_label_stars}{jomres search_form_stars}
+			{jomres search_form_label_sleeps_adults}{jomres search_form_sleeps_adults}
+			{jomres search_form_label_sleeps_children}{jomres search_form_sleeps_children}
+			{jomres search_form_button}
+			{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col">
+			{jomres_script copy_button copy_button_id=all_shortcodes}
+		</div>
+	</div>
+	
+	<hr/>
+
+	
+	<h2>{_JOMRES_SEARCH_FORM_ELEMENTS_EXAMPLES}</h2>
+	<p class="alert alert-info">{_JOMRES_SEARCH_FORM_ELEMENTS_EXAMPLES_INFO}</p>
+	
+	<p class="alert alert-info">{_JOMRES_SEARCH_FORM_ELEMENTS_NOTE_2}</p>
+	<p class="alert alert-info">{_JOMRES_SEARCH_FORM_ELEMENTS_NOTE_3}</p>
+	
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/example_1.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#example1Modal">
+				Example 1
+			</button>
+		</div>
+	</div>
+	
+	<div class="modal" id="example1Modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Example 1</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-11">
+							
+							<textarea id="example-1" name="all_shortcodes" class="w-100"  >
+{jomres search_form_start}
+<div class="row d-flex justify-content-center ">
+  <div class="col-md-12">
+    <div class="bg-transparent ps-2 p-1">
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3">
+          <span class="bg-primary fs-2 text-light rounded">{DATATABLES_SSEARCH} </span>
+        </div>
+      </div>
+      
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_autocomplete} </span>
+          {jomres search_form_autocomplete}
+        </div>
+      </div>
+      
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_checkin} </span>
+          {jomres search_form_checkin}
+        </div>
+      </div>
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_checkout} </span>
+          {jomres search_form_checkout}
+        </div>
+      </div>
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_sleeps_adults} </span>
+          {jomres search_form_sleeps_adults}
+        </div>
+      </div>
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_sleeps_children} </span>
+          {jomres search_form_sleeps_children}
+        </div>
+      </div>
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3">
+          {jomres search_form_button}
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
+</div>
+
+{jomres search_form_end}
+							</textarea>
+							
+						</div>
+						<div class="col-sm-2">
+							{jomres_script copy_button copy_button_id=example-1}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+</patTemplate:tmpl>

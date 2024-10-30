@@ -1,0 +1,13 @@
+{
+	"_OAUTH_SCOPE_CATEGORY_PROPERTIES": [{
+		"scope": "properties_get",
+		"user_type": "manager",
+		"definition": "_OAUTH_SCOPE_PROPERTY_GET",
+		"description": "_OAUTH_SCOPE_PROPERTY_GET_DESC"
+	}, {
+		"scope": "properties_set",
+		"user_type": "manager",
+		"definition": "_OAUTH_SCOPE_PROPERTY_SET",
+		"description": "_OAUTH_SCOPE_PROPERTY_SET_DESC"
+	}]
+}

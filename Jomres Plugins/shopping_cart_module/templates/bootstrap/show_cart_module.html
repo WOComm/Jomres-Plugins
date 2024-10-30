@@ -1,0 +1,37 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<!-- <h2>{_JOMRES_CART_TITLE}</h2> -->
+<div class="row-fluid visible-desktop">
+	<div class="span7">
+		<strong>{_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME}</strong>
+	</div>
+	<div class="span5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL}</strong>
+		<!-- <th>{_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL}</th> -->
+		<!-- <th>{_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE}</th> -->
+		<!-- <th>{_JOMRES_COM_MR_ROOM_DELETE}</th> -->
+	</div>
+</div>
+<patTemplate:tmpl name="rows" unusedvars="nbsp">
+<div class="row-fluid">
+	<div class="span7">
+		{PROPERTYNAME}
+	</div>
+	<div class="span5">
+		{CONTRACT_TOTAL}
+		<!-- <td>{ARRIVAL}</td> -->
+		<!--<td>{DEPARTURE}</td>-->
+		<!--<td><a href="{DELETELINK}"><img src="{DELETELINK_IMAGE}" width="20px" height="20px" /></a></td>-->
+	</div>
+</div>
+</patTemplate:tmpl>
+<hr />
+<div class="row-fluid">
+	<div class="span7">
+		<strong>{_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL}</strong>
+	</div>
+	<div class="span5">
+		<strong>{GRANDTOTAL}</strong>
+	</div>
+</div>
+<p><a href="{LINKTOSHOWCART}" class="btn btn-primary"><i class="icon-cart icon-white"></i> {_JOMRES_CART_VIEWCART}</a></p>
+</patTemplate:tmpl>

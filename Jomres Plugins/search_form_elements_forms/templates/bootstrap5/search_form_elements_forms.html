@@ -1,0 +1,669 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<h1>{_JOMRES_SEARCH_FORM_ELEMENTS_TITLE}</h1>
+	
+	<p class="alert alert-info">{_JOMRES_SEARCH_FORM_ELEMENTS_FORMS_TITLE}</p>
+	
+	<p class="alert alert-info">{_JOMRES_SEARCH_FORM_ELEMENTS_FORMS_INTRO}</p>
+	
+	<h3>Form 1</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/col_autocomplete_checkin_checkout_adults_kids.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-1" name="example-1" class="w-100" rows="15" >
+{jomres search_form_start}
+<div class="row d-flex justify-content-center ">
+  <div class="col-md-12">
+    <div class="bg-transparent ps-2 p-1">
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3">
+          <span class="bg-primary fs-2 text-light rounded">{DATATABLES_SSEARCH} </span>
+        </div>
+      </div>
+      
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_autocomplete} </span>
+          {jomres search_form_autocomplete}
+        </div>
+      </div>
+      
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_checkin} </span>
+          {jomres search_form_checkin}
+        </div>
+      </div>
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_checkout} </span>
+          {jomres search_form_checkout}
+        </div>
+      </div>
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_sleeps_adults} </span>
+          {jomres search_form_sleeps_adults}
+        </div>
+      </div>
+      <div class="list">
+        <div class="d-flex flex-column ml-3 m-1">
+          <span class="bg-light">{jomres search_form_label_sleeps_children} </span>
+          {jomres search_form_sleeps_children}
+        </div>
+      </div>
+      
+      <div class="list">
+        <div class="d-flex flex-column ml-3">
+          {jomres search_form_button}
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
+</div>
+
+{jomres search_form_end}
+		</textarea>
+		</div>
+		<div class="col-sm-1">
+				{jomres_script copy_button copy_button_id=form-1}
+		</div>
+		</div>
+	</div>
+	
+	
+	<hr/>
+	<h3>Form 2</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/col_autocomplete_checkin_checkout.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-2" name="form-1" class="w-100" rows="15" >
+{jomres search_form_start}
+<div class="row mb-3">
+	<div class="col-sm-2">
+		{jomres search_form_label_autocomplete}
+	</div>
+	<div class="col-sm-10">
+		{jomres search_form_autocomplete}
+	</div>
+</div>
+<div class="row mb-3">
+	<div class="col-sm-2">
+		{jomres search_form_label_checkin}
+	</div>
+	<div class="col-sm-10">
+		{jomres search_form_checkin}
+	</div>
+</div>
+
+<div class="row mb-3">
+	<div class="col-sm-2">
+		{jomres search_form_label_checkout}
+	</div>
+	<div class="col-sm-10">
+		{jomres search_form_checkout}
+	</div>
+</div>
+<div class="row mb-3">
+	<div class="col-sm-2">
+
+	</div>
+	<div class="col-sm-10">
+		{jomres search_form_button}
+	</div>
+</div>
+{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-2}
+		</div>
+	</div>
+
+	
+	<hr/>
+	<h3>Form 3</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/row_autocomplete_checkin_checkout.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-3" name="form-3" class="w-100" rows="15" >
+{jomres search_form_start}
+<div class="row">
+	<div class="col-sm-3">
+		<div class="sr-only">
+			{jomres search_form_label_autocomplete}
+		</div>
+		{jomres search_form_autocomplete}
+	</div>
+	<div class="col-sm-3">
+		<div class="sr-only" >
+			{jomres search_form_label_checkin}
+		</div>
+		{jomres search_form_checkin}
+	</div>
+	<div class="col-sm-3">
+		<div class="sr-only">
+			{jomres search_form_label_checkout}
+		</div>
+		{jomres search_form_checkout}
+	</div>
+	<div class="col-sm-3">
+		{jomres search_form_button}
+	</div>
+</div>
+{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-3}
+		</div>
+	</div>
+	
+	<hr/>
+	<h3>Form 4</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/rows_autocomplete_checkin_checkout_adults_kids.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-4" name="form-4" class="w-100" rows="15" >
+{jomres search_form_start}
+<div class="row">
+	<div class="col-sm-3">
+		<div class="sr-only">
+			{jomres search_form_label_autocomplete}
+		</div>
+		{jomres search_form_autocomplete}
+	</div>
+	<div class="col-sm-3">
+		<div class="sr-only" >
+			{jomres search_form_label_checkin}
+		</div>
+		{jomres search_form_checkin}
+	</div>
+	<div class="col-sm-3">
+		<div class="sr-only">
+			{jomres search_form_label_checkout}
+		</div>
+		{jomres search_form_checkout}
+	</div>
+	<div class="col-sm-3">
+	
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-1 form-label p-3">
+		{jomres search_form_label_sleeps_adults}
+	</div>
+	<div class="col-sm-2">
+		{jomres search_form_sleeps_adults}
+	</div>
+
+	<div class="col-sm-1 form-label p-3">
+		{jomres search_form_label_sleeps_children}
+	</div>
+	<div class="col-sm-2">
+		{jomres search_form_sleeps_children}
+	</div>
+	<div class="col-sm-3">
+	
+	</div>
+	<div class="col-sm-2">
+		{jomres search_form_button}
+	</div>
+</div>
+{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-4}
+		</div>
+	</div>
+	
+	
+	<hr/>
+	<h3>Form 5</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/row_countries_checkin_checkout_features_types.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-5" name="form-5" class="w-100" rows="15" >
+{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-2">
+			{jomres search_form_countries}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_checkin}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_checkout}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_features}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_property_types}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_button}
+		</div>
+	</div>
+	{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-5}
+		</div>
+	</div>
+	
+	
+	<hr/>
+	<h3>Form 6</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/col_countries_checkin_checkout_features_property_types.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-6" name="form-6" class="w-100" rows="15" >
+{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-12 p-2">
+			{jomres search_form_countries}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_checkin}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_checkout}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_features}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_property_types}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_button}
+		</div>
+	
+	</div>
+	{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-6}
+		</div>
+	</div>
+
+	
+	
+	<hr/>
+	<h3>Form 7</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/row_regions_checkin_checkout_features_property_types.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-7" name="form-7" class="w-100" rows="15" >
+{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-2">
+			{jomres search_form_regions}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_checkin}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_checkout}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_features}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_property_types}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_button}
+		</div>
+	</div>
+	{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-7}
+		</div>
+	</div>
+	
+	<hr/>
+	<h3>Form 8</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/col_regions_checkin_checkout_features_property_types.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-8" name="form-8" class="w-100" rows="15" >
+{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-12 p-2">
+			{jomres search_form_regions}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_checkin}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_checkout}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_features}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_property_types}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_button}
+		</div>
+	
+	</div>
+{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-8}
+		</div>
+	</div>
+	
+	
+	<hr/>
+	<h3>Form 9</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/row_towns_checkin_checkout_features_property_types.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-9" name="form-9" class="w-100" rows="15" >
+{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-2">
+			{jomres search_form_towns}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_checkin}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_checkout}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_features}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_property_types}
+		</div>
+		
+		<div class="col-sm-2">
+			{jomres search_form_button}
+		</div>
+	</div>
+	{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-9}
+		</div>
+	</div>
+	
+	
+	<hr/>
+	<h3>Form 10</h3>
+	
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/col_towns_checkin_checkout_features_property_types.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-10" name="form-10" class="w-100" rows="15" >
+{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-12 p-2">
+			{jomres search_form_towns}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_checkin}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_checkout}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_features}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_property_types}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_button}
+		</div>
+	
+	</div>
+	{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-10}
+		</div>
+	</div>
+	
+	
+	<hr/>
+	<h3>Form 11</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/col_towns_checkin_checkout_adults_kids.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-11" name="form-11" class="w-100" rows="15" >
+	{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-12 p-2">
+			{jomres search_form_towns}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_checkin}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_checkout}
+		</div>
+		
+		
+		<div class="col-sm-12">
+			{jomres search_form_label_sleeps_adults}
+		</div>
+		<div class="col-sm-12">
+			{jomres search_form_sleeps_adults}
+		</div>
+		
+		<div class="col-sm-12">
+			{jomres search_form_label_sleeps_children}
+		</div>
+		<div class="col-sm-12">
+			{jomres search_form_sleeps_children}
+		</div>
+		
+		<div class="col-sm-12 p-2">
+			{jomres search_form_button}
+		</div>
+	
+	</div>
+	{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-11}
+		</div>
+	</div>
+	
+	<hr/>
+	
+	<h3>Form 12</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/row_stars.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-12" name="form-12" class="w-100" rows="15" >
+{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-2">
+			{jomres search_form_label_stars}
+		</div>
+		
+		<div class="col-sm-8">
+			{jomres search_form_stars}
+		</div>
+		
+		
+		<div class="col-sm-2">
+			{jomres search_form_button}
+		</div>
+	</div>
+{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-12}
+		</div>
+	</div>
+
+	
+	
+	<hr/>
+	<h3>Form 13</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/row_checkin_checkout_stars.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-13" name="form-13" class="w-100" rows="15" >
+	{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="row">
+				<div class="col-sm-12">
+					{jomres search_form_checkin}
+				</div>
+				<div class="col-sm-12">
+					{jomres search_form_checkout}
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			{jomres search_form_stars}
+		</div>
+		<div class="col-sm-4">
+			{jomres search_form_button}
+		</div>
+	</div>
+	{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-13}
+		</div>
+	</div>
+
+	
+	
+	<hr/>
+	<h3>Form 14</h3>
+	<div class="row">
+		<div class="col">
+			<img src="{REL_PATH}/images/row_checkin_checkout_prices_stars.png" class="img-fluid" />
+		</div>
+		<div class="col">
+			<textarea id="form-14" name="form-14" class="w-100" rows="15" >
+	{jomres search_form_start}
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="row">
+				<div class="col-sm-12">
+					{jomres search_form_checkin}
+				</div>
+				<div class="col-sm-12">
+					{jomres search_form_checkout}
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2 me-2">
+			<div class="row">
+				<div class="col-sm-12">
+					{jomres search_form_label_price_ranges}
+				</div>
+				<div class="col-sm-12">
+					{jomres search_form_priceranges}
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-sm-4">
+			{jomres search_form_stars}
+		</div>
+		<div class="col-sm-2">
+			{jomres search_form_button}
+		</div>
+	</div>
+	{jomres search_form_end}
+			</textarea>
+		</div>
+		<div class="col-sm-1">
+			{jomres_script copy_button copy_button_id=form-14}
+		</div>
+	</div>
+	
+	
+	
+	
+
+</patTemplate:tmpl>

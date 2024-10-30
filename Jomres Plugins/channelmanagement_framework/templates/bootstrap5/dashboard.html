@@ -1,0 +1,21 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+
+{MAINMENU}
+
+
+	<div class="row-fluid">
+		<div class="col-md-10">
+			<patTemplate:tmpl name="properties_list" unusedvars="strip">
+				{PROPERTIES_LIST}
+			</patTemplate:tmpl>
+		</div>
+		<div class="col-md-2">
+			<patTemplate:tmpl name="rows" unusedvars="strip">
+				{DASHBOARD_ITEM}
+			</patTemplate:tmpl>
+		</div>
+	</div>
+
+
+</patTemplate:tmpl>

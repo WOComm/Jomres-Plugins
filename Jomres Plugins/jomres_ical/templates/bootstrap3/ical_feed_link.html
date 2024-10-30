@@ -1,0 +1,12 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<p class="alert alert-info">{_JOMRES_ICAL_FEED_LINK_INFO}</p>
+<form>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="email_subject">{_JOMRES_ICAL_ANON}</label>
+		<div class="col-md-10">
+			<textarea class="form-control" rows="3" readonly>{FEED_LINK}</textarea>
+		</div>
+	</div>
+</form>
+</patTemplate:tmpl>

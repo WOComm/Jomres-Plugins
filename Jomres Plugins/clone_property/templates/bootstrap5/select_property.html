@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>{PAGETITLE}</h2>
+<div class="alert alert-warning">{NOTES}</div>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+{JOMRESTOOLBAR}
+<div class="control-group">
+	<label class="control-label" for="property_to_clone">{HCHOOSEPROPERTY}</label>
+
+	<div class="controls">
+		{PROPERTYSDROPDOWN}
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" for="newname">{HNEWNAME}</label>
+
+	<div class="controls">
+		<input type="text" name="newname" value="Change me" />
+	</div>
+</div>
+
+<input type="hidden" name="task" value="clone_property" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

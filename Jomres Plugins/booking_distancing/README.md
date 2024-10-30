@@ -1,0 +1,1 @@
+Adds an option to Property Configuration which gives managers the option to block the day(s) before and after a booking. This gives them the opportunity to perform deep cleans, for example, for the safety of their guests.

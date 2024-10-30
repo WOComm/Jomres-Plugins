@@ -1,0 +1,122 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script>
+jomresJquery(function(){
+	jomresJquery('#quick_submit_email').click(function(e){
+		e.preventDefault();
+		if ( jomresJquery("#inputEmail").val() != "") {
+			jomresJquery.ajax({
+				type: "POST",
+				url: '{JOMRES_SITEPAGE_URL_AJAX}&task=quick_register_email&email=' + jomresJquery("#inputEmail").val(),
+				dataType: "json",
+				success: function(data) {
+					if (data.status == "success")
+						{
+						jomresJquery('#quick_register').modal('hide');
+						jomresJquery('#quick_register_thanks').modal('show');
+						}
+					else
+						{
+						jomresJquery('#quick_register').modal('hide');
+						alert ( data.message + " :(" );
+						}
+					},
+				error: function() {
+					alert("Erm, that didn't go as planned :( ");
+					}
+				});
+			}
+		});
+	jomresJquery('#quick_register_blurb').popover();
+	});
+	
+
+</script>
+
+<div class="row mb-3">
+	<div class="col-md-2">
+		<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#quick_register">
+			{QUICK_REGISTER}
+		</button>
+	</div>
+	<div class="col-md-3">
+		{QUICK_REGISTER_BLURB}
+	</div>
+	<div class="col-md-3">
+		<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#quick_login">
+			{QUICK_LOGIN}
+		</button>
+	</div>
+	<div class="col-md-4">
+		&nbsp;
+	</div>
+</div>
+
+<!-- Modal -->
+
+<div class="modal fade" id="quick_register" tabindex="-1" role="dialog" aria-labelledby="quick_registerModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="quick_registerModalLabel">{QUICK_REGISTER_EMAIL_ADD}</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="registration_email">
+				<div class="form-group">
+					<label for="inputEmail">{QUICK_REGISTER_EMAIL}</label>
+					<input type="email" class="form-control" id="inputEmail" placeholder="{COMMON_PLACEHOLDER_EMAIL}">
+				</div>
+				{CSRF_TOKEN}
+				</form>
+				{QUICK_REGISTER_EMAIL_CLICKLINK}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-bs-dismiss="modal">{COMMON_CANCEL}</button>
+				<button type="submit" id="quick_submit_email" class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">{QUICK_REGISTER_EMAIL_SAVE}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="quick_register_thanks" tabindex="-1" role="dialog" aria-labelledby="quick_register_thanksModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="quick_register_thanksModalLabel">{QUICK_REGISTER_EMAIL_THANKS}</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{QUICK_REGISTER_EMAIL_THANKS_BLURB}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-bs-dismiss="modal">{COMMON_CLOSE}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<form id="jomres_login" method="POST" action="{ORIGIN_URL}">
+<div class="modal fade" id="quick_login" tabindex="-1" role="dialog" aria-labelledby="jomres_loginModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="jomres_loginModalLabel">{QUICK_LOGIN}</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{QUICK_REGISTER_EMAIL}<br>
+				<input type="text" class="form-control" name="username"><br>
+				{QUICK_REGISTER_PASSWORD}<br>
+				<input type="password" class="form-control" name="password">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-bs-dismiss="modal">{COMMON_CANCEL}</button>
+				<button type="submit" class="btn btn-primary">{QUICK_LOGIN}</button>
+			</div>
+		</div>
+	</div>
+</div>
+{CSRF_TOKEN}
+</form>
+
+</patTemplate:tmpl>

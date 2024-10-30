@@ -1,0 +1,9 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<select class="form-select" aria-label="{ARIA}" name="town">
+		<option value=""></option>
+	<patTemplate:tmpl name="towns" unusedvars="import">
+		<option {SELECTED}  value="{VALUE}">{LABEL}</option>
+		<patTemplate:comment> This array also has the URL element, which you can use if you prefer to build a list of regions as links instead {URL}</patTemplate:comment>
+	</patTemplate:tmpl>
+	</select>
+</patTemplate:tmpl>

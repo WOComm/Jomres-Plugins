@@ -1,0 +1,57 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import" >
+<h2 class="page-header">{_JOMRES_MODULE_BASICS}</h2>
+<p class="alert alert-info">{_JOMRES_MODULE_BASICS_INFO}</p>
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}"  method="post" name="adminForm" class="form-horizontal" role="form"  autocomplete="off">
+		<div class="form-group">
+			<div class="row">
+				<div class="6">
+					<i class="fas fa-user-friends"></i> {_JOMRES_MODULE_BASICS_ACCOMMODATES}
+				</div>
+				<div class="6">
+					{ACCOMMODATES_DROPDOWN}
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="6">
+					<i class="fas fa-bed"></i> {_JOMRES_MODULE_BASICS_BEDROOMS}
+				</div>
+				<div class="6">
+					{BEDROOMS_DROPDOWN}
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="6">
+					<i class="fas fa-bath"></i> {_JOMRES_MODULE_BASICS_BATHROOMS}
+				</div>
+				<div class="6">
+					{BATHROOMS_DROPDOWN}
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="6">
+					<i class="fas fa-vector-square"></i> {_JOMRES_MODULE_BASICS_SIZE}
+				</div>
+				<div class="6">
+					{SIZE_DROPDOWN}
+				</div>
+			</div>
+
+
+			<div class="form-actions fixed-bottom bg-light text-center pt-1 border-top border-success">
+				<div class="col-md-10 col-md-offset-2">
+					{JOMRESTOOLBAR}
+				</div>
+			</div>
+			<input type="hidden" name="task" value="module_basics_save">
+			{CSRF_TOKEN}
+		</div>
+
+	</form>
+
+</patTemplate:tmpl>

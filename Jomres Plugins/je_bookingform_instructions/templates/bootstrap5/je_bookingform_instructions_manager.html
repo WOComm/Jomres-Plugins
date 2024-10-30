@@ -1,0 +1,28 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+<div class="form-group">
+	<label class="col-md-2 control-label" for="enabled">{HENABLED_YESNO}</label>
+	<div class="col-md-10">
+		{ENABLED_YESNO}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="content">{INSTRUCTIONS}</label>
+	<div class="col-md-10">
+		{CONTENT}
+	</div>
+</div>
+
+<div class="form-actions">
+	<div class="col-md-10 col-md-offset-2">
+		{JOMRESTOOLBAR}
+	</div>
+</div>
+	
+{JOMRESTOKEN}
+<input type="hidden" name="task" value="save_je_bookingform_instructions" />
+<input type="hidden" name="puid" value="{PUID}" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

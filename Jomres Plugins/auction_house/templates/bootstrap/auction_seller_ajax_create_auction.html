@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput" >
+<h2 class="page-header">New auction - Step 1</h2>
+<form action="" method="post" name="adminForm" class="form-horizontal">
+<div class="control-group">
+	<div class="control-label">
+		{_JOMRES_AUCTIONHOUSE_SELLER_CREATE_CHOOSEPROPERTY}
+	</div>
+	<div class="controls">
+		{PROPERTYDROPDOWN}
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{_JOMRES_AUCTIONHOUSE_SELLER_CREATE_INCLUDINGROOMS}
+	</div>
+	<div class="controls">
+		{INCLUDEROOMS}
+	</div>
+</div>
+<div class="form-actions">
+	<a class="btn btn-primary" onClick="auction_page('auction_seller_ajax_create_auction_step2',['include_rooms','chosen_property']);">
+		{_PN_NEXT}
+	</a>
+</div>
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

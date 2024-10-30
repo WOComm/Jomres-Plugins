@@ -1,0 +1,20 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip"> 
+
+<patTemplate:tmpl name="rows">
+<div title="{ARTICLE_TITLE}" class="col-md-12" style="padding:0;margin:0;">
+	<div class="card border border-{ALERT_STYLE} p-2">
+		<div class="card-heading">
+			<h3 class="card-title">{ARTICLE_TITLE}</h3>
+		</div>
+		<div class="card-body">
+			<p>{ARTICLE_CONTENT}</p>
+		</div>
+		<div class="card-footer">
+			{ARTICLE_URL}
+			<span class="label label-grey pull-right">{DATE_POSTED}</span>
+		</div>
+	</div>
+</div> 
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

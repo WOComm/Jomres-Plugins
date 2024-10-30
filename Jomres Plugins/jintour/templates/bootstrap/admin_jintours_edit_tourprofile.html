@@ -1,0 +1,112 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+{JOMRESTOOLBAR}
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+<div class="control-group">
+	<div class="control-label">
+		{HPROFILE_TITLE}
+	</div>
+	<div class="controls">
+		<input type="text" class="input-medium" name="title" value="{TITLE}" />
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HDESCRIPTION}
+	</div>
+	<div class="controls">
+		<textarea rows="5" name="description" class="input-xxlarge">{DESCRIPTION}</textarea>
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HADULTSPACES}
+	</div>
+	<div class="controls">
+		{SPACES_ADULTS}
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HCHILDSPACES}
+	</div>
+	<div class="controls">
+		{SPACES_KIDS}
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HTAXCODE}
+	</div>
+	<div class="controls">
+		{TAXRATEDROPDOWN}
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HSTART_DATE}
+	</div>
+	<div class="controls">
+		{VALIDFROM}
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HEND_DATE}
+	</div>
+	<div class="controls">
+		{VALIDTO}
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HDAYS_OF_WEEK}
+	</div>
+	<div class="controls">
+		<label class="checkbox inline">
+			<input type="checkbox" name="monday" value="1" {MONDAY_CHECKED} > {MONDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="tuesday" value="1" {TUESDAY_CHECKED} > {TUESDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="wednesday" value="1" {WEDNESDAY_CHECKED} > {WEDNESDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="thursday" value="1" {THURSDAY_CHECKED} > {THURSDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="friday" value="1" {FRIDAY_CHECKED} > {FRIDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="saturday" value="1" {SATURDAY_CHECKED} > {SATURDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="sunday" value="1" {SUNDAY_CHECKED} > {SUNDAY}
+		</label>
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HPRICE_ADULTS}
+	</div>
+	<div class="controls">
+		<input type="text" class="input-small" name="price_adults" value="{PRICE_ADULTS}" />
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HPRICE_KIDS}
+	</div>
+	<div class="controls">
+		<input type="text" class="input-small" name="price_kids" value="{PRICE_KIDS}" />
+		<p class="help-block">
+			{KIDS_INFO}
+		</p>
+    </div>
+</div>
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="no_html" value="1" />
+<input type="hidden" name="task" value="jintour_save_profile" />
+</form>
+</patTemplate:tmpl>

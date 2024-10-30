@@ -1,0 +1,86 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+
+
+    <h3>{DEPOSIT}</h3>
+
+    <form method="post" id="payment-form" action="{CALLBACK_URL}">
+        <section>
+            <div class="bt-drop-in-wrapper">
+                <div id="spinner" class="spinner-border text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div id="bt-dropin">
+                </div>
+            </div>
+        </section>
+        <input id="nonce" name="payment_method_nonce" type="hidden" />
+        <input id="device_data" name="device_data" type="hidden" />
+        <button class="btn btn-success" type="submit"><span>{_JRPORTAL_INVOICES_PAYNOW}</span></button>
+    </form>
+
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.1/js/dropin.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.85.3/js/client.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.85.3/js/data-collector.min.js"></script>
+
+    <script>
+        var form = document.querySelector('#payment-form');
+        var client_token = "{CLIENT_TOKEN}";
+
+        braintree.client.create({
+            authorization: client_token
+        }, function(err, clientInstance) { // this is the client instance we need when creating a `dataCollector`
+
+            braintree.dataCollector.create({
+                client: clientInstance, // `clientInstance` not dropIn `instance`
+                paypal: true
+            }, function (err, dataCollectorInstance) {
+                if (err) {
+                    return;
+                }
+
+                jomresJquery("#device_data").val(dataCollectorInstance.deviceData);
+            });
+
+            /* ... rest of the `braintree.dropin.create`
+               just without the above `braintree.dataCollector.create` stuff in the submit handler...
+            */
+
+            braintree.dropin.create({
+                authorization: client_token,
+                container: '#bt-dropin',
+                paypal: {
+                    flow: 'vault'
+                }
+            }, function (createErr, instance) {
+                if (createErr) {
+                    console.log('Create Error', createErr);
+                    return;
+                } else {
+                    jomresJquery( "#spinner" ).remove();
+                }
+
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    instance.requestPaymentMethod(function (err, payload) {
+                        if (err) {
+                            console.log('Request Payment Method Error', err);
+                            return;
+                        }
+
+                        // Add the nonce to the form and submit
+                        document.querySelector('#nonce').value = payload.nonce;
+                        form.submit();
+
+                        var deviceData = dataCollectorInstance.deviceData;
+                        console.log(deviceData);
+                        jomresJquery('input[name=device_data]').val(deviceData);
+
+                    });
+                });
+            });
+        });
+
+    </script>
+</patTemplate:tmpl>

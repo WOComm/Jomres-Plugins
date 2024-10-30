@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<div id="carousel_{RANDOM_IDENTIFIER}" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel">
+		<div class="carousel-inner">
+			<patTemplate:tmpl name="rows2">
+				<div class="carousel-item {ACTIVE}" data-bs-interval="{INTERVAL}">
+					<div class="d-none d-lg-block d-xl-block d-xxl-block">
+						<img src="{LARGE_IMAGE}" class="img-fluid w-100 {CARD_IMAGE_TOP} card-img-photolayout card-img-radius" alt="{LARGE_IMAGE}">
+					</div>
+					<div class="d-sm-block d-sm-block d-md-block d-lg-none">
+						<img src="{SMALL_IMAGE}" class="img-fluid w-100 {CARD_IMAGE_TOP} card-img-photolayout card-img-radius" alt="{SMALL_IMAGE}">
+					</div>
+				</div>
+			</patTemplate:tmpl>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carousel_{RANDOM_IDENTIFIER}" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carousel_{RANDOM_IDENTIFIER}" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+</patTemplate:tmpl>

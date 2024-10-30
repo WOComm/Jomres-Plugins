@@ -1,0 +1,237 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(function() {
+	if (jomresJquery("#slider-range").length) {
+		jomresJquery( "#slider-range")[0].slide = null;
+		jomresJquery( "#slider-range" ).slider({
+			range: true,
+			min: {MINPRICE},
+			max: {MAXPRICE},
+			values: [ {MINPRICE}, {MAXPRICE} ],
+			slide: function( event, ui ) {
+				jomresJquery( "#amount" ).val( "{PREPRICE}" + ui.values[ 0 ]+ "{POSTPRICE}" + " - " + "{PREPRICE}" + ui.values[ 1 ]+ "{POSTPRICE}" );
+			},
+			change: function(event,ui) {
+				value1 = jomresJquery( "#slider-range" ).slider( "values", 0 );
+				value2 = jomresJquery( "#slider-range" ).slider( "values", 1 );
+				jomresJquery('input[name$="pricerange_value_from"]').val(value1);
+				jomresJquery('input[name$="pricerange_value_to"]').val(value2);
+				submit_search('{FORM_NAME}');
+			}
+		});
+		jomresJquery( "#amount" ).val( "{PREPRICE}" + jomresJquery( "#slider-range" ).slider( "values", 0 )+ "{POSTPRICE}" +
+			" - " + "{PREPRICE}" + jomresJquery( "#slider-range" ).slider( "values", 1 )+ "{POSTPRICE}" );
+	}
+});
+
+function reset_form_buttons(form_id)
+	{
+	jomresJquery("#"+form_id+" input[type=checkbox]").each(function() {
+		var id = jomresJquery(this).attr('id');
+		if ('undefined'!=typeof(id)){
+			var val = jomresJquery(this).attr('checked');
+			if ('undefined'!=typeof(val)){
+				jomresJquery(this).attr('checked', false);
+				toggle_button_class('#button_'+id);
+				}
+			}
+		
+		});
+	}
+//-->
+</script>
+
+<style type="text/css">
+.element_button {
+	min-width: 120px;
+	max-width: 180px;
+}
+.price-range-input {
+	border:0 none !important;
+	background:none !important;
+	box-shadow:none !important;
+}
+</style>
+
+<a class="btn btn-primary" href="{JOMRES_SITEPAGE_URL_NOSEF}&task=search&return_to_search_results=1")" >{_JOMRES_RETURN_TO_RESULTS}</a>
+<a class="btn btn-warning" onClick="reset_form_buttons('{FORM_NAME}')" >{_JOMRES_COM_A_RESET}</a>
+
+<patTemplate:tmpl name="date_head" type="simpleCondition" requiredVars="_jomres_front_availability">
+<h4 class="page-header"><a class="dates" href="#">{_JOMRES_FRONT_AVAILABILITY}</a></h4>
+<div id="dates-content">
+	<patTemplate:tmpl name="date_rows" >
+	<div>{_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL}</div>
+	<div>{ARRIVALDATE}</div>
+	<div>{_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE}</div>
+	<div>{DEPARTUREDATE}</div>
+	<div>&nbsp;</div>
+	</patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="stars_head" type="simpleCondition" requiredVars="_jomres_com_a_integratedsearch_bytars">
+<h4 class="page-header"><a class="stars" href="#">{_JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS}</a></h4>
+<div id="stars-content">
+	<patTemplate:tmpl name="stars_rows" >
+	<input type="checkbox" name="stars[]" value="{NUMBER}" {DISABLED} {CHECKED} /> {IMAGE}{NUMBER} ({COUNT})<br/>
+	</patTemplate:tmpl>
+	<div>&nbsp;</div>
+</div>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="price_head" type="simpleCondition" requiredVars="_jomres_search_priceranges" >
+<h4 class="page-header"><a class="btn btn-info element_button" href="#pricerange_modal" data-toggle="modal"><i class="icon-chevron-down pull-left"></i> {_JOMRES_SEARCH_PRICERANGES}</a></h4>
+<div id="pricerange_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">{_JOMRES_SEARCH_PRICERANGES}</h3>
+	</div>
+	<div class="modal-body">
+		<patTemplate:tmpl name="prices_rows" >
+		<label class="btn element_button {ACTIVE_CLASS}" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{RANGE}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="priceranges[]" value="{RANGE}" autocomplete=off /><br/>
+		</patTemplate:tmpl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</button>
+	</div>
+</div>
+
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="country_head" type="simpleCondition" requiredVars="_jomres_search_geo_countrysearch" >
+<h4 class="page-header"><a class="btn btn-info element_button" href="#country_modal" data-toggle="modal"><i class="icon-chevron-down pull-left"></i> {_JOMRES_SEARCH_GEO_COUNTRYSEARCH}</a></h4>
+<div id="country_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">{_JOMRES_SEARCH_GEO_COUNTRYSEARCH}</h3>
+	</div>
+	<div class="modal-body">
+		<patTemplate:tmpl name="country_rows" >
+		<label class="btn element_button {ACTIVE_CLASS}" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{COUNTRYNAME}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="countries[]" value="{COUNTRYCODE}" autocomplete=off /><br/>
+		<!--<input type="checkbox" name="countries[]" value="{COUNTRYCODE}" /> {COUNTRYNAME}<br />-->
+		</patTemplate:tmpl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</button>
+	</div>
+</div>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="region_head" type="simpleCondition" requiredVars="_jomres_search_geo_regionsearch" >
+<h4 class="page-header"><a class="btn btn-info element_button" href="#region_modal" data-toggle="modal"><i class="icon-chevron-down pull-left"></i> {_JOMRES_SEARCH_GEO_REGIONSEARCH}</a></h4>
+<div id="region_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">{_JOMRES_SEARCH_GEO_REGIONSEARCH}</h3>
+	</div>
+	<div class="modal-body">
+		<patTemplate:tmpl name="region_rows">
+		{REGIONS}
+		</patTemplate:tmpl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</button>
+	</div>
+</div>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="town_head" type="simpleCondition" requiredVars="_jomres_search_geo_townsearch" >
+<h4 class="page-header"><a class="btn btn-info element_button" href="#town_modal" data-toggle="modal"><i class="icon-chevron-down pull-left"></i> {_JOMRES_SEARCH_GEO_TOWNSEARCH}</a></h4>
+<div id="town_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">{_JOMRES_SEARCH_GEO_TOWNSEARCH}</h3>
+	</div>
+	<div class="modal-body">
+		<patTemplate:tmpl name="town_rows" >
+		{TOWNS}
+		</patTemplate:tmpl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</button>
+	</div>
+</div>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="room_type_head" type="simpleCondition" requiredVars="_jomres_search_rtypes" >
+<h4 class="page-header"><a class="btn btn-info element_button" href="#room_types_modal" data-toggle="modal"><i class="icon-chevron-down pull-left"></i> {_JOMRES_SEARCH_RTYPES}</a></h4>
+<div id="room_types_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">{_JOMRES_SEARCH_RTYPES}</h3>
+	</div>
+	<div class="modal-body">
+	<patTemplate:tmpl name="room_type_rows" >
+	<label class="btn element_button {ACTIVE_CLASS}" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{TITLE}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="room_type_uids[]" value="{ID}" autocomplete=off /><br/>
+	<!--<input type="checkbox" name="room_type_uids[]" value="{ID}" /> {TITLE}<br/>-->
+	</patTemplate:tmpl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</button>
+	</div>
+</div>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="property_type_head" type="simpleCondition" requiredVars="_jomres_search_ptypes" >
+<h4 class="page-header"><a class="btn btn-info element_button" href="#property_types_modal" data-toggle="modal"><i class="icon-chevron-down pull-left"></i> {_JOMRES_SEARCH_PTYPES}</a></h4>
+<div id="property_types_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">{_JOMRES_SEARCH_PTYPES}</h3>
+	</div>
+	<div class="modal-body">
+	<patTemplate:tmpl name="property_type_rows" >
+	<label class="btn element_button {ACTIVE_CLASS}" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{TITLE}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="property_type_uids[]" value="{ID}" autocomplete=off /><br/>
+	<!--<input type="checkbox" name="property_type_uids[]" value="{ID}" /> {TITLE}<br />-->
+	</patTemplate:tmpl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</button>
+	</div>
+</div>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="guestnumber_head" type="simpleCondition" requiredVars="_jomres_com_a_integratedsearch_byguestnumber" >
+<h4 class="page-header"><a class="btn btn-info element_button" href="#guestnumbers_modal" data-toggle="modal"><i class="icon-chevron-down pull-left"></i> {_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER}</a></h4>
+<div id="guestnumbers_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">{_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER}</h3>
+	</div>
+	<div class="modal-body">
+	<patTemplate:tmpl name="guestnumber_rows" >
+	<label class="btn element_button {ACTIVE_CLASS}" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{NUMBER}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="guestnumbers[]" value="{NUMBER}" autocomplete=off /><br/>
+	<!--<input type="checkbox" name="guestnumbers[]" value="{NUMBER}" /> {NUMBER}<br />-->
+	</patTemplate:tmpl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</button>
+	</div>
+</div>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="features_head" type="simpleCondition" requiredVars="_jomres_com_a_integratedsearch_byfeatures" >
+<h4 class="page-header"><a class="btn btn-info element_button" href="#features_modal" data-toggle="modal"><i class="icon-chevron-down pull-left"></i> {_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES}</a></h4>
+<div id="features_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">{_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES}</h3>
+	</div>
+	<div class="modal-body">
+	<patTemplate:tmpl name="features_rows" >
+	<label class="btn element_button {ACTIVE_CLASS}" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{TITLE}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="feature_uids[]" value="{ID}" autocomplete=off /><br/>
+	<!--<div style="height:30px;float:left;"><input type="checkbox" name="feature_uids[]" value="{ID}" /> {ICON}</div>-->
+	</patTemplate:tmpl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</button>
+	</div>
+</div>
+<div style="clear:both;"></div>
+</patTemplate:tmpl>
+<input type="hidden" name = "search_form" value="ajax_search_composite" />
+<input type="hidden" name = "property_prefilter" value="{PROPERTY_PREFILTER}" />
+<input type="hidden" name = "ptype_prefilter" value="{PTYPE_PREFILTER}" />
+
+</patTemplate:tmpl>

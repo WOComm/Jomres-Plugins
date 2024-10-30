@@ -1,0 +1,13 @@
+{
+	"_OAUTH_SCOPE_CATEGORY_USER": [{
+		"scope": "favourites_get",
+		"user_type": "user",
+		"definition": "_OAUTH_SCOPE_FAVOURITES_GET",
+		"description": "_OAUTH_SCOPE_FAVOURITES_GET_DESC"
+	}, {
+		"scope": "favourites_set",
+		"user_type": "user",
+		"definition": "_OAUTH_SCOPE_FAVOURITES_SET",
+		"description": "_OAUTH_SCOPE_FAVOURITES_SET_DESC"
+	}]
+}

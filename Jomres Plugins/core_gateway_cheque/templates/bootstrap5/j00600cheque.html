@@ -1,0 +1,56 @@
+<patTemplate:tmpl name="interrupt_outgoing">
+	<div class="row">
+		<div class="col">
+			<strong>{JR_GATEWAY_SENDDEPOSITTO} {DEPOSIT} {JR_GATEWAY_BELOWADDRESS} :</strong>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{PROP_NAME}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{PROP_STREET},
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{PROP_TOWN},
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{PROP_REGION},
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{PROP_COUNTRY},
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{PROP_POSTCODE},
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			&nbsp;
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{JR_GATEWAY_CONTACTUS1} <em>{PROP_TEL}</em> {JR_GATEWAY_CONTACTUS2} <a href="mailto:{PROP_EMAIL}&subject={_JOMRES_BOOKING_NUMBER}%20{BOOKING_NUMBER}">{PROP_EMAIL}</a>.
+		</div>
+	</div>
+
+<form action="" method="post" name="bookingForm" onsubmit="submit.disabled = true; return true;">
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="processpayment" />
+<input type="hidden" name="interrupted" value="1" />
+<input type="submit" name="submit" value="{_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY}" class="btn btn-primary"/>
+{HIDDEN}
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

@@ -1,0 +1,70 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+{JOMRES_POPUPURL_GLOBALVAR}
+
+{HEADER}
+
+<patTemplate:comment>
+<div class="row">
+	<div class="col-12">
+		{PAGING}
+	</div>
+</div>
+</patTemplate:comment>
+
+<patTemplate:tmpl name="property_details" unusedvars="strip">
+	<div class="card mb-3 {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS} border-0" style="max-width: 710px;">
+		<div class="row g-0">
+			<div class="col-md-4">
+				{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
+			</div>
+			<div class="col-md-8">
+				<div class="card-body">
+					<h5 class="card-title"><a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" itemprop="name" style="text-decoration: none;">{PROP_NAME}</a></h5>
+					<p class="card-text">
+						<div class="row">
+							<div class="col-sm-6">
+								<span class="text-secondary">{PROPERTY_TYPE}</span>
+								<p class="small"><i> {PROP_COUNTRY}</i></p>
+								<div class="jomres_message">{LASTMINUTE}</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="row p-1">
+									<div class="col">
+										<div class="badge bg-info">
+											{PRICE_PRE_TEXT}
+											{PRICE_PRICE}
+											{PRICE_POST_TEXT}
+										</div>
+									</div>
+								</div>
+								<div class="row p-1">
+									<div class="col">
+										<a href="{LINK}" class="btn btn-success"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
+									</div>
+								</div>
+								<div class="row p-1">
+									<div class="col">
+										<a href="{MOREINFORMATIONLINK}" class="btn btn-info"><i class="fa fa-info"></i> {MOREINFORMATION}</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr>
+</patTemplate:tmpl>
+
+<div id = "livescrolling_results" ></div>
+
+<div class="row">
+	<div class="col-12">
+		{PAGING}
+	</div>
+</div>
+
+<patTemplate:comment>{HEADER}</patTemplate:comment>
+</patTemplate:tmpl>

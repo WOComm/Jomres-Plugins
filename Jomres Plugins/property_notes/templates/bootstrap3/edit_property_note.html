@@ -1,0 +1,21 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{PAGETITLE}</h2>
+<p>{PROPERTY_NOTES_DESC}</p>
+
+<form method="post" name="adminForm" role="form" class="form-horizontal">
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_notes">{PROPERTY_NOTES_TITLE}</label><div id="tour_target_registration_2_policies"></div>
+		<div class="col-md-10">
+			<textarea  name="property_notes" class="inputbox form-control" cols="70" rows="20" >{PROPERTY_NOTE_LINEBREAKS}</textarea>
+		</div>
+	</div>
+	<div class="form-actions">
+		<div class="col-md-10 col-md-offset-2">
+			{JOMRESTOOLBAR}
+		</div>
+	</div>
+	<input type="hidden" name="task" value="save_property_note" />
+	{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

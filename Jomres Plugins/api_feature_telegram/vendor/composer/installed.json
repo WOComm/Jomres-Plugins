@@ -1,0 +1,66 @@
+{
+    "packages": [
+        {
+            "name": "eleirbag89/telegrambotphp",
+            "version": "1.4.2",
+            "version_normalized": "1.4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Eleirbag89/TelegramBotPHP.git",
+                "reference": "bc0dd1d1e400b1d860b1fc111b988a25fa02857f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Eleirbag89/TelegramBotPHP/zipball/bc0dd1d1e400b1d860b1fc111b988a25fa02857f",
+                "reference": "bc0dd1d1e400b1d860b1fc111b988a25fa02857f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.0"
+            },
+            "time": "2022-06-09T14:05:47+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "Telegram.php",
+                    "TelegramErrorLogger.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gabriele Grillo",
+                    "email": "gabry.grillo@alice.it"
+                }
+            ],
+            "description": "A very simple PHP Telegram Bot API",
+            "support": {
+                "issues": "https://github.com/Eleirbag89/TelegramBotPHP/issues",
+                "source": "https://github.com/Eleirbag89/TelegramBotPHP/tree/1.4.2"
+            },
+            "funding": [
+                {
+                    "url": "https://flattr.com/@Eleirbag89",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://paypal.me/eleirbag89",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://liberapay.com/eleirbag89",
+                    "type": "liberapay"
+                }
+            ],
+            "install-path": "../eleirbag89/telegrambotphp"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

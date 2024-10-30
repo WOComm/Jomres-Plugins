@@ -1,0 +1,40 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_extras', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<div id="tour_target_extras"></div><div id="tour_target_table_tools"></div>
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+		<div class="well">
+			{JOMRESTOOLBAR}
+		</div>
+		<table width="100%" id="list_extras" class="table tabble-striped">
+			<thead>
+			<tr>
+				<th>{HEDITLINK}</th>
+				<th>{HEXNAME}</th>
+				<th>{HEXDESC}</th>
+				<th>{HEXPRICE}</th>
+				<th>{HIMAGE}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="exname">
+				<tr>
+					<td>{EDITLINK}</td>
+					<td>{EXNAME}</td>
+					<td>{EXDESC}</td>
+					<td>{CURRENCY} {EXPRICE}</td>
+					<td><img src="{EXTRA_IMAGE}" class="thumbnail responsive" /></td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="task" value="newExtra"/>
+		{CSRF_TOKEN}
+	</form>
+</patTemplate:tmpl>

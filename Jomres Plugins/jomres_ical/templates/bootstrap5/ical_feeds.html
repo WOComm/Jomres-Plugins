@@ -1,0 +1,80 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="javascript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('ical_feeds', '{PAGETITLE}', '{LIVESITE}');
+
+        jomresJquery(document).ready(function(){
+            jomresJquery(".click .copy").click(function(event){
+                var $tempElement = jomresJquery("<input>");
+                jomresJquery("body").append($tempElement);
+                $tempElement.val(jomresJquery(this).closest(".click").find("span").text()).select();
+                document.execCommand("Copy");
+                $tempElement.remove();
+            });
+        });
+	});
+	//-->
+</script>
+
+	<style>
+        .click{
+            padding: 10px;
+        }
+
+        .click .copy{
+            background-color: rgba(0,0,0,.8);
+            padding: 3px;
+            border-radius: 12px;
+            position: absolute;
+            margin-top: -2px;
+            width: 80px;
+            cursor: pointer;
+            color: #f1f783;
+            display: none;
+            text-align: center;
+        }
+        .click:hover .copy{
+            display: block;
+        }
+	</style>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<p class="alert alert-info">{DESCRIPTION}</p>
+
+<table class="table table-striped" id="ical_feeds" width="100%">
+	<thead>
+		<tr>
+			<th>{COMMON_DOWNLOAD}</th>
+			<th>{HROOM_TYPE}</th>
+			<th>{HROOM_NAME}</th>
+			<th>{HROOM_NUMBER}</th>
+			<th>{HICAL_FEED_LINK}</th>
+			<th>{HANONYMISED_ICAL_FEED_LINK}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="room_type">
+		<tr>
+			<td>{TOOLBAR}</td>
+			<td>{ROOM_TYPE}</td>
+			<td>{ROOM_NAME}</td>
+			<td>{ROOM_NUMBER}</td>
+			<td>
+				<div class="click">
+					<div class="copy"><i class="fa fa-files-o" aria-hidden="true"></i> </div>
+					<span>{ICAL_FEED_LINK}</span>
+				</div>
+				<div class="click">
+					<div class="copy"><i class="fa fa-files-o" aria-hidden="true"></i> </div>
+					<span>{RELATIVE_PATH}</span>
+				</div>
+			</td>
+			<td>{ANONYMISED_ICAL_FEED_LINK}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+
+</patTemplate:tmpl>

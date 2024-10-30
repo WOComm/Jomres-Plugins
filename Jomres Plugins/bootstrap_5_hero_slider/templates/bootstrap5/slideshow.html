@@ -1,0 +1,128 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<style>
+        /********************************/
+        /*          Hero Headers        */
+        /********************************/
+        .hero {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 3;
+            -webkit-transform: translate3d(-50%,-50%,0);
+            -moz-transform: translate3d(-50%,-50%,0);
+            -ms-transform: translate3d(-50%,-50%,0);
+            -o-transform: translate3d(-50%,-50%,0);
+            transform: translate3d(-50%,-50%,0);
+        }
+
+
+        .hero-description {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            z-index: 3;
+            -webkit-transform: translate3d(-50%,-50%,0);
+            -moz-transform: translate3d(-50%,-50%,0);
+            -ms-transform: translate3d(-50%,-50%,0);
+            -o-transform: translate3d(-50%,-50%,0);
+            transform: translate3d(-50%,-50%,0);
+        }
+
+        .carousel-inner img {
+            max-height: 850px;
+        }
+
+        .search_form{
+            position: absolute;
+            margin: 0 auto;
+            z-index: 16;
+        }
+
+        .search_form-sm{
+            position: absolute;
+            margin: 0 auto;
+            z-index: 16;
+            top:580px;
+        }
+	</style>
+	
+	<div id="carouselIndicators" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel">
+		<div class="carousel-indicators">
+			<patTemplate:tmpl name="rows">
+				<button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="{SLIDE_TO}"
+						class="{ACTIVE}" aria-label="{IMAGETHUMB}"></button>
+			</patTemplate:tmpl>
+		</div>
+		<div class="carousel-inner">
+			<patTemplate:tmpl name="rows2">
+				<patTemplate:comment>
+					{PRICE_PRE_TEXT} {PRICE_PRICE} {PRICE_POST_TEXT}
+				</patTemplate:comment>
+				
+				<div class="carousel-item {ACTIVE}" data-bs-interval="{SLIDESHOW_INTERVAL}">
+					<div class="hero-description p-2 text-dark w-75" style="background: rgba(255,255,255, .50);">
+						<div class="row">
+							<div class="col-12">
+								<span class="fw-bold lh-1">{PRICE_PRICE}</span>
+								<span class="text-lowercase lh-1" style="font-size: x-small;">{PRICE_POST_TEXT}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<h1 style="opacity: 1;" ><a href="{MOREINFORMATIONLINK}" class="text-decoration-none">{PROPERTY_NAME}</a></h1>
+								<p  style="opacity: 1;" >{PROPERTY_DESCRIPTION}</p>
+							</div>
+						</div>
+					</div>
+					<img src="{IMAGE}" class="d-block w-100 min-vh-100 img-fluid" loading="lazy" alt="{IMAGE}">
+				</div>
+			</patTemplate:tmpl>
+			<div class="hero search_form d-none d-lg-block d-xl-block d-xxl-block">
+				{jomres_script search_form_start}
+				<div class="row">
+					<div class="col-sm-4">
+						{jomres_script search_form_autocomplete}
+					</div>
+					<div class="col-sm-3">
+						{jomres_script search_form_checkin}
+					</div>
+					<div class="col-sm-3">
+						{jomres_script search_form_checkout}
+					</div>
+					<div class="col-sm-2">
+						{jomres_script search_form_button}
+					</div>
+				</div>
+				{jomres_script search_form_end}
+			</div>
+			<div class="hero search_form-sm d-sm-block d-sm-block d-md-block d-lg-none">
+				{jomres_script search_form_start}
+				<div class="row">
+					<div class="col-sm-4">
+						{jomres_script search_form_autocomplete}
+					</div>
+					<div class="col-sm-3">
+						{jomres_script search_form_checkin}
+					</div>
+					<div class="col-sm-3">
+						{jomres_script search_form_checkout}
+					</div>
+					<div class="col-sm-2">
+						{jomres_script search_form_button}
+					</div>
+				</div>
+				{jomres_script search_form_end}
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+
+</patTemplate:tmpl>
+

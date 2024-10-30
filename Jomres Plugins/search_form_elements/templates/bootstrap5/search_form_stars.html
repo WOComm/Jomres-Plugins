@@ -1,0 +1,40 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<style>
+		.gold {
+			color: #FFD700;
+		}
+	</style>
+		<patTemplate:tmpl name="stars"  unusedvars="import">
+			<div class="row" aria-label="{_JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS}">
+				<div class="col-1">
+					<input type="checkbox" class="" name="stars[]" value="{NUMBER}" {DISABLED} {CHECKED}/>
+				</div>
+				<div class="col-5">
+					{STAR_ICON}
+				</div>
+				<div class="col-3">
+					{NUMBER}
+				</div>
+				<div class="col-3">
+					({COUNT})
+				</div>
+			</div>
+		</patTemplate:tmpl>
+		
+			<patTemplate:comment>
+				array(7) {
+				["NUMBER"]=>
+				int(1)
+				["DISABLED"]=>
+				string(19) "disabled="disabled""
+				["COUNT"]=>
+				int(0)
+				["CHECKED"]=>
+				string(0) ""
+				["SELECTED"]=>
+				string(0) ""
+				["STAR_ICON"]=>
+				string(36) "<i class="fas fa-check-circle"></i>
+				"
+			</patTemplate:comment>
+</patTemplate:tmpl>

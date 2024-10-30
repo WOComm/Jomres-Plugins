@@ -1,0 +1,60 @@
+<?php
+/**
+ * Core file.
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ *
+ * @version Jomres 9.24.0
+ *
+ * @copyright	2005-2021 Vince Wooll
+ * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+ **/
+//#################################################################
+defined('_JOMRES_INITCHECK') or die('');
+//#################################################################
+
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_CHANNEL_ID_NOT_SET',"频道ID未设置");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_MANAGER_ID_NOT_SET',"未设置经理ID");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_TITLE',"渠道管理框架");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_FRONTEND_TITLE',"频道");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_INSTALLED_CHANNELS',"已安装的频道");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_CHOOSE_CHANNEL',"选择频道");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_CHOOSE_CHANNEL_CHOOSE_DICTIONARY_TYPE',"选择字典类型");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_CHANNEL_NONE_INSTALLED',"错误，没有安装频道");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_SANITY_CHECKS_TITLE',"渠道经理健全性检查");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_SANITY_CHECKS_DESC',"选择一个频道。完成后，我们将检查您的配置并突出显示您可能需要解决的任何可能问题。");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_MAPPING_TITLE',"资源映射");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_MAPPING_DESC',"不同的频道都有所谓的词典。这些术语用于描述诸如房间类型,房间特征,属性特征等资源。在您可以使用该频道之前，您需要将不同的 Jomres 资源映射到各个频道的资源，以便从频道导入和导出到频道的属性具有正确的资源。在此页面中，您将首先选择一个频道。完成后，您将进入一个新页面，您可以在其中选择要映射的资源类型到频道的资源(例如，属性特征)。一旦选择了资源类型，您就可以相互选择 Jomres 和频道的资源。");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_MAPPING_SELECT_RESOURCE',"这里需要选择资源(字典)");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_MAPPING_NO_LOCAL_ITEMS',"这个字典项没有本地项，所以没有什么可映射的。");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_MAPPING_CHANNEL_DICTIONARY_CLASS_DOESNT_EXIST',"错误，频道没有字典类。");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_MAPPING_MAP_ITEM_TYPES_INSTRUCTIONS',"在此页面上，您需要将频道管理员的字典项目与 Jomres 中的项目进行映射。");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_USER_ACCOUNTS',"渠道经理帐户");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_USER_ACCOUNTS_DESC',"请保存您可能拥有帐户的任何渠道经理的授权信息。");
+jr_define('完成', '完成编辑');
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_EXTRAS_NOTINSTALLED',"错误，未安装Optional Extras插件。");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORTING_CHANNEL_NAME_NOT_SUPPLIED',"未提供频道名称");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORTING_NEW_PROPERTY_OBJECT_NOT_SUPPLIED',"未提供新的属性对象");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORTING_THISJRUSER_OBJECT_NOT_SUPPLIES',"未提供此JRUser对象");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORTING',"开始导入属性");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORTED',"成功导入属性");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORT_FAILED',"导入属性失败");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORT',"导入所有属性");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORT_ONE',"导入属性");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORT_UNPUBLISHED_CANNOT_IMPORT',"远程服务器上未标记为已发布/激活的属性，或没有任何更改日志项的属性，无法导入。");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_TARIFF_IMPORTING',"开始进口关税");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_TARIFF_IMPORTED',"成功进口关税");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_TARIFF_IMPORT_FAILED',"进口关税失败");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_SETTINGS_FAILED_VALIDATION',"无法验证属性设置，尝试导入无法识别的属性设置");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_PAGETITLE',"导入的属性");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_PROPERTY_NAME',"属性名称");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_CHANNEL_NAME',"频道名称");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_LOCAL_PROPERTY_UID',"本地属性uid");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_REMOTE_PROPERTY_UID',"远程属性uid");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_EDIT_REMOTE_PROPERTY',"编辑遥控器");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_EDIT_LOCAL_PROPERTY',"查看本地");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_DELETE_LOCAL_PROPERTY',"删除本地");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_MENUITEM_DASHBOARD',"仪表板");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_MENUITEM_ACCOUNTS',"频道账户");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_THIN_CHANNELS_NOT_INSTALLED',"没有安装细通道插件，你还不能使用这个功能。");
+jr_define('CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_INFO',"您管理的未分配属性可以分配给频道。如果您更改频道，您将授予任何具有有效 API 访问权限的频道");

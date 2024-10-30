@@ -1,0 +1,3 @@
+The Booking Form Instructions plugin can be used to display useful info/instructions for guests at the top of the booking form, to make the booking process easier. Instructions can be in multiple languages and can be edited using the Joomla WYSIWYG editor (if enabled in Jomres Site Configuration->Misc tab). 
+
+After successfully installing the plugin, a new button will be created in the Settings section of your Jomres frontend control panel (the settings for this plugin require manager or super property manager access, not available for receptionists). From here you can enable/disable the plugin and edit the instructions/content.

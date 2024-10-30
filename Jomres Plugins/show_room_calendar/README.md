@@ -1,0 +1,1 @@
+Use as a shortcode, allows you to show a specific room's calendar somewhere.

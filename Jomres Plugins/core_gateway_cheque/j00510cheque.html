@@ -1,0 +1,36 @@
+<patTemplate:tmpl name="edit_gateway" unusedvars="nbsp">
+
+{GATEWAYNAME}
+{GATEWAYLOGO}
+	<p class="alert alert-info">
+		{JOMRES_CHEQUE_GATEWAY_CHEQUE_INFO}
+	</p>
+<hr>
+<form action="" method="post" name="adminForm">
+<div class="row">
+	<label for="test_mode" class="col-sm-2 col-form-label">{JR_GATEWAY_CONFIG_ACTIVE}</label>
+	<div class="col-sm-10">
+		{ACTIVE}
+	</div>
+</div>
+
+<div class="row">
+	<label for="active" class="col-sm-2 col-form-label">{_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR}</label>
+	<div class="col-sm-10">
+		{TEST_MODE}
+	</div>
+</div>
+
+<input type="hidden" name="no_html" value="1" />
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="save_plugin" />
+<div class="row pt-3">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-10">
+		<input type="submit" value="{COMMON_SUBMIT}" class="btn btn-success" >
+	</div>
+</div>
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

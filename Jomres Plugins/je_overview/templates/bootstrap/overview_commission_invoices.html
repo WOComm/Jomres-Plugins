@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="javascript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('commission_invoices', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}', false);
+	});
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<table class="table table-striped" id="commission_invoices" width="100%">
+	<thead>
+		<tr>
+			<th>{COMMON_ACTION}</th>
+			<th>{HINVOICENO}</th>
+			<th>{HRAISED}</th>
+			<th>{HTOTAL}</th>
+			<th>PayPal</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+</patTemplate:tmpl>

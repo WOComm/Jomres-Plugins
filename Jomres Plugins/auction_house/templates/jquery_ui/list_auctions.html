@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput">
+<br />
+	<table width="100%">
+		<tr valign="top">
+			<th width="150px" style="text-align:left;" >
+			{_JOMRES_AUCTIONHOUSE_AUCTION_TITLE}
+			</th>
+			<th style="text-align:left;" >
+			{_JOMRES_AUCTIONHOUSE_AUCTION_MAXIBID}
+			</th>
+			<th style="text-align:left;" >
+			{_JOMRES_AUCTIONHOUSE_AUCTION_TIMELEFT}
+			</th>
+		</tr>
+		<patTemplate:tmpl name="running_rows"  unusedvars="strip">
+		<tr valign="top">
+			<td>
+			{VIEW_AUCTION_LINK} {ANCILLARY}
+			{BR}
+			{HARRIVAL} {PACKAGE_START} {HDEPARTURE} {PACKAGE_DEPARTURE}
+			</td>
+			<td>
+				{HIGHESTBID} {BIDSTATUS}
+			</td>
+			<td>
+				{TIMEREMAINING}
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<img src="{IMAGE}" />
+				<div style="border-bottom-style: solid;border-bottom-width:thin; color:grey"> </div>
+			</td>
+		</tr>
+		
+		</patTemplate:tmpl>
+	</table>
+</patTemplate:tmpl>

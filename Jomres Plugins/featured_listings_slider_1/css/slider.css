@@ -1,0 +1,42 @@
+.floatLeft 									{ float: left; margin-right: 10px;}
+.floatRight									{ float: right; }
+.clear 										{ clear: both; }
+.slider-wrap a											{ outline: none; }
+
+
+/*
+	PAGE STRUCTURE
+*/
+#page-wrap 									{ width: 500px; margin: 0 auto; position: relative; height: 406px;
+											  background: url("../images/bg.png") no-repeat top left; }
+
+
+/*
+	TYPOGRAPHY
+*/
+.slider-wrap ul											{ list-style: square inside; }
+.slider-wrap a, .slider-wrap a:visited								{ color: #729dff; text-decoration: none; }
+.slider-wrap a:hover, .slider-wrap a:active							{ color: white; }
+.slider-wrap blockquote									{ padding: 0 20px; margin-left: 20px; border-left: 20px solid #ccc; font-size: 14px;font-style: italic; margin-top: 10px;}
+
+/*
+	SLIDER
+*/
+.slider-wrap								{ width: 445px; position: absolute; top: 29px; left: 29px; }			
+.stripViewer .panelContainer 
+.slider-wrap .panel ul						{ text-align: left; margin: 0 15px 0 30px; }
+.stripViewer								{ position: relative; overflow: hidden; width: 445px; height: 296px; }
+.stripViewer .panelContainer				{ position: relative; left: 0; top: 0; }
+.stripViewer .panelContainer .panel			{ float: left; height: 100%; position: relative; width: 445px; border:0 none;margin-top:0;}
+.stripNavL, .stripNavR, .stripNav			{ display: none; }
+.nav-thumb 									{ border: 1px solid black; margin-right: 5px; }
+#movers-row									{ margin: -53px 0 0 62px; }
+#movers-row div								{ width: 78px; float: left; }
+#movers-row div a.cross-link 				{ float: right; }
+.photo-meta-data							{ background: url("../images/transpBlack.png"); padding: 10px; height: 77px; 
+											  margin-top: -116px; position: relative; z-index: 99; color: white; 
+											  font-size: 14px;font-weight: bold;}
+.photo-meta-data span 						{ font-size: 12px;font-weight: normal; }
+.cross-link									{ display: block; width: 62px; margin-top: -14px; 
+											  position: relative; padding-top: 15px; z-index: 99; }
+.active-thumb 								{ background: transparent url("../images/icon-uparrowsmallwhite.png") top center no-repeat; }

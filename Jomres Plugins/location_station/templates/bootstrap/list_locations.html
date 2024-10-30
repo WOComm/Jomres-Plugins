@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('admin_list_locations', '{PAGETITLE}', '{LIVESITE}');
+});
+//-->
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+<table id="admin_list_locations" width="100%" class="table table-striped">
+	<thead>
+		<tr>
+			<th>{COMMON_EDIT}</th>
+			<th>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN}</th>
+			<th>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION}</th>
+			<th>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY}</th>
+			<th>{_JOMRES_LOCATION_STATION_INFORMATION}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{TOWN}</td>
+			<td>{REGION}</td>
+			<td>{COUNTRY_NAME}</td>
+			<td>{LOCATION_INFORMATION}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

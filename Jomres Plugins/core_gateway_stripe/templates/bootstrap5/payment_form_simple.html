@@ -1,0 +1,133 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<style>
+/* CSS for Credit Card Payment form */
+.credit-card-box .panel-title {
+    display: inline;
+    font-weight: bold;
+}
+.credit-card-box .form-control.error {
+    border-color: red;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,0,0,0.6);
+}
+.credit-card-box label.error {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box .payment-errors {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box label {
+    display: block;
+}
+/* The old "center div vertically" hack */
+.credit-card-box .display-table {
+    display: table;
+}
+.credit-card-box .display-tr {
+    display: table-row;
+}
+.credit-card-box .display-td {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+}
+
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+</style>
+
+	<div class="row row-centered">
+		<div class="col-xs-12 col-md-4 col-md-offset-4 alert alert-{ALERT_STATE}">
+			{TEST_MODE_TEXT}
+			<div class="panel panel-default credit-card-box">
+				<div class="panel-heading display-table" >
+					<div class="row display-tr" >
+						<h3 class="panel-title display-td" >{STRIPE_PAYMENT_FORM_SECURE}</h3>
+						<div class="display-td" >
+							<img class="img-responsive pull-right" src="{IMG_PATH}">
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<h5>{STRIPE_PAYMENT_FORM_TOPAY} {CONTRACT_TOTAL_DISPLAY}</h5>
+							<h5>{_JOMRES_BOOKING_NUMBER} {BOOKING_NUMBER}</h5>
+							<div class="form-group">
+								<label class="control-label" for="name">{STRIPE_PAYMENT_FORM_HOLDER}</label>
+								<div class="controls">
+									<input id="cardholder-name" class="form-control" value="{STRIPE_PAYMENTFORM_NAME}"  class="input-large" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="control-group">
+								<!-- placeholder for Elements -->
+								<div id="card-element"></div>
+							</div>
+						</div>
+					</div>
+					<button id="card-button" class="btn btn-primary" data-secret="{CLIENT_SECRET}">
+						<i class="fa fa-cc-stripe" aria-hidden="true"></i> 
+						{STRIPE_PAYMENT_FORM_PAYNOW}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<script>
+
+var stripe = Stripe('{PUBLIC_KEY}');
+
+var elements = stripe.elements();
+var cardElement = elements.create('card');
+cardElement.mount('#card-element');
+
+var cardholderName = document.getElementById('cardholder-name');
+var cardButton = document.getElementById('card-button');
+var clientSecret = cardButton.dataset.secret;
+
+cardButton.addEventListener('click', function(ev) {
+  stripe.handleCardPayment(
+	clientSecret, cardElement, {
+	  payment_method_data: {
+		billing_details: {name: cardholderName.value}
+	  }
+	}
+  ).then(function(result) {
+	if (result.error) {
+		alert ("{STRIPE_PAYMENT_ERROR_AUTH_FAILED}");
+	} else {
+		window.location.href = '{CONFIRMATION_PAGE}';
+	}
+  });
+});
+
+</script>
+
+</patTemplate:tmpl>

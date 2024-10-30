@@ -1,0 +1,107 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script>
+        function changeCurrency($newCurrency) {
+            switch_exchange_rate('{JOMRES_SITEPAGE_URL_AJAX}',$newCurrency);
+        }
+	</script>
+	<div class="row">
+		<div class="col-6">
+			&nbsp;
+		</div>
+		<div class="col-6">
+			<div class="d-none d-md-block d-lg-block d-xl-block d-xxl-block ">
+				<div class="row">
+					<div class="col-3">
+						<button type="button" class="btn btn-outline-primary btn-sm " style="padding-top:0px;" data-bs-toggle="modal"  data-bs-target="#currencyModal" style="margin:5px">
+							{CURRENCY_SYMBOL_PRE}{CURRENCY_SYMBOL_POST} {CURRENT_CURRENCY_CODE}
+						</button>
+						<patTemplate:comment>
+							<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY}">
+						<span data-bs-toggle="modal" data-bs-target="#currencyModal" style="margin:5px">
+							{CURRENCY_SYMBOL_PRE}{CURRENCY_SYMBOL_POST} {CURRENT_CURRENCY_CODE}
+						</span>
+							</button>
+						</patTemplate:comment>
+						<patTemplate:comment>
+							<patTemplate:tmpl name="language_modal" unusedvars="strip" type="simpleCondition" requiredVars="jomres_bs5_top_panel_choose_language">
+								<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE}">
+						<span data-bs-toggle="modal" data-bs-target="#languageModal" style="margin:5px">
+							<span class="fi fi-{CURRENT_LANGUGAGE_FLAG_CODE}"> </span>
+						</span>
+								</button>
+							</patTemplate:tmpl>
+						</patTemplate:comment>
+					</div>
+					
+					<div class="col-9">
+						<patTemplate:tmpl name="multiproperty_options" unusedvars="strip" type="simpleCondition" requiredVars="jomres_bs5_top_panel_register_first">
+							<a href="{JOMRES_HOME}" class="btn btn-info btn-sm {MANAGE_PROPERTIES_DISABLED}" >{_JOMRES_MANAGE_PROPERTIES}</a>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="propertycreation_options" unusedvars="strip" type="simpleCondition" requiredVars="jomres_bs5_top_panel_list_your_property">
+					<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="{JOMRES_BS5_TOP_PANEL_REGISTER_FIRST}">
+						<a href="{JOMRES_HOME}&task=new_property" tyle="pointer-events: none;" type="button" class="btn btn-info btn-sm {ADD_PROPERTY_DISABLED}">{JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY}</a>
+					</span>
+						</patTemplate:tmpl>
+						
+						<a href="{REGISTRATION_URL}" class="btn btn-info btn-sm {REGISTER_DISABLED}" >{JOMRES_BS5_TOP_PANEL_REGISTER}</a>
+						<a href="{LOGIN_URL}" class="btn btn-info btn-sm {REGISTER_DISABLED}" >{JOMRES_BS5_TOP_PANEL_SIGN_IN}</a>
+					</div>
+				
+				</div>
+				<!--Currency Modal -->
+				<div class="modal fade" id="currencyModal" tabindex="-1" aria-labelledby="currencyModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="currencyModalLabel">{JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY}</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{COMMON_CLOSE}"></button>
+							</div>
+							<div class="modal-body">
+								<div class="container">
+									<div class="row row-cols-auto">
+										<patTemplate:tmpl name="currencies_rows" unusedvars="strip">
+											<div class="col-6">
+												<a href="javascript:void();" class="btn btn-light"  onclick='changeCurrency("{CODE}");' id="currency_code_output" ><span class="text-muted">{CURRENCY_PRE}{CURRENCY_POST}</span> {NAME} <span class="text-muted">({CODE})</span> </a>
+											</div>
+										</patTemplate:tmpl>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{COMMON_CLOSE}</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!-- Language Modal -->
+				<div class="modal fade" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="languageModalLabel">{JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE}</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{COMMON_CLOSE}"></button>
+							</div>
+							<div class="modal-body">
+								<div class="container">
+									<div class="row row-cols-auto">
+										<patTemplate:tmpl name="languages_rows" unusedvars="strip">
+											<div class="col">
+												<a href="{URL}" class="btn btn-light"><span class="fi fi-{FLAG_CODE}"> </span> {NAME}</a>
+											</div>
+										</patTemplate:tmpl>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{COMMON_CLOSE}</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</patTemplate:tmpl>

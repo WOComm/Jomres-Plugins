@@ -1,0 +1,22 @@
+<patTemplate:tmpl name="pageoutput">
+
+
+
+	<nav class="navbar " role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#jomres-cmf-mainmenu-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<i class="fa fa-bars"></i>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="jomres-cmf-mainmenu-collapse">
+			<ul class="nav navbar-nav">
+				<patTemplate:tmpl name="menu_sections">
+					<a href="{JOMRES_SITEPAGE_URL}&task={TASK}" class="btn btn-default">{TEXT}</a>
+				</patTemplate:tmpl>
+			</ul>
+		</div>
+	</nav>
+
+
+</patTemplate:tmpl>

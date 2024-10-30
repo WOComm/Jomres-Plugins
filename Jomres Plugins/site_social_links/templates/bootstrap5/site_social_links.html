@@ -1,0 +1,33 @@
+<patTemplate:tmpl name="pageoutput">
+	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1">
+		<h4>{JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA}</h4>
+		<p class="lead">{JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD}</p>
+
+		<p>
+			<pattemplate:tmpl name="social_media_facebook" type="simpleCondition" requiredvars="social_media_facebook">
+				<a href="{URL}{SOCIAL_MEDIA_FACEBOOK}" target="_blank"><i class="fab fa-facebook-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_instagram" type="simpleCondition" requiredvars="social_media_instagram">
+				<a href="{URL}{SOCIAL_MEDIA_INSTAGRAM}" target="_blank"><i class="fab fa-instagram fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_pintrest" type="simpleCondition" requiredvars="social_media_pintrest">
+				<a href="{URL}{SOCIAL_MEDIA_PINTREST}" target="_blank"><i class="fab fa-pinterest-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_linkedin" type="simpleCondition" requiredvars="social_media_linkedin">
+				<a href="{URL}{SOCIAL_MEDIA_LINKEDIN}" target="_blank"><i class="fab fa-linkedin fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_twitter" type="simpleCondition" requiredvars="social_media_twitter">
+				<a href="{URL}{SOCIAL_MEDIA_TWITTER}" target="_blank"><i class="fab fa-twitter-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_tiktok" type="simpleCondition" requiredvars="social_media_tiktok">
+				<a href="{URL}{SOCIAL_MEDIA_TIKTOK}" target="_blank"><i class="fab fa-tiktok fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_whatsapp" type="simpleCondition" requiredvars="social_media_whatsapp">
+				<a href="{URL}{SOCIAL_MEDIA_WHATSAPP}" target="_blank"><i class="fab fa-whatsapp-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_youtube" type="simpleCondition" requiredvars="social_media_youtube">
+				<a href="{URL}{SOCIAL_MEDIA_YOUTUBE}" target="_blank"><i class="fab fa-youtube-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+		</p>
+	</div>
+</patTemplate:tmpl>

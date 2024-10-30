@@ -1,0 +1,129 @@
+
+<patTemplate:tmpl name="search">
+	
+	<script>
+        jomresJquery(document).ready(function(){
+
+            var sleeps_adults=0;
+            jomresJquery('.quantity-right-plus-adults').click(function(e){
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                var quantity = parseInt(jomresJquery('#sleeps_adults').val());
+                // If is not undefined
+                jomresJquery('#sleeps_adults').val(quantity + 1);
+                // Increment
+            });
+
+            jomresJquery('.quantity-left-minus-adults').click(function(e){
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                var quantity = parseInt(jomresJquery('#sleeps_adults').val());
+
+                // If is not undefined
+
+                // Increment
+                if(quantity>1){
+                    jomresJquery('#sleeps_adults').val(quantity - 1);
+                }
+            });
+
+            var sleeps_children=0;
+            jomresJquery('.quantity-right-plus-children').click(function(e){
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                var quantity = parseInt(jomresJquery('#sleeps_children').val());
+                // If is not undefined
+                jomresJquery('#sleeps_children').val(quantity + 1);
+                // Increment
+            });
+
+            jomresJquery('.quantity-left-minus-children').click(function(e){
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                var quantity = parseInt(jomresJquery('#sleeps_children').val());
+
+                // If is not undefined
+
+                // Increment
+                if(quantity>0){
+                    jomresJquery('#sleeps_children').val(quantity - 1);
+                }
+            });
+        });
+	
+	</script>
+	
+	<div class="border border-2 rounded-2 pt-3 pb-3 px-2 shadow">
+		<form action="{SUBMITURL}" method="get" name="{FORMNAME}" role="form" class="form-inline ">
+			<input type="hidden" name="option" value="com_jomres"/>
+			{HIDDEN}
+			<div class="row align-items-end">
+			<div class="col-sm-2">
+					<label class="control-label " for="autocomplete_field">{_JOMRES_SEARCH_FORM_WHERE_TO_GO}</label>
+					{AUTOCOMPLETE}
+				</div>
+				<div class="col-sm-2">
+					<label class="control-label" for="arrivalDate">{HARRIVALDATE}</label>
+					{ARRIVALDATE}
+				</div>
+				<div class="col-sm-2">
+					<label class="control-label" for="departureDate">{HDEPARTUREDATE}</label>
+					{DEPARTUREDATE}
+				</div>
+				<patTemplate:comment>
+					For some reason that I haven't been able to figure out the IDs in these labels cause the calendar to not show on the Sunbearu video landing page.
+					<div class="col-sm-2">
+						<label class="control-label" for="arrivalDate" id="{ARRIVALDATE_LABEL_ID}">{HARRIVALDATE}</label>
+						{ARRIVALDATE}
+					</div>
+					<div class="col-sm-2">
+						<label class="control-label" for="departureDate" id="{DEPARTUREDATE_LABEL_ID}">{HDEPARTUREDATE}</label>
+						{DEPARTUREDATE}
+					</div>
+				</patTemplate:comment>
+				
+				<div class="col-sm-2">
+					<label class="control-label" for="sleeps_adults">{_JOMRES_SEARCH_FORM_ADULTS}</label>
+					<div class="input-group">
+					<span class="input-group-btn">
+					   <button type="button" class="quantity-left-minus-adults btn  btn-number" style="z-index: 1043;" data-type="minus" data-field="">
+						   <span class="fas fa-minus"></span>
+						</button>
+					</span>
+						<input type="text" id="sleeps_adults" name="sleeps_adults" class="form-control input-number" value="{SLEEPS_ADULTS_SELECTED}" min="1" max="{HIGHEST_ADULTS}">
+						<span class="input-group-btn">
+						<button type="button" class="quantity-right-plus-adults btn btn-number" style="z-index: 1043;" data-type="plus" data-field="">
+							<span class="fas fa-plus"></span>
+						</button>
+					</span>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<label class="control-label" for="sleeps_children">{_JOMRES_SEARCH_FORM_CHILDREN}</label>
+					<div class="input-group">
+					<span class="input-group-btn">
+					   <button type="button" class="quantity-left-minus-children btn btn-number" style="z-index: 1043;" data-type="minus" data-field="">
+						   <span class="fas fa-minus"></span>
+						</button>
+					</span>
+						<input type="text" id="sleeps_children" name="sleeps_children" class="form-control input-number" value="{SLEEPS_CHILDREN_SELECTED}" min="0" max="{HIGHEST_CHILDREN}">
+						<span class="input-group-btn">
+						<button type="button" class="quantity-right-plus-children btn btn-number" style="z-index: 1043;" data-type="plus" data-field="">
+							<span class="fas fa-plus"></span>
+						</button>
+					</span>
+					</div>
+				</div>
+				<div class=" col-sm-2">
+					<label class="control-label" for="send"></label>
+					{THEBUTTON}
+				</div>
+			</div>
+		</form>
+	</div>
+
+</patTemplate:tmpl>

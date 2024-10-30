@@ -1,0 +1,141 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+var ajaxurl = "{AJAXURL}";
+var livesite = "{LIVESITE}";
+
+function auction_page(ahtask,fields,div_to_update)
+	{
+	send_string = '&ahtask='+ ahtask;
+	if ('undefined'!=typeof(fields))
+		{
+		jomresJquery(fields).each(function(index) {
+			field_value = jomresJquery("#"+fields[index]).val();
+			if (field_value == "")
+				field_value = jomresJquery("#"+fields[index]).html();
+			send_string=send_string+"&"+fields[index]+"="+field_value;
+			});
+		}
+	jomresJquery.get(ajaxurl+send_string,{},
+		function(data){
+			// We'll break data down into three patches of code, first any js that needs to be run, then we'll populate the content div and sidebar div
+			var result = data.split("^");
+			
+			if ('undefined'!=typeof(div_to_update))
+				populateDiv(div_to_update,result[1]);
+			else
+				populateDiv("jomres_auction_house_content_body",result[1]);
+			
+			runthis(result[0]);
+			}
+		);
+	}
+
+function runthis(tobeevald)
+	{
+	var result = eval(tobeevald);
+	}
+
+function auction_update_rooms_list()
+	{
+	var start_date = jomresJquery("#auction_booking_start").val();
+	var departure_date = jomresJquery("#auction_booking_end").val();
+	var property_uid = jomresJquery("#chosen_property").val();
+	jomresJquery.get(ajaxurl+"&ahtask=get_rooms_list&start_date="+start_date+"&departure_date="+departure_date+"&property_uid="+property_uid,{},
+		function(data){
+			var result = data.split("^");
+			populateDiv("rooms_list",result[1]);
+			runthis(result[0]);
+			}
+		);
+	}
+
+jomresJquery(document).ready(function() 
+	{
+	var req = function () 
+		{
+		var auction_id = jomresJquery("#auction_id").val();
+		if ('undefined'!=typeof(auction_id)){
+			jomresJquery.ajax({
+				url : ajaxurl+"&ahtask=checkbid&auction_id="+auction_id,
+				success : function (data) 
+					{
+					var result = data.split("^");
+					
+					if (jomresJquery.trim(result[1]) == "1")
+						{
+						var reload = jomresJquery("#reload").val();
+						if (reload == 1)
+							window.location.href=livesite+'&ahtask=auction_view_auction&auction_id='+auction_id+'&reload=1';
+						else
+							{
+							populateDiv('timeremaining',result[2]);
+							setTimeout(function () 
+								{
+								req();
+								}
+								, 2000);
+							}
+						}
+					else
+						{
+						populateDiv('timeremaining',result[2]);
+						setTimeout(function () 
+							{
+							req();
+							}
+							, 2000);
+						}
+					}
+				});
+			}
+		};
+	req();
+	});
+//jomresJquery.jheartbeat.set
+//	({
+//	var auction_id = jomresJquery("#auction_id").val();
+//	url: ajaxurl+"&ahtask=heartbeat&auction_id="+auction_id,
+//	delay: 1000,
+//	div_id : "timeremaining"
+//	});
+</script>
+
+<ul class="nav nav-pills">
+
+		<div class="nav-item dropdown" aria-labelledby="navbarDropdown">
+		<patTemplate:tmpl name="everybody_rows_title" requiredVars="title">
+		<li class="nav-item dropdown active">
+			<a href="{HOMELINK}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{TITLE}</a>
+			<ul class="dropdown-menu">
+			<patTemplate:tmpl name="everybody_rows" requiredVars="link">
+				<li><a href="{LINK}" {JAVASCRIPT} class="dropdown-item" >{MENUOPTION}</a></li>
+			</patTemplate:tmpl>
+			</ul>
+		</li>
+		</patTemplate:tmpl>
+		</div>
+		<patTemplate:tmpl name="buyer_rows_title" type="simpleCondition"  requiredVars="title">
+		<li class="nav-item dropdown">
+			<a href="{HOMELINK}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{TITLE}</a>
+			<ul class="dropdown-menu">
+			<patTemplate:tmpl name="buyer_rows" requiredVars="link">
+				<li><a href="{LINK}"  {JAVASCRIPT}  class="dropdown-item">{MENUOPTION}</a></li>
+			</patTemplate:tmpl>
+			</ul>
+		</li>
+		</patTemplate:tmpl>
+
+		<patTemplate:tmpl name="seller_rows_title" type="simpleCondition" requiredVars="title">
+		<li class="nav-item dropdown">
+			<a href="{HOMELINK}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{TITLE} <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+			<patTemplate:tmpl name="seller_rows" requiredVars="link">
+				<li><a href="{LINK}" {JAVASCRIPT}  class="dropdown-item">{MENUOPTION}</a></li>
+			</patTemplate:tmpl>
+			</ul>
+		</li>
+		</patTemplate:tmpl>
+
+</ul>
+
+</patTemplate:tmpl>

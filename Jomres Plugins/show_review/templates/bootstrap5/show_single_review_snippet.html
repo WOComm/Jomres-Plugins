@@ -1,0 +1,41 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="review_title">
+		<figure>
+			<div class="row">
+				<div class="col-sm-2">
+					<img src="{REVIEWER_IMAGE_MEDIUM}" class="img-fluid"/>
+				</div>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-12 h5">
+							<h4>{REVIEWER_FIRSTNAME} {REVIEWER_SURNAME}</h4>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 h5">
+							<a href="{LINK_TO_REVIEW}">{REVIEW_TITLE}</a> {RATING_SCORE_TEXT}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<span class="{RATING_TEXT_COLOUR}">{RATING_STARS}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-12">
+					<blockquote class="text-truncate">
+							{REVIEW_DESCRIPTION}
+					</blockquote>
+				</div>
+
+			</div>
+		</figure>
+	</patTemplate:tmpl>
+
+</patTemplate:tmpl>

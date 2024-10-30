@@ -1,0 +1,43 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+<script type="text/javascript">
+	jomresJquery(document).ready(function () {
+		make_datatable('list_access_tokens', '{PAGETITLE}', '{LIVESITE}');
+	});
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+<div class="alert alert-info">
+	{INFO}
+</div>
+
+<table class="table table-striped" id="list_access_tokens">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>{_JOMRES_COM_MR_ASSIGNUSER_USERNAME}</th>
+			<th>{_OAUTH_IDENTIFIER}</th>
+
+			<th>{_OAUTH_SCOPE_TITLE}</th>
+			<th>{CLIENT_TOKEN}</th>
+			<th>Expires</th>
+			<th>{_OAUTH_APIKEY}</th>
+			<th>{_OAUTH_SECRET}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows">
+		<tr>
+			<td>{USER_ID}</td>
+			<td>{USER_NAME}</td>
+			<td>{IDENTIFIER}</td>
+
+			<td>{SCOPE}</td>
+			<td>{ACCESS_TOKEN}</td>
+			<td>{EXPIRES}</td>
+			<td>{CLIENT_ID}</td>
+			<td>{CLIENT_SECRET}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

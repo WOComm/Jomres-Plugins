@@ -1,0 +1,40 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('admin_jintours_managartour_list', 'Tours List', '{LIVESITE}');
+});
+//-->
+</script>
+
+<h2 class="page-header">Tours List</h2>
+
+<table id="admin_jintours_managartour_list" class="table table-striped" width="100%">
+	<thead>
+        <tr>
+            <th>{COMMON_DELETE}</th>
+            <th>{COMMON_EDIT}</th>
+            <th>{HPROFILE_TITLE}</th>
+            <th>{HPRICE_ADULTS}</th>
+            <th>{HPRICE_KIDS}</th>
+            <th>{HADULTSPACES}</th>
+            <th>{HCHILDSPACES}</th>
+            <th>{HDATE}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="title" unusedvars="nbsp">
+        <tr>
+            <td>{DELETELINK}</td>
+            <td>{EDITLINK}</td>
+            <td>{TITLE}</td>
+            <td>{PRICE_ADULTS}</td>
+            <td>{PRICE_KIDS}</td>
+            <td>{SPACES_ADULTS}</td>
+            <td>{SPACES_KIDS}</td>
+            <td>{TOURDATE}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
+</table>
+</patTemplate:tmpl>

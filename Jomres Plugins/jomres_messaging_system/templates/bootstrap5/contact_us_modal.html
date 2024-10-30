@@ -1,0 +1,74 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<style>
+        body {
+            margin: 0;
+            height: 100%;
+        }
+        contact_iframe {
+            display: block;
+            background: #fff;
+            border: none;
+            width: 100%;
+        }
+
+        .sticky_chat {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            -ms-transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 10000;
+            display: block;
+        }
+	
+	</style>
+	
+	<div class="sticky_chat" id="sticky_chat_button_wrapper">
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal" id="modalTrigger">
+			{_JOMRES_CONTANT_US}
+		</button>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" >
+			<div class="modal-content modal-tall">
+				<!-- <div class="modal-header">
+					<h5 class="modal-title" id="contactModalLabel">{PROPERTY_NAME}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div> -->
+				<div class="modal-body"  id="contactModalBody">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{COMMON_CLOSE}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+        jomresJquery('#modalTrigger').on('click', function(e) {
+            e.preventDefault();
+            var url = jomresJquery(this).attr('href');
+            jomresJquery("#contactModalBody").html('<iframe src="{JOMRES_SITEPAGE_URL_NOSEF}&topoff=1&menuoff=1&tmpl=jomres&task=conversation&property_uid={PROPERTY_UID}" class="contact_iframe" id="message_iframe" style="width:100%"></iframe>');
+            iFrameResize({ log: false , heightCalculationMethod : 'lowestElement' }, '#message_iframe');
+        });
+
+        const onClick = (event) => {
+            if (event.target.nodeName === 'BUTTON') {
+                if (event.target.id == 'modalTrigger') {
+                    jomresJquery('#sticky_chat_button_wrapper').hide();
+                }
+            }
+        }
+        window.addEventListener('click', onClick);
+
+        jomresJquery(document).on('hidden.bs.modal',"#contactModal", function () {
+            jomresJquery('#sticky_chat_button_wrapper').show();
+            jomresJquery("#contactModalBody").html('');
+        })
+	
+	
+	</script>
+
+</patTemplate:tmpl>

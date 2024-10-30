@@ -1,0 +1,87 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+var ajaxurl = "{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=subscriptions_cms_users_find";
+jomresJquery(function () {
+	jomresJquery("#cms_username").autocomplete({
+		source: ajaxurl,
+		minLength: 2,
+		focus: function( event, ui ) {
+			jomresJquery( "#cms_username" ).val( ui.item.username );
+			return false;
+			},
+		select: function (event, ui) {
+			jomresJquery("#cms_user_id").val(ui.item.id);
+			jomresJquery("#cms_username").val(ui.item.username);
+			return false;
+			}
+		})
+	.autocomplete( "instance" )._renderItem = function( ul, item ) {
+		return jomresJquery( "<li>" )
+		.append( "<a>" + item.id + " - " + item.username + "</a>" )
+		.appendTo( ul );
+		};
+	});
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+{JOMRESTOOLBAR}
+
+<div class="control-group">
+	<label class="control-label" for="cms_username">{HUSER}</label>
+
+	<div class="controls">
+		<input type="text" id="cms_username" name="cms_username" value="{USERNAME}" class="input-large"/>
+		<span class="help-block">
+			{HUSER_DESC}
+		</span>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="package_id">{HPACKAGE_ID}</label>
+
+	<div class="controls">
+		{PACKAGE_ID}
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="raised_date">{HRAISED_DATE}</label>
+
+	<div class="controls">
+		{RAISED_DATE}
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="expiration_date">{HEXPIRATION_DATE}</label>
+
+	<div class="controls">
+		{EXPIRATION_DATE}
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="subscription_status">{HSUBSCRIPTION_STATUS}</label>
+
+	<div class="controls">
+		{SUBSCRIPTION_STATUS}
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="invoice_status">{HINVOICE_STATUS}</label>
+
+	<div class="controls">
+		{INVOICE_STATUS}
+	</div>
+</div>
+<input type="hidden" name="id" value="{ID}"/>
+<input type="hidden" name="invoice_id" value="{INVOICE_ID}"/>
+<input type="hidden" id="cms_user_id" name="cms_user_id" value="{USER_ID}"/>
+<input type="hidden" name="option" value="com_jomres"/>
+<input type="hidden" name="task" value="save_subscription"/>
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

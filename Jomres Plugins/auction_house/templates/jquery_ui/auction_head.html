@@ -1,0 +1,181 @@
+<patTemplate:tmpl name="pageoutput" >
+<style>
+/* 
+	LEVEL ONE
+*/
+ul.dropdown						{ position: relative; margin:0; padding:0; list-style:none;z-index:100; }
+ul.dropdown li					{ font-weight: bold; float: left; zoom: 1; }
+ul.dropdown a:hover				{ color: #000; }
+ul.dropdown a:active			{ color: #ffa500; }
+ul.dropdown li a				{ display: block; padding: 4px 8px; border-right: 1px solid #333; color: #222;outline: 0; }
+ul.dropdown li:last-child a		{ border-right: none; } /* Doesn't work in IE */
+ul.dropdown li.hover,
+ul.dropdown li:hover			{ color: black; position: relative; }
+ul.dropdown li.hover a			{ color: black; }
+
+/* 
+	LEVEL TWO
+*/
+ul.dropdown ul 						{ width: 220px; visibility: hidden; position: absolute; top: 100%; left: 0; margin:0; padding:0; list-style:none;}
+ul.dropdown ul li 					{ float: none; }
+
+									/* IE 6 & 7 Needs Inline Block */
+ul.dropdown ul li a					{ border-right: none; width: 100%; display: inline-block;outline: 0; } 
+</style>
+
+
+<script type="text/javascript">
+var ajaxurl = "{AJAXURL}";
+var livesite = "{LIVESITE}";
+
+jomresJquery(document).ready(function () {jomresJquery("ul.dropdown li:even").addClass("alt");
+});
+
+jomresJquery(function(){
+	jomresJquery("ul.dropdown li").hover(function(){
+		jomresJquery(this).addClass("hover");
+		jomresJquery('ul:first',this).css('visibility', 'visible');
+	}, function(){
+		jomresJquery(this).removeClass("hover");
+		jomresJquery('ul:first',this).css('visibility', 'hidden');
+	});
+	jomresJquery("ul.dropdown li ul li:has(ul)").find("a:first").append(" &raquo; ");
+});
+
+function auction_page(ahtask,fields,div_to_update)
+	{
+	send_string = '&ahtask='+ ahtask;
+	if ('undefined'!=typeof(fields))
+		{
+		jomresJquery(fields).each(function(index) {
+			field_value = jomresJquery("#"+fields[index]).val();
+			if (field_value == "")
+				field_value = jomresJquery("#"+fields[index]).html();
+			send_string=send_string+"&"+fields[index]+"="+field_value;
+			});
+		}
+	jomresJquery.get(ajaxurl+send_string,{},
+		function(data){
+			// We'll break data down into three patches of code, first any js that needs to be run, then we'll populate the content div and sidebar div
+			var result = data.split("^");
+			
+			if ('undefined'!=typeof(div_to_update))
+				populateDiv(div_to_update,result[1]);
+			else
+				populateDiv("jomres_auction_house_content_body",result[1]);
+			
+			runthis(result[0]);
+			}
+		);
+	}
+
+function runthis(tobeevald)
+	{
+	var result = eval(tobeevald);
+	}
+
+function auction_update_rooms_list()
+	{
+	var start_date = jomresJquery("#auction_booking_start").val();
+	var departure_date = jomresJquery("#auction_booking_end").val();
+	var property_uid = jomresJquery("#chosen_property").val();
+	jomresJquery.get(ajaxurl+"&ahtask=get_rooms_list&start_date="+start_date+"&departure_date="+departure_date+"&property_uid="+property_uid,{},
+		function(data){
+			var result = data.split("^");
+			populateDiv("rooms_list",result[1]);
+			runthis(result[0]);
+			}
+		);
+	}
+
+
+
+jomresJquery(document).ready(function() 
+	{
+	var req = function () 
+		{
+		var auction_id = jomresJquery("#auction_id").val();
+		if ('undefined'!=typeof(auction_id)){
+			jomresJquery.ajax({
+				url : ajaxurl+"&ahtask=checkbid&auction_id="+auction_id,
+				success : function (data) 
+					{
+					var result = data.split("^");
+					
+					if (jomresJquery.trim(result[1]) == "1")
+						{
+						var reload = jomresJquery("#reload").val();
+						if (reload == 1)
+							window.location.href=livesite+'&ahtask=auction_view_auction&auction_id='+auction_id+'&reload=1';
+						else
+							{
+							populateDiv('timeremaining',result[2]);
+							setTimeout(function () 
+								{
+								req();
+								}
+								, 2000);
+							}
+						}
+					else
+						{
+						populateDiv('timeremaining',result[2]);
+						setTimeout(function () 
+							{
+							req();
+							}
+							, 2000);
+						}
+					}
+				});
+			}
+		};
+	req();
+	});
+
+
+//jomresJquery.jheartbeat.set
+//	({
+//	var auction_id = jomresJquery("#auction_id").val();
+//	url: ajaxurl+"&ahtask=heartbeat&auction_id="+auction_id,
+//	delay: 1000,
+//	div_id : "timeremaining"
+//	});
+
+
+</script>
+
+
+<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-content ui-corner-all dropdown">
+	<patTemplate:tmpl name="everybody_rows_title" requiredVars="title">
+	<li><a href="{HOMELINK}">{TITLE}</a>
+	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-content ui-corner-all sub_menu">
+	<patTemplate:tmpl name="everybody_rows" requiredVars="link">
+			<li><a href="{LINK}" {JAVASCRIPT}>{MENUOPTION}</a></li>
+		</patTemplate:tmpl>
+		</ul>
+	</li>
+	</patTemplate:tmpl>
+	
+	<patTemplate:tmpl name="buyer_rows_title" type="simpleCondition"  requiredVars="title">
+	<li><a href="{HOMELINK}">{TITLE}</a>
+	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-content ui-corner-all sub_menu">
+	<patTemplate:tmpl name="buyer_rows" requiredVars="link">
+			<li><a href="{LINK}" {JAVASCRIPT}>{MENUOPTION}</a></li>
+		</patTemplate:tmpl>
+		</ul>
+	</li>
+	</patTemplate:tmpl>
+	
+	<patTemplate:tmpl name="seller_rows_title" type="simpleCondition" requiredVars="title">
+	<li><a href="{HOMELINK}">{TITLE}</a>
+	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-content ui-corner-all sub_menu">
+	<patTemplate:tmpl name="seller_rows" requiredVars="link">
+			<li><a href="{LINK}" {JAVASCRIPT}>{MENUOPTION}</a></li>
+		</patTemplate:tmpl>
+		</ul>
+	</li>
+	</patTemplate:tmpl>
+</ul>
+
+</patTemplate:tmpl>

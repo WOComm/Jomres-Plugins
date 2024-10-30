@@ -1,0 +1,115 @@
+<patTemplate:tmpl name="edit_gateway" unusedvars="nbsp">
+
+{GATEWAYNAME}
+{GATEWAYLOGO}
+<hr>
+<form method="post" name="adminForm">
+<table>
+	<!--<tr align="center" valign="middle">
+		 <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_CURRENCYCODE}</td>
+		 <td align="left" valign="top"><input type="text" class="jomres_inputbox" name="currencycode" value="{CURRENCYCODE}" /></td>
+		 <td align="left" valign="top">&nbsp;</td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		 <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_USEIPN}</td>
+		 <td align="left" valign="top">{USEIPN}</td>
+		 <td align="left" valign="top">&nbsp;</td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		 <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_PENDINGOK}</td>
+		 <td align="left" valign="top">{PENDINGOK}</td>
+		 <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_PENDINGOK_DESC}</td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		 <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_IPNEMAIL}</td>
+		 <td align="left" valign="top">{RECEIVEIPNEMAIL}</td>
+		 <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_IPNEMAIL_DESC}</td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		 <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_EMAIL}</td>
+		 <td align="left" valign="top"><input type="text" class="jomres_inputbox" name="paypalemail" value="{PAYPALEMAIL}" /></td>
+		 <td align="left" valign="top">&nbsp;</td>
+	  </tr>   
+	<tr>
+		<td colspan="3">
+		{JR_GATEWAY_CONFIG_NOTES}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+		-------------------------------------------
+		</td>
+	</tr>-->
+	<tr>
+		<td colspan="3">
+		 <h2>{PAYPAL_API_KEY_TITLE}</h2>
+		 {PAYPAL_API_KEY_TITLE_DESC}
+		</td>
+	</tr>
+	<tr align="center" valign="middle">
+		<td align="left" valign="top">{JR_GATEWAY_CONFIG_ACTIVE}</td>
+		<td align="left" valign="top">{ACTIVE}</td>
+		<td align="left" valign="top">&nbsp;</td>
+	</tr>
+
+	<tr align="center" valign="middle">
+		<td align="left" valign="top">{JR_GATEWAY_CONFIG_SANDBOX}</td>
+		<td align="left" valign="top">{TEST_MODE}</td>
+		<td align="left" valign="top">{JR_GATEWAY_CONFIG_SANDBOX_DESC}</td>
+	</tr>
+	
+	<tr>
+		<td colspan="3">
+		-------------------------------------------
+		</td>
+	</tr>
+	<tr align="center" valign="middle">
+		<td align="left" valign="top">{PAYPAL_API_CLIENTID}</td>
+		<td align="left" valign="top"><input type="text" name="client_id" value="{CLIENT_ID}" /></td>
+		<td align="left" valign="top">&nbsp;</td>
+	</tr>
+	<tr align="center" valign="middle">
+		<td align="left" valign="top">{PAYPAL_API_SECRET}</td>
+		<td align="left" valign="top"><input type="text" name="secret" value="{SECRET}" /></td>
+		<td align="left" valign="top">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+		-------------------------------------------
+		</td>
+	</tr>
+	<tr align="center" valign="middle">
+		<td align="left" valign="top">{PAYPAL_API_CLIENTID_SANDBOX}</td>
+		<td align="left" valign="top"><input type="text" name="client_id_sandbox" value="{CLIENT_ID_SANDBOX}" /></td>
+		<td align="left" valign="top">&nbsp;</td>
+	</tr>
+	<tr align="center" valign="middle">
+		<td align="left" valign="top">{PAYPAL_API_SECRET_SANDBOX}</td>
+		<td align="left" valign="top"><input type="text" name="secret_sandbox" value="{SECRET_SANDBOX}" /></td>
+		<td align="left" valign="top">&nbsp;</td>
+	</tr> 
+</table>
+
+
+<input type="hidden" name="no_html" value="1" />
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="save_plugin" />
+<br/>
+<input type="submit" value="Submit" class="btn btn-success" >
+{CSRF_TOKEN}
+</form>
+
+<br/><br/>
+<h2>{PAYPAL_API_CLIENTID_FINDING}</h2>
+<h3>1. {PAYPAL_API_CLIENTID_STEP1}</h3>
+<h3>2. {PAYPAL_API_CLIENTID_STEP2}</h3><br/>
+<img src="{LIVESITE}/jomres/core-plugins/core_gateway_paypal/apikey_images/faq_paypal.png" class="img-responsive thumbnail" />
+<br/><h3>3. {PAYPAL_API_CLIENTID_STEP3}</h3><br/>
+<img src="{LIVESITE}/jomres/core-plugins/core_gateway_paypal/apikey_images/faq_paypal1.png" class="img-responsive thumbnail" />
+<br/><h3>4. {PAYPAL_API_CLIENTID_STEP4}</h3><br/>
+<img src="{LIVESITE}/jomres/core-plugins/core_gateway_paypal/apikey_images/faq_paypal2.png" class="img-responsive thumbnail" />
+<br/><h3>5. {PAYPAL_API_CLIENTID_STEP5}</h3><br/>
+<img src="{LIVESITE}/jomres/core-plugins/core_gateway_paypal/apikey_images/faq_paypal3.png" class="img-responsive thumbnail" />
+
+
+</patTemplate:tmpl>

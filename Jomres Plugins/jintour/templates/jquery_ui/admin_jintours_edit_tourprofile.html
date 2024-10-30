@@ -1,0 +1,62 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+{JOMRESTOOLBAR}
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+<table width="100%" class="ui-widget-content ui-corner-all" border="0">
+    <tr>
+        <td width="30%">{HPROFILE_TITLE}</td>
+        <td><input type="text" class="inputbox" name="title" value="{TITLE}" /></td>
+    </tr>
+    <tr>
+        <td>{HDESCRIPTION}</td>
+        <td><textarea rows="5" cols="50" name="description">{DESCRIPTION}</textarea></td>
+    </tr>
+    <tr>
+        <td>{HADULTSPACES}</td>
+        <td>{SPACES_ADULTS}</td>
+    </tr>
+    <tr>
+        <td>{HCHILDSPACES}</td>
+        <td>{SPACES_KIDS}</td>
+    </tr>
+    <tr>
+        <td>{HTAXCODE}</td>
+        <td>{TAXRATEDROPDOWN}</td>
+    </tr>
+    <tr>
+        <td>{HSTART_DATE}</td>
+        <td>{VALIDFROM}</td>
+    </tr>
+    <tr>
+        <td>{HEND_DATE}</td>
+        <td>{VALIDTO}</td>
+    </tr>
+    <tr>
+        <td>{HDAYS_OF_WEEK}</td>
+        <td>
+        	<input type="checkbox" name="monday" value="1" {MONDAY_CHECKED} >{MONDAY}&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" name="tuesday" value="1" {TUESDAY_CHECKED} >{TUESDAY}&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" name="wednesday" value="1" {WEDNESDAY_CHECKED} >{WEDNESDAY}&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" name="thursday" value="1" {THURSDAY_CHECKED} >{THURSDAY}&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" name="friday" value="1" {FRIDAY_CHECKED} >{FRIDAY}&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" name="saturday" value="1" {SATURDAY_CHECKED} >{SATURDAY}&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" name="sunday" value="1" {SUNDAY_CHECKED} >{SUNDAY}
+        </td>
+    </tr>
+    <tr>
+        <td>{HPRICE_ADULTS}*</td>
+        <td><input type="text" class="inputbox" name="price_adults" value="{PRICE_ADULTS}" /></td>
+    </tr>
+    <tr>
+        <td>{HPRICE_KIDS}*</td>
+        <td><input type="text" class="inputbox" name="price_kids" value="{PRICE_KIDS}" /></td>
+    </tr>
+    <tr>
+        <td colspan="2"><p>*{KIDS_INFO}</p></td>
+    </tr>
+</table>
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="no_html" value="1" />
+<input type="hidden" name="task" value="jintour_save_profile" />
+</form>
+</patTemplate:tmpl>

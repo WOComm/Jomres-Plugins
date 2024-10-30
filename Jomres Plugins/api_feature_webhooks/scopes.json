@@ -1,0 +1,8 @@
+{
+	"_OAUTH_SCOPE_CATEGORY_PROPERTIES": [{
+		"scope": "webhooks_get",
+		"user_type": "manager",
+		"definition": "_OAUTH_SCOPE_WEBHOOKS_GET",
+		"description": "_OAUTH_SCOPE_WEBHOOKS_GET_DESC"
+	}]
+}

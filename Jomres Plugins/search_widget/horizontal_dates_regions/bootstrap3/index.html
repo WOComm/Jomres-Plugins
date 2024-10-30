@@ -1,0 +1,23 @@
+
+<patTemplate:tmpl name="search">
+	<form action="{SUBMITURL}" method="get" name="{FORMNAME}" role="form" class="form-inline">
+		<input type="hidden" name="option" value="com_jomres"/>
+		{HIDDEN}
+			<div class="form-group  col-sm-3">
+				<label class="control-label sr-only" for="arrivalDate">{HARRIVALDATE}</label>
+				<div class="input-group">{ARRIVALDATE}</div>
+			</div>
+			<div class="form-group col-sm-3">
+				<label class="control-label sr-only" for="departureDate">{HDEPARTUREDATE}</label>
+				<div class="input-group">{DEPARTUREDATE}</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="control-label" for="region">{JOMRES_SEARCH_GEO_REGIONSEARCH}</label>
+				<div class="input-group">{REGION}</div>
+			</div>
+			<div class=" col-sm-2">
+				{THEBUTTON}
+			</div>
+	</form>
+
+</patTemplate:tmpl>

@@ -1,0 +1,98 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+
+<div class="form-group">
+	<label class="col-md-2 control-label" for="title">{_CLONE_TARIFFS_SOURCE}</label>
+	<div class="col-md-10">
+		<input type="text" class="form-control" name="title" value="{TITLE}" />
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="description">{HDESCRIPTION}</label>
+	<div class="col-md-10">
+		<textarea rows="5" name="description" class="form-control">{DESCRIPTION}</textarea>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="spaces_adults">{HADULTSPACES}</label>
+	<div class="col-md-10">
+		{SPACES_ADULTS}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="spaces_kids">{HCHILDSPACES}</label>
+	<div class="col-md-10">
+		{SPACES_KIDS}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="taxrate">{HTAXCODE}</label>
+	<div class="col-md-10">
+		{TAXRATEDROPDOWN}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="validfrom">{HSTART_DATE}</label>
+	<div class="col-md-10">
+		{VALIDFROM}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="validto">{HEND_DATE}</label>
+	<div class="col-md-10">
+		{VALIDTO}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">{HDAYS_OF_WEEK}</label>
+	<div class="col-md-10">
+		<label class="checkbox inline">
+			<input type="checkbox" name="monday" value="1" {MONDAY_CHECKED} > {MONDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="tuesday" value="1" {TUESDAY_CHECKED} > {TUESDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="wednesday" value="1" {WEDNESDAY_CHECKED} > {WEDNESDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="thursday" value="1" {THURSDAY_CHECKED} > {THURSDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="friday" value="1" {FRIDAY_CHECKED} > {FRIDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="saturday" value="1" {SATURDAY_CHECKED} > {SATURDAY}
+		</label>
+		<label class="checkbox inline">
+			<input type="checkbox" name="sunday" value="1" {SUNDAY_CHECKED} > {SUNDAY}
+		</label>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="price_adults">{HPRICE_ADULTS}</label>
+	<div class="col-md-10">
+		<input type="text" class="form-control" name="price_adults" value="{PRICE_ADULTS}" />
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="price_kids">{HPRICE_KIDS}</label>
+	<div class="col-md-10">
+		<input type="text" class="form-control" name="price_kids" value="{PRICE_KIDS}" />
+		<p class="help-block">
+			{KIDS_INFO}
+		</p>
+	</div>
+</div>
+<div class="form-actions">
+	<div class="col-md-10 col-md-offset-2">
+		{JOMRESTOOLBAR}
+	</div>
+</div>
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="no_html" value="1" />
+<input type="hidden" name="task" value="jintour_save_profile" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

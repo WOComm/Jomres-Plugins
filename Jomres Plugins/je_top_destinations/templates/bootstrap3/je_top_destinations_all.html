@@ -1,0 +1,21 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+.je-top-destination > .row-fluid [class*="span"]:nth-child(3n+1){
+margin-left:0;
+clear:both;
+}
+</style>
+<h2 class="page-header">{HALLDESTINATIONS}</h2>
+<div class="je_top_destination">
+	<div class="row">
+		<patTemplate:tmpl name="rows" >
+		<div class="col-md-4">
+			<h3 class="page-header">{COUNTRY_FLAG}&nbsp;{COUNTRY}</h3>
+			<ul>
+				{TOWNS}
+			</ul>
+		</div>
+		</patTemplate:tmpl>
+	</div>
+</div>
+</patTemplate:tmpl>

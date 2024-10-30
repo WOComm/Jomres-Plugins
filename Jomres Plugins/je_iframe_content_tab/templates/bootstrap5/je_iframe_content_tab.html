@@ -1,0 +1,19 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+jomresJquery(document).ready(function() {
+	jomresJquery('body').on('shown.bs.tab','#je_iframeTab', function (e) {
+		src = jomresJquery('#je_iframe').attr('data-src');
+		// if the iframe hasn't already been loaded once
+		if(jomresJquery("#je_iframe iframe").attr("src")=="")
+			{
+			jomresJquery("#je_iframe iframe").attr("src",src);
+			}
+		});
+	});
+</script>
+<patTemplate:tmpl name="iframecontent" type="simpleCondition" requiredVars="iframetab_title">
+<div id="je_iframe" data-src="{URL}">
+	<iframe src="" width="100%" height="{HEIGHT}" frameborder="0" name="{IFRAMETAB_TITLE}" scrolling="auto">You need Iframes enabled in your browser to see this content.</iframe>
+</div>
+</patTemplate:tmpl>
+</patTemplate:tmpl>

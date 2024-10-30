@@ -1,0 +1,45 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+{JOMRESTOOLBAR}
+	<div class="control-group">
+		<div class="control-label">
+			{HFIELD}
+		</div>
+		<div class="controls">
+			<input class="inputbox" type="text" name="fieldname" value="{FIELDNAME}" />
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
+			{HDEFAULT_VALUE}
+		</div>
+		<div class="controls">
+			<input class="inputbox" type="text" name="default_value" value="{DEFAULT_VALUE}" />
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="control-label">
+			{HDESCRIPTION}
+		</div>
+		<div class="controls">
+			<input class="inputbox" type="text" name="description" value="{DESCRIPTION}" />
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="name">{_JOMRES_PROPERTY_TYPE_ASSIGNMENT}</label>
+
+		<div class="controls">
+			<patTemplate:tmpl name="all_ptype_rows" type="simpleCondition" requiredVars="propertytype_id">
+				<label class="checkbox">
+					<input type="checkbox" name="ptype_ids[]" value="{PROPERTYTYPE_ID}" {CHECKED} />
+					{PROPERTYTYPE_DESC}
+				</label>
+			</patTemplate:tmpl>
+		</div>
+	</div>
+<input type="hidden" name="uid" value="{UID}">
+<input type="hidden" name="task" value="save_custom_property_field" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

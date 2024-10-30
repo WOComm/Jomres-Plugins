@@ -1,0 +1,23 @@
+<patTemplate:tmpl name="pageoutput" >
+<br/>
+	<table width="100%">
+		
+		<tr>
+			<td>
+				{_JOMRES_AUCTIONHOUSE_LISTS_NEWLIST_NAME}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input class="inputbox" type="text" size="15" id="listname" name="auction_title" value="{AUCTION_TITLE}" />
+			</td>
+		</tr>
+	</table>
+		<div class="fg-buttonset ui-helper-clearfix">
+			<div class="fg-button ui-state-default ui-priority-primary ui-corner-all" onClick="auction_page('auction_buyer_ajax_savenew_watchlist',['listname']);">
+				{_JOMRES_AUCTIONHOUSE_LISTS_SAVENEWLIST}
+			</div>
+		</div>
+<br/>
+
+</patTemplate:tmpl>

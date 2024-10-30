@@ -1,0 +1,44 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('admin_jintours_tourprofiles', '{TITLE}', '{LIVESITE}');
+});
+//-->
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+<p>{GENERATEINFO}</p>
+{JOMRESTOOLBAR}
+<table id="admin_jintours_tourprofiles" class="table table-striped" width="100%">
+	<thead>
+		<tr>
+			<th></th>
+            <th></th>
+            <th>{HPROFILE_TITLE}</th>
+            <th>{HDAYS_OF_WEEK}</th>
+            <th>{HPRICE_ADULTS}</th>
+            <th>{HPRICE_KIDS}</th>
+            <th>{HADULTSPACES}</th>
+            <th>{HCHILDSPACES}</th>
+            <th>{HSTART_DATE}</th>
+            <th>{HEND_DATE}</th>
+        </tr>
+	</thead>
+	<tbody>
+        <patTemplate:tmpl name="rows"  type="simpleCondition" requiredVars="title" unusedvars="nbsp">
+        <tr>
+            <td>{EDITLINK}</td>
+            <td>{GENERATELINK}</td>
+            <td>{TITLE}</td>
+            <td>{DAY_OF_WEEK}</td>
+            <td>{PRICE_ADULTS}</td>
+            <td>{PRICE_KIDS}</td>
+            <td>{SPACES_ADULTS}</td>
+            <td>{SPACES_KIDS}</td>
+            <td>{START_DATE}</td>
+            <td>{END_DATE}</td>
+        </tr>
+        </patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

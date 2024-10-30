@@ -1,0 +1,26 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+    <script>
+        var is_paid = false;
+        var bitpay_test_mode = '{TEST_MODE}';
+        window.addEventListener("message", function (event) {
+            payment_status = event.data.status;
+            if (payment_status == "paid") {
+                is_paid = true;
+                window.location.replace("{REDIRECT_URL}"
+                );
+                return;
+            }
+        }, false);
+        //show the order info
+        bitpay.onModalWillLeave(function () {
+            if (is_paid == false) {
+                window.location.replace("{REDIRECT_URL}");
+            } //endif
+        });
+        //show the modal
+        if(bitpay_test_mode == '1'){
+        bitpay.enableTestMode()
+        }
+        bitpay.showInvoice("{INVOICE_ID}")
+    </script>
+</patTemplate:tmpl>

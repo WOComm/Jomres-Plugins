@@ -1,0 +1,58 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+<script src="https://js.stripe.com/v3/"></script>
+
+<div class="row">
+	<div class="col-12">
+		{_SUBSCRIPTIONS_HPACKAGE_YOUR} <strong>{PACKAGE_NAME}</strong>
+	</div>
+	<div class="col-12">
+		{_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FULLAMOUNT} <strong>{PRICE}</strong>
+	</div>
+</div>
+
+<form id="payment-form" class="">
+	<div id="payment-element">
+	
+	</div>
+	<button id="submit" class="btn btn-primary mt-3">{_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE}</button>
+	<div id="error-message">
+	
+	</div>
+</form>
+	
+<script>
+	const stripe = Stripe('{PUBLIC_KEY}');
+	const options = {
+		clientSecret: '{CLIENT_SECRET}'
+	};
+
+	const elements = stripe.elements(options);
+
+	const paymentElement = elements.create('payment');
+	paymentElement.mount('#payment-element');
+
+    const form = document.getElementById('payment-form');
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const {error} = await stripe.confirmPayment({
+            elements,
+            confirmParams: {
+                return_url: "{RETURN_URL}"
+            }
+        });
+
+        if (error) {
+            jomresJquery('#error-message').addClass("alert alert-danger");
+            const messageContainer = document.querySelector('#error-message');
+            messageContainer.textContent = error.message;
+        } else {
+            jomresJquery('#error-message').addClass("alert alert-success");
+        }
+    });
+
+    
+</script>
+
+</patTemplate:tmpl>

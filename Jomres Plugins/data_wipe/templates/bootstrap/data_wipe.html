@@ -1,0 +1,12 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+<div class="alert">
+	<p>{_JOMRES_DATAWIPE_DESC}</p>
+	<p>{_JOMRES_DATAWIPE_WARNING}</p>
+</div>
+<input type="submit" name="wipe" value="{_JOMRES_DATAWIPE_GO}" class="btn btn-danger"/>
+<input type="hidden" name="task" value="do_data_wipe" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

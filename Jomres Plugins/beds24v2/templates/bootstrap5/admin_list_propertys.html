@@ -1,0 +1,37 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<style type="text/css">
+		table.ui-widget-header ui-corner-all tr.row2 {
+			background-color: #fc0000;
+			text-align: left;
+		}
+	</style>
+
+	<h2>{_BEDS24_ASSIGN_MANAGER}</h2>
+	<p class="lead">{BEDS24_ASSIGN_MANAGER_DESC}</p>
+	
+	
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}&task=beds24v2_save_managers" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table class="table table-striped" width="100%">
+			<thead>
+			<tr>
+				<th>{HPROPERTYNAME}</th>
+				<th>{HPROPERTYADDRESS}</th>
+				<th>{_BEDS24_ASSIGN_MANAGER}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="propertyname">
+				<tr>
+					<td>{VIEWLINK}{PROPERTYNAME}</td>
+					<td>{PROPERTYADDRESS}</td>
+					<td>{MANAGER_DROPDOWN}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="task" value="beds24v2_save_managers"/>
+		{CSRF_TOKEN}
+	</form>
+</patTemplate:tmpl>

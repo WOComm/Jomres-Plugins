@@ -1,0 +1,18 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	{RIBBON}
+	<div class="row">
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+			<div class="col">
+				<div class="card mb-3 border-0">
+					<div class="image-container ">
+						<a href="{URL}">
+							<img src="{IMAGE}" alt="{ABBV}" class="card-img-top card-img-radius"  loading="lazy" />
+						</a>
+						<div class="top-left text-white rounded-1 p-1">{COUNT} {_JOMRES_HLIST_PROPERTIES}</div>
+						<div class="bottom-left text-white rounded-1 p-1"><strong>{ABBV}</strong></div>
+					</div>
+				</div>
+			</div>
+		</patTemplate:tmpl>
+	</div>
+</patTemplate:tmpl>

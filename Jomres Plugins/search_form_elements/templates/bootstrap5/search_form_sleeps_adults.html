@@ -1,0 +1,52 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<script>
+        jomresJquery(document).ready(function(){
+
+            var sleeps_adults=0;
+            jomresJquery('.quantity-right-plus-adults{FORM_ID}').click(function(e){
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                var quantity = parseInt(jomresJquery('#sleeps_adults{FORM_ID}').val());
+                // If is not undefined
+                jomresJquery('#sleeps_adults{FORM_ID}').val(quantity + 1);
+                // Increment
+            });
+
+            jomresJquery('.quantity-left-minus-adults{FORM_ID}').click(function(e){
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                var quantity = parseInt(jomresJquery('#sleeps_adults{FORM_ID}').val());
+
+                // If is not undefined
+
+                // Increment
+                if(quantity>1){
+                    jomresJquery('#sleeps_adults{FORM_ID}').val(quantity - 1);
+                }
+            });
+        });
+	
+	</script>
+	
+	
+	<div class="input-group">
+		
+		
+		
+
+		<span class="input-group-text" style="background-color:transparent"><i class="fas fa-user"></i></span>
+		<input type="text" id="sleeps_adults" name="sleeps_adults{FORM_ID}" class="form-control input-number" style="border-left: 0;" value="{SLEEPS_ADULTS_SELECTED}" min="1" max="{HIGHEST_ADULTS}">
+		<span class="input-group-btn">
+			<button type="button" class="quantity-left-minus-adults{FORM_ID} btn btn-default btn-number" style="z-index:1;" data-type="minus" data-field="">
+		    	<i class="fas fa-minus"></i>
+			</button>
+		</span>
+		<span class="input-group-btn">
+			<button type="button" class="quantity-right-plus-adults{FORM_ID} btn btn-default btn-number" style="z-index:1;" data-type="plus" data-field="">
+				<i class="fas fa-plus"></i>
+			</button>
+		</span>
+	</div>
+</patTemplate:tmpl>

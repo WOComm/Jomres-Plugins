@@ -1,0 +1,263 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+jomresJquery(document).ready(function() {
+	je_init_map();
+	});
+
+	var directionDisplay;
+	var directionsService;
+	var map;
+	var origin = null;
+	var destination = null;
+	var waypoints = [];
+	var markers = [];
+	var directionsVisible = false;
+	var locations = [];
+	var curr_infw;
+	var destinationWaypoint;
+
+	function je_init_map() {
+	directionsService = new google.maps.DirectionsService();
+		directionsDisplay = new google.maps.DirectionsRenderer();
+		var propertyLocation = new google.maps.LatLng({LAT}, {LONG});
+		var myOptions = {
+			zoom:{ZOOMLEVEL},
+			mapTypeId: google.maps.MapTypeId.{MAPTYPE}{SUPPRESS_POIS},
+		{MAP_STYLE},
+			center: propertyLocation
+		}
+	
+		map = new google.maps.Map(document.getElementById("je_map_canvas"), myOptions);
+		directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+	
+	locations.push([{LAT},{LONG},'{POPUP}','{ICON}']);
+	makeMarker(locations[0]);
+	destination = propertyLocation;
+	
+	{TRANSIT_LAYER}
+		
+	google.maps.event.addListener(map, 'click', function(event) {
+		if (!directionsVisible)
+			{
+			if (waypoints.length < 9) {
+				waypoints.push({ location: event.latLng, stopover: true });
+				destinationWaypoint = event.latLng;
+				addMarker(destinationWaypoint);
+			} else {
+				alert("Maximum number of 9 waypoints reached");
+			}
+		}
+		});
+	}
+
+	function addMarker(latlng,icon) {
+		markers.push(new google.maps.Marker({
+			position: latlng, 
+			map: map,
+			icon: "{WAYPOINT_ICON}"
+		}));
+	}
+
+	function calcRoute() {
+	var from_address = document.getElementById("from_address").value;
+	var from_zipcode = document.getElementById("from_zipcode").value;
+	var from_town = document.getElementById("from_town").value;
+	var origin = "";
+	if(from_address=="Address") from_address="";
+	if(from_zipcode=="Postal code") from_zipcode="";
+	if(from_town=="Town") from_town="";
+	if(from_address) origin = from_address + ","+"";
+	if(from_zipcode) origin += from_zipcode+ ","+"";
+	if(from_town) origin += from_town;
+		
+		var mode;
+		switch (document.getElementById("mode").value) {
+			case "bicycling":
+				mode = google.maps.DirectionsTravelMode.BICYCLING;
+				break;
+			case "driving":
+				mode = google.maps.DirectionsTravelMode.DRIVING;
+				break;
+			case "walking":
+				mode = google.maps.DirectionsTravelMode.WALKING;
+				break;
+		}
+		
+		var request = {
+				origin: origin,
+				destination: destination,
+				waypoints: waypoints,
+				travelMode: mode,
+				/*optimizeWaypoints: document.getElementById('optimize').checked,*/
+				avoidHighways: document.getElementById('highways').checked,
+				avoidTolls: document.getElementById('tolls').checked
+		};
+		
+		directionsService.route(request, function(response, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+				directionsDisplay.setDirections(response);
+			}
+		else
+			{
+		alert("{ROUTEERROR}");
+		reset_map();
+		}
+		});
+		
+		clearMarkers();
+		directionsVisible = true;
+	}
+	
+	function makeMarker(location) {
+	var lat = location[0];
+	var long = location[1];
+	var content = location[2];
+	var icon = location[3];
+
+	var markerOptions = {
+		map: map, 
+		position: new google.maps.LatLng(lat,long),
+		icon : icon
+		};
+	var marker = new google.maps.Marker(markerOptions);
+	
+	var infowindow = new google.maps.InfoWindow({
+		content: content
+		});
+	google.maps.event.addListener(marker, 'click', function() {
+		if(curr_infw) { curr_infw.close();} // We check to see if there is an info window stored in curr_infw, if there is, we use .close() to hide the window
+		curr_infw = infowindow; // Now we put our new info window in to the curr_infw variable
+		infowindow.open(map, marker); // Now we open the window
+		});
+	markers.push(marker);
+	}
+	
+	function updateMode() {
+		if (directionsVisible) {
+			calcRoute();
+		}
+	}
+	
+	function clearMarkers() {
+		for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(null);
+		}
+	}
+	
+	function clearWaypoints() {
+		markers = [];
+		origin = null;
+		destination = null;
+		waypoints = [];
+		directionsVisible = false;
+	}
+	
+	function reset_map() {
+		clearMarkers();
+		clearWaypoints();
+		directionsDisplay.setMap(null);
+		directionsDisplay.setPanel(null);
+		directionsDisplay = new google.maps.DirectionsRenderer();
+		directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById("directionsPanel")); 
+	je_init_map();
+	}
+	
+	function routePrint() {
+	var inf = document.getElementById('directionsPanel').innerHTML;
+	var left = (screen.width/2)-300;
+	var top = (screen.height/2)-300;
+	win = window.open("routePrint.html", '{HDRIVINGDIRECTIONS}', 'toolbar = no, status = no, width = 600, height = 400, resizable = no, scrollbars = yes, top='+top+', left='+left+'');
+	win.document.write("<a href='javascript:print();'>Print this page</a>" + inf);
+	win.document.close();
+	}
+
+jomresJquery(document).ready(function() {
+	jomresJquery('body').on('shown','#je_mapTab', function (e) {
+		reset_map();
+		});
+	});
+</script>
+
+<style type="text/css">
+#je_map_canvas img { 
+	max-width: none;
+}
+
+#je_map_canvas label { 
+	width: auto; display:inline; 
+}
+.adp, .adp table, .adp-list {
+		width: 100%;
+}
+</style>
+<div id="je_map_canvas" class="row-fluid" style="height:{HEIGHT}px;margin-bottom:20px;"></div>
+<form action="" onsubmit="map_start(); return false" method="post" class="form-horizontal">
+<h3 class="page-header">{HDRIVINGDIRECTIONS}</h3>
+<p>{INSTRUCTIONS}</p>
+<h4 class="page-header">{HYOURLOCATION}</h4>
+<div class="control-group">
+	<div class="control-label">
+		{HADDRESS}
+	</div>
+	<div class="controls">
+		<input type="text" name="from_address" id="from_address" value="{HADDRESS}" onfocus="if (this.value=='{HADDRESS}') {this.value='';}" onblur="if (this.value=='') {this.value='{HADDRESS}';}" class="input-medium"/>
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HPOSTALCODE}
+	</div>
+	<div class="controls">
+		<input type="text" name="from_zipcode" id="from_zipcode" value="{HPOSTALCODE}" onfocus="if (this.value=='{HPOSTALCODE}') {this.value='';}" onblur="if (this.value=='') {this.value='{HPOSTALCODE}';}" class="input-medium"/>
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HTOWN}
+	</div>
+	<div class="controls">
+		<input type="text" name="from_town" id="from_town" value="{HTOWN}" onfocus="if (this.value=='{HTOWN}') {this.value='';}" onblur="if (this.value=='') {this.value='{HTOWN}';}" class="input-medium"/>
+	</div>
+</div>
+<h4 class="page-header">{HROUTEOPTIONS}</h4>
+<div class="control-group">
+	<div class="control-label">
+		{HOPTIMIZEFOR}
+	</div>
+	<div class="controls">
+		<select id="mode" onchange="updateMode();">
+			<option value="driving">{HDRIVING}</option>
+			<option value="walking">{HWALKING}</option>
+			<option value="bicycling">{HCYCLING}</option>
+		</select>
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HHIGHWAYS}
+	</div>
+	<div class="controls">
+		<input type="checkbox" id="highways" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HTOLLS}
+	</div>
+	<div class="controls">
+		<input type="checkbox" id="tolls" />
+	</div>
+</div>
+<div class="form-actions">
+	<input type="button" value="{HGETDIRECTIONS}" onclick="calcRoute();" class="btn btn-primary"/> 
+	<input type="button" value="{HRESETMAP}" onclick="reset_map();" class="btn"/> 
+	<input type="button" value="{HPRINT}" onclick="routePrint();" class="btn"/> 
+</div>
+{CSRF_TOKEN}
+</form>
+<div style="clear:both;"></div>
+<div id="directionsPanel" class="clearfix"></div>
+<div style="clear:both;"></div>
+</patTemplate:tmpl>

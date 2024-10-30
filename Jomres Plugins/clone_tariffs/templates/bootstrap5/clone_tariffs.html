@@ -1,0 +1,96 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+
+jomresJquery(function()
+	{
+	jomresJquery('#source_property').change(function()
+		{
+		theindex = jomresJquery('option:selected',jomresJquery(this)).val();
+		jomresJquery.get(live_site_ajax + '&task=get_source_tariffs&property_uid='+theindex, function (data) 
+			{
+			populateDiv("tariffs_list",data);
+			jomresJquery("#tariff_list_wrapper").fadeIn();
+			jomresJquery(function()
+				{
+				jomresJquery('#source_tariff_id').change(function()
+					{
+					jomresJquery("#clone_to_wrapper").fadeIn();
+					});
+				});
+			});
+		});
+		
+	jomresJquery('#clone_to_wrapper').change(function()
+		{
+		theindex = jomresJquery('option:selected',jomresJquery(this)).val();
+		jomresJquery.get(live_site_ajax + '&task=get_target_room_types&property_uid='+theindex, function (data) 
+			{
+			populateDiv("clone_to_roomtypes",data);
+			jomresJquery("#clone_to_roomtypes_wrapper").fadeIn();
+			jomresJquery(function()
+				{
+				jomresJquery('#target_property_room_type').change(function()
+					{
+					jomresJquery("#delete_existing_wrapper").fadeIn();
+					jomresJquery("#submit_button").fadeIn();
+					});
+				});
+			});
+		});
+		
+	});
+//-->
+
+
+
+</script>
+
+<h2 class="page-header">{TITLE}</h2>
+<div class="alert alert-info">{_CLONE_TARIFFS_INFO}</div>
+<div class="alert alert-warning">{_CLONE_TARIFFS_TARGET_WARNING}</div>
+
+<form id="clone_tariffs_form" action="{JOMRES_SITEPAGE_URL_NOSEF}" name="ajaxform" method="post" class="form-horizontal" role="form">
+<div class="form-group">
+	<label class="col-md-2 control-label" for="source_property">{_CLONE_TARIFFS_SOURCE}</label>
+	<div class="col-md-10">
+		{SOURCE_PROPERTY_DROPDOWN}
+	</div>
+</div>
+
+<div class="form-group" id="tariff_list_wrapper" style="display:none;">
+	<label class="col-md-2 control-label" for="source_tariff_id">{_CLONE_TARIFFS_TARIFF_TO_CLONE}</label>
+	<div id="tariffs_list" class="col-md-10"></div>
+</div>
+
+<div class="form-group" id="clone_to_wrapper" style="display:none;">
+	<label class="col-md-2 control-label" for="target_property">{_CLONE_TARIFFS_TARGET}</label>
+	<div class="col-md-10">
+		{TARGET_PROPERTY_DROPDOWN}
+	</div>
+</div>
+
+<div class="form-group" id="clone_to_roomtypes_wrapper" style="display:none;">
+	<label class="col-md-2 control-label" for="target_property_room_type">{_CLONE_TARIFFS_TARGET_ROOMTYPE}</label>
+	<div id="clone_to_roomtypes" class="col-md-10"></div>
+</div>
+
+<div class="form-group" id="delete_existing_wrapper" style="display:none">
+	<label class="col-md-2 control-label" for="delete_existing">{_CLONE_TARIFFS_TARGET_DELETE_EXISTING}</label>
+	<div class="col-md-10">
+		{DELETE_EXISTING}
+		<span class="help-block">{_CLONE_TARIFFS_TARGET_DELETE_OPTION}</span>
+	</div>
+</div>
+
+<div class="form-actions">
+	<div class="col-md-10 col-md-offset-2">
+		<button class="btn btn-primary" style="display:none" type="submit" id="submit_button">{COMMON_SUBMIT}</button>
+	</div>
+</div>
+<input type="hidden" name="task" value="save_clone_tariff"/>
+<input type="hidden" name="no_html" value="1"/>
+{CSRF_TOKEN}
+</form>
+
+</patTemplate:tmpl>

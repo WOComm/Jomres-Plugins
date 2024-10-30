@@ -1,0 +1,37 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_subscription_packages', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	{JOMRESTOOLBAR}
+	<table id="list_subscription_packages" class="table table-striped" width="100%">
+		<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th class="hidden-phone">ID</th>
+			<th>{HNAME}</th>
+			<th class="hidden-phone">{HDESCRIPTION}</th>
+			<th>{HFULLAMOUNT}</th>
+			<th class="hidden-phone">{HCURRENCYCODE}</th>
+			<th class="hidden-phone">{HTAX_RATE}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="id">
+			<tr>
+				<td>{EDITLINK}</td>
+				<td class="hidden-phone">{ID}</td>
+				<td>{NAME}</td>
+				<td class="hidden-phone">{DESCRIPTION}</td>
+				<td>{FULLAMOUNT}</td>
+				<td class="hidden-phone">{CURRENCYCODE}</td>
+				<td class="hidden-phone">{TAX_RATE}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

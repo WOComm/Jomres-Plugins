@@ -1,0 +1,16 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{_JOMRES_CUSTOM_PROPERTY_FIELDS_MANAGER_TITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
+	<patTemplate:tmpl name="rows">
+	<tr>
+		<td width="30%"><label for="{FIELDNAME}">{DESCRIPTION}</label></td>
+		<td><input class="inputbox" type="text" name="custom_property_field_data[{FIELDNAME}]" id="{FIELDNAME}" value="{DEFAULT_VALUE}" /></td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<input type="hidden" name="task" value="save_custom_property_field_data" />
+<input type="hidden" name="no_html" value="1" />
+</form>
+</patTemplate:tmpl>

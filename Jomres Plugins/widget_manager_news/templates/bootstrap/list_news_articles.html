@@ -1,0 +1,37 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('admin_news_articles', '{PAGETITLE}', '{LIVESITE}');
+});
+//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+<p class="lead">{WIDGET_MANAGER_NEWS_DESCRIPTION}</p>
+
+{JOMRESTOOLBAR}
+
+<table id="admin_news_articles" width="100%" class="table table-striped">
+	<thead>
+	<tr>
+		<th>{COMMON_EDIT}</th>
+		<th><p class="{ALERT_STYLE}">{WIDGET_MANAGER_NEWS_ARTICLE_TITLE}</p></th>
+		<th>{WIDGET_MANAGER_NEWS_ARTICLE_DATE}</th>
+		<th>{WIDGET_MANAGER_NEWS_ARTICLE_CONTEXT}</th>
+		<th>{WIDGET_MANAGER_NEWS_TARGET_PROPERTY}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="editlink">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{ARTICLE_TITLE}</td>
+			<td>{DATE_POSTED}</td>
+			<td>{ALERT_STYLE}</td>
+			<td>{PROPERTY_NAME}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

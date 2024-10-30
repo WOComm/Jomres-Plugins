@@ -1,0 +1,20 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<patTemplate:tmpl name="toprowoutput" unusedvars="strip" >
+<h3 class="page-header"><a href="{URL}" title="{NAME}">{NAME}</a>&nbsp;{STARS} {SUPERIOR}</h3>
+<a href="{URL}" title="{NAME}" class="thumbnail"><img src="{IMAGE}" alt="{NAME}"/></a>
+<p class="small">{STREET}, {TOWN}, {REGION}, {COUNTRY}</p>
+<p>{DESCRIPTION}</p>
+<p><a href="{URL}" title="{NAME}" class="btn btn-info">{MOREINFORMATION}</a></p>
+</patTemplate:tmpl>
+<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="name">
+	{DIV}
+	<div class="span4">
+		<h3 class="page-header"><a href="{URL}" title="{NAME}">{NAME}</a>&nbsp;{STARS}</h3>
+		<a href="{URL}" title="{NAME}" class="thumbnail"><img src="{IMAGE}" alt="{NAME}"/></a>
+		<p class="small">{STREET}, {TOWN}, {REGION}, {COUNTRY}</p>
+		<p>{DESCRIPTION}</p>
+		<p><a href="{URL}" title="{NAME}" class="btn btn-info">{MOREINFORMATION}</a></p>
+	</div>
+	{ENDDIV}
+</patTemplate:tmpl>
+</patTemplate:tmpl>

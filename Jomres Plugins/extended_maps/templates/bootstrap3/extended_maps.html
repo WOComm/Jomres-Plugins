@@ -1,0 +1,86 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<script language="javascript" type="text/javascript">
+
+var map;
+var markers = [];
+var locations = [];
+var curr_infw;
+
+jomresJquery(window).load(function(){
+	var options = {
+	scrollwheel: false,
+	zoom: 2,
+	center: new google.maps.LatLng(0, 0),
+	mapTypeId: google.maps.MapTypeId.{MAPTYPE}{SUPPRESS_POIS},{MAP_STYLE}
+	}
+	
+	<!-- properties -->
+	<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="icon"  unusedvars="nbsp">
+	locations.push([{LAT},{LONG},'{POPUP}','{ICON}']);
+	</patTemplate:tmpl>
+	<!-- events -->
+	<patTemplate:tmpl name="events" type="simpleCondition" requiredVars="popup"  unusedvars="nbsp">
+	locations.push([{LAT},{LONG},'{POPUP}','{ICON}']);
+	</patTemplate:tmpl>
+	<!-- attractions -->
+	<patTemplate:tmpl name="attractions" type="simpleCondition" requiredVars="popup"  unusedvars="nbsp">
+	locations.push([{LAT},{LONG},'{POPUP}','{ICON}']);
+	</patTemplate:tmpl>
+	
+	
+	map = new google.maps.Map(document.getElementById('map_canvas'), options);
+	
+	for (var i = 0; i < locations.length; i++) {
+		makeMarker(locations[i]);
+		}
+	{GROUPMARKERS}
+	AutoCenter();
+	
+	{WEATHER_LAYER}
+	{PANORAMIO_LAYER}
+	{TRANSIT_LAYER}
+	{TRAFFIC_LAYER}
+	{BICYCLING_LAYER}
+	
+	});
+	
+
+function makeMarker(location) {
+	var lat = location[0];
+	var long = location[1];
+	var content = location[2];
+	var icon = location[3];
+
+	var markerOptions = {
+		map: map, 
+		position: new google.maps.LatLng(lat,long),
+		icon : icon
+		};
+	var marker = new google.maps.Marker(markerOptions);
+	
+	var infowindow = new google.maps.InfoWindow({
+		content: content
+		});
+	google.maps.event.addListener(marker, 'click', function() {
+		if(curr_infw) { curr_infw.close();} // We check to see if there is an info window stored in curr_infw, if there is, we use .close() to hide the window
+		curr_infw = infowindow; // Now we put our new info window in to the curr_infw variable
+		infowindow.open(map, marker); // Now we open the window
+		});
+	markers.push(marker);
+	}
+
+	//
+function AutoCenter() {
+	//  Create a new viewpoint bound
+	var bounds = new google.maps.LatLngBounds();
+	//  Go through each...
+	jomresJquery.each(markers, function (index, marker) {
+		bounds.extend(marker.position);
+		});
+	//  Fit these bounds to the map
+	map.fitBounds(bounds);
+	}
+</script>
+<div id="map_canvas" style="height:{HEIGHT}px;" class="col-md-12"></div>
+</patTemplate:tmpl>

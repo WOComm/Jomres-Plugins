@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<div class="je-top-destinations">
+	<patTemplate:tmpl name="rows">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							{TOWN_IMAGE}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<h5>{TOWN} {REGION}</h5>
+							<span>{COUNTRY_FLAG}&nbsp;{COUNTRY}</span>
+							<a href="{TOWNLINK}"><span class="label label-info">{COUNTER}&nbsp;{HPROPERTIES}</span></a>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</patTemplate:tmpl>
+	
+	<div class="clearfix"></div>
+	<div align="center">
+		<a href="{URL}" title="{HBROWSEALLDESTINATIONS}" class="btn btn-primary">{HBROWSEALLDESTINATIONS}</a>
+	</div>
+</div>
+
+</patTemplate:tmpl>

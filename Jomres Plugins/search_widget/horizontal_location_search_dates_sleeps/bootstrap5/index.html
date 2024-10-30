@@ -1,0 +1,58 @@
+
+<patTemplate:tmpl name="search">
+	<form action="{SUBMITURL}" method="get" name="{FORMNAME}" role="form" class="form-inline">
+		<input type="hidden" name="option" value="com_jomres"/>
+		{HIDDEN}
+
+		<div class="row">
+			<div class="col-sm-2">
+				<label class="control-label" for="location_search">{_JOMRES_REVIEWS_RATING_2}</label>
+			</div>
+			<div class="col-sm-2">
+				<label class="control-label" for="arrivalDate">{HARRIVALDATE}</label>
+			</div>
+			<div class="col-sm-2">
+				<label class="control-label" for="departureDate">{HDEPARTUREDATE}</label>
+			</div>
+			<div class="col-sm-2">
+				<label class="control-label" for="guestnumber">{JOMRES_COM_A_ACCOMMODATES}</label>
+			</div>
+			<div class="col-sm-2">
+
+			</div>
+			<div class="col-sm-2">
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-2">
+				{AUTOCOMPLETE}
+			</div>
+			<div class="form-group  col-sm-2">
+				<div class="input-group">{ARRIVALDATE}</div>
+			</div>
+			<div class="form-group col-sm-2">
+				<div class="input-group">{DEPARTUREDATE}</div>
+			</div>
+			<div class="form-group col-sm-2">
+				<div class="input-group">{GUESTNUMBER}</div>
+			</div>
+			<div class=" col-sm-2">
+				{THEBUTTON}
+			</div>
+			<div class=" col-sm-2">
+				<button class="btn btn-default" type="button" onclick="reset_form();">{_JOMRES_COM_A_RESET}
+			</div>
+		</div>
+	</form>
+	<script>
+
+		function reset_form()
+		{
+			jomresJquery("#location_search").val('default').selectpicker("refresh");
+			jomresJquery(".hasDatepicker").datepicker('setDate', null);
+			jomresJquery(".search_dropdown").val('');
+		}
+
+	</script>
+</patTemplate:tmpl>

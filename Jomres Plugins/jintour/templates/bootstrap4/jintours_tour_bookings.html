@@ -1,0 +1,83 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script language="javascript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('jintours_tour_bookings', 'Tour Bookings', '{LIVESITE}');
+	});
+	//-->
+</script>
+<h2 class="page-header">Tour Bookings</h2>
+{JOMRESTOOLBAR}
+<div class="well">
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HPROFILE_TITLE}</strong>
+		</div>
+		<div class="col-md-7">
+			{TITLE}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HDATE}</strong>
+		</div>
+		<div class="col-md-7">
+			{TOURDATE}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HPRICE_ADULTS}</strong>
+		</div>
+		<div class="col-md-7">
+			{PRICE_ADULTS}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HPRICE_KIDS}</strong>
+		</div>
+		<div class="col-md-7">
+			{PRICE_KIDS}
+		</div>
+	</div>
+</div>
+<h3 class="page-header">{HAVLSPACES}</h3>
+<div class="well">
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HADULTSPACES}</strong>
+		</div>
+		<div class="col-md-7">
+			{SPACES_AVAILABLE_ADULTS}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HCHILDSPACES}</strong>
+		</div>
+		<div class="col-md-7">
+			{SPACES_AVAILABLE_KIDS}
+		</div>
+	</div>
+</div>
+<h3 class="page-header">Bookings List</h3>
+<table id="jintours_tour_bookings" width="100%" class="table table-striped">
+	<thead>
+        <tr>
+            <th></th>
+            <th>Description</th>
+            <th>Guest name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="editlink" unusedvars="nbsp">
+        <tr>
+            <td>{EDITLINK}</td>
+            <td>{DESCRIPTION}</td>
+            <td>{GUEST_NAME}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
+</table>
+</patTemplate:tmpl>

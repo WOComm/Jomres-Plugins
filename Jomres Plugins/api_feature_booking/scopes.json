@@ -1,0 +1,8 @@
+{
+	"_OAUTH_SCOPE_CATEGORY_USER": [{
+		"scope": "bookings",
+		"user_type": "guest",
+		"definition": "_OAUTH_SCOPE_SEARCH_GET",
+		"description": "_OAUTH_SCOPE_SEARCH_GET_DESC"
+	}]
+}

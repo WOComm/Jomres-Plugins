@@ -1,0 +1,110 @@
+<patTemplate:tmpl name="pageoutput">
+<br />
+	<table width="100%">
+		<tr valign="top">
+			<th width="200px">
+			{_JOMRES_AUCTIONHOUSE_AUCTION_TITLE}
+			</th>
+			<th>
+			{_JOMRES_AUCTIONHOUSE_AUCTION_MAXIBID}
+			</th>
+			<th>
+			{_JOMRES_AUCTIONHOUSE_AUCTION_TIMELEFT}
+			</th>
+		</tr>
+		<tr valign="top">
+			<td>
+			{VIEW_AUCTION_LINK}
+			{BR}
+			{HARRIVAL} {PACKAGE_START} {BR} {HDEPARTURE} {PACKAGE_DEPARTURE}
+			</td>
+			<td>
+				<div style="float:left"><strong>{HIGHESTBID}</strong></div>
+				<br/>
+				{_JOMRES_AUCTIONHOUSE_AUCTION_RESERVE_NOTMET}
+				<br/>
+				{_JOMRES_AUCTIONHOUSE_AUCTION_TAX_NOTE}
+				<div class="highlight"><strong>{BIDSTATUS}</strong></br/></div>
+				<br/>
+				<patTemplate:tmpl name="bidding" type="simpleCondition" requiredVars="placebidbutton">
+				
+				<div class="fg-buttonset ui-helper-clearfix">
+					<div class="fg-button ui-state-default ui-priority-primary ui-corner-all" onClick="auction_page('auction_ajax_place_bid',['auction_bid','auction_id'],'bid_result');">
+					{PLACEBIDBUTTON}
+					</div>
+				</div>
+				
+				<input class="inputbox" type="text" size="5" id="auction_bid" name="auction_bid" value="{SUGGESTEDBID}" />
+				<br/><br/>
+				<div id="bid_result">&nbsp;</div>
+				</patTemplate:tmpl>
+				
+				<patTemplate:tmpl name="cancel_rows" type="simpleCondition" requiredVars="_jomres_auctionhouse_seller_menuoption_cancel_auction">
+				<div class="fg-buttonset ui-helper-clearfix">
+					<div class="fg-button ui-state-default ui-priority-primary ui-corner-all" onClick="auction_page('auction_seller_ajax_cancel_auction',['auction_id']);">
+					{_JOMRES_AUCTIONHOUSE_SELLER_MENUOPTION_CANCEL_AUCTION}
+					</div>
+				<br/><br/>
+				</patTemplate:tmpl>
+				
+				<patTemplate:tmpl name="endearly" type="simpleCondition" requiredVars="_jomres_auctionhouse_admin_cancel_auction">
+				<div class="fg-buttonset ui-helper-clearfix">
+					<div class="fg-button ui-state-default ui-priority-primary ui-corner-all" onClick="auction_page('auction_admin_end_early',['auction_id']);">
+					{_JOMRES_AUCTIONHOUSE_ADMIN_CANCEL_AUCTION}
+					</div>
+				<br/><br/>
+				</patTemplate:tmpl>
+				
+				<patTemplate:tmpl name="buynow" type="simpleCondition" requiredVars="buynowbutton">
+				<div class="fg-buttonset ui-helper-clearfix">
+					<div class="fg-button ui-state-default ui-priority-primary ui-corner-all" onClick="auction_page('auction_buynow',['auction_id']);">
+					{BUYNOWBUTTON}
+					</div>
+				{BUYNOWVALUE}
+				</div>
+				<br/><br/>
+				</patTemplate:tmpl>
+				
+				<form action="" method="post" name="watchlists">
+					<div class="fg-buttonset ui-helper-clearfix">
+						<div class="fg-button ui-state-default ui-priority-primary ui-corner-all" onClick="auction_page('auction_buyer_watchlists_add_to_list',['watchlist','auction_id'],'added_to_watchlist');">
+							{_JOMRES_AUCTIONHOUSE_ADDTOWATCHLIST_INSTRUCTIONS}
+						</div>
+					</div>
+					{DROPDOWN}
+					{CSRF_TOKEN}
+				</form>
+
+				<div id="added_to_watchlist" class="highlight"></div>
+			</td>
+			<td>
+				<div id="timeremaining">
+				{TIMEREMAINING}
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<strong>{_JOMRES_AUCTIONHOUSE_AUCTION_DISCLAIMER}</strong><br/>
+				<div style="border-bottom-style: solid;border-bottom-width:thin; color:grey"> </div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<div class="fg-toolbar fg-buttonset">
+					<div class="fg-button ui-state-default ui-priority-primary ui-corner-all fg-button-icon-left" style="float:right;width:105px;"><span class="ui-icon ui-icon-circle-plus"></span>
+						<a href="{MOREINFORMATIONLINK}" target="_blank">{MOREINFORMATION}</a>
+					</div>
+				</div>
+				<img src="{IMAGE}" /><br/>
+				{DESCRIPTION}
+			</td>
+		</tr>
+	</table>
+<form action="" method="post" name="adminForm">
+<input type="hidden" name="auction_id" value="{ID}" id="auction_id">
+<input type="hidden" name="reload" value="{RELOAD}" id="reload">
+{CSRF_TOKEN}
+</form>
+<div id="hiddendiv" style="visibility:hidden"></div>
+</patTemplate:tmpl>

@@ -1,0 +1,117 @@
+<pattemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<style>
+	.carousel-item {
+		height: 100vh;
+		min-height: 550px;
+		max-height: 550px;
+		background: no-repeat center center scroll;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+</style>
+
+
+	<header>
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-sm-12 full-width">
+					<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+						<div class="carousel-indicators">
+							<pattemplate:tmpl name="slideshow_images" unusedvars="strip">
+							<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{COUNTER}" class="active" aria-current="true" aria-label="Slide {COUNTER}"></button>
+							</pattemplate:tmpl>
+						</div>
+						<div class="carousel-inner">
+							<pattemplate:tmpl name="slideshow_images2" unusedvars="strip">
+							<div class="carousel-item {ACTIVE} " data-bs-interval="3000" style="background-image: url('{LARGE_IMAGE}')">
+								<div class="carousel-caption">
+									<h2>{PROPERTY_NAME}</h2>
+									<pattemplate:comment><p>{PROPERTY_DESCRIPTION}</p></pattemplate:comment>
+								</div>
+							</div>
+							</pattemplate:tmpl>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</header>
+
+
+	<div class="d-flex justify-content-center mb-5 mt-5">
+		<pattemplate:tmpl name="bookinglink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+			<div class="">
+				<a href="{LINK}" class="btn btn-primary btn-lg btn-block pulse"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+			</div>
+		</pattemplate:tmpl>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row pt-4">
+			<div class="col-sm-9">
+				<h4>{PROPERTY_NAME}</h4>
+				<p class="font-monospace">{DESCRIPTION}</p>
+			</div>
+			<div class="col-sm-3">
+				{REVIEWS_SUMMARY}
+			</div>
+		</div>
+
+		<div class="row pt-3">
+			<div class="col-sm-12">
+				{jomres_script show_property_features PROPERTY_UID={UID}}
+			</div>
+		</div>
+
+		<div class="row  pt-3 pb-3">
+			<div class="col-sm-12">
+				<a href="https://www.google.com/maps/place/{TOWN}/{REGION}/{COUNTRY}" target="_blank">{TABCONTENT_02_MAP_CONTENT}</a>
+				<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+			</div>
+		</div>
+
+	</div>
+	<hr/>
+
+
+						<div id="property_details" class="container" style="margin-top: 5px">
+
+							<!-- Caption -->
+							<!-- The "vtabs" class establishes a scope -->
+							<!-- Bit of a pickle. I'd like to use Joomla-tab styles, but would also like to use BS5 in Wordpress sometime in the future, so for now we can't have JT -->
+
+							<style>
+
+								/*Pesky underline*/
+								.nav.nav-tabs .nav-link.active::after {
+									bottom: 0;
+									height: 0px;
+									content: "";
+									background-color: #448344;
+								}
+
+								.nav.nav-tabs .nav-link.active {
+									background-color: #448344;
+									color: white;
+								}
+
+							</style>
+
+							{jomres_script terms PROPERTY_UID=N}
+						</div>
+
+</pattemplate:tmpl>

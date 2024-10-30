@@ -1,0 +1,5 @@
+{
+    "require": {
+        "bitpay/sdk-light": "^2.0"
+    }
+}

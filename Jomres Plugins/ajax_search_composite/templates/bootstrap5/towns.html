@@ -1,0 +1,8 @@
+<patTemplate:tmpl name="sub_pageoutput" unusedvars="strip">
+<div>{REGION_NAME}</div>
+<patTemplate:tmpl name="town_rows" >
+<label class="btn element_button {ACTIVE_CLASS} fa-fw" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{TOWN}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="towns[]" value="{TOWN}" autocomplete=off /><br/>
+<!--<input type="checkbox" name="towns[]" value="{TOWN}" /> {TOWN}<br />-->
+</patTemplate:tmpl>
+<div>&nbsp;</div>
+</patTemplate:tmpl>

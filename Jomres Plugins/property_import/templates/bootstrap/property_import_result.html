@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="javascript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('prooperty_import_result', '{PAGETITLE}', '{LIVESITE}');
+	});
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+{FAILED_PROPERTIES_CSV_MESSAGE}
+
+<table class="table table-striped" id="prooperty_import_result" width="100%">
+	<thead>
+		<tr>
+			<th>{_JOMRES_ICAL_RESULT_HEADER_SUMMARY}</th>
+			<th>{_JOMRES_ICAL_RESULT_HEADER_RESULT}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows">
+		<tr>
+			<td>{PROPERTY_NAME}</td>
+			<td>{RESULT}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

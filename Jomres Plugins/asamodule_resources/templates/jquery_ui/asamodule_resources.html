@@ -1,0 +1,18 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<patTemplate:tmpl name="rows">
+	<h4 class="page-header">{ROOMTYPE}</h4>
+	<div class="row-fluid">
+		<div class="span3">
+			<img src="{IMAGEMEDIUM}" alt="{ROOMTYPE}" class="responsive"/></a>
+		</div>
+		<div class="span9">
+			<p>{HMAXPEOPLE}&nbsp;{MAXPEOPLE}</p>
+			<div class="clearfix">{ROOM_FEATURES}</div>
+			<p>{PRICE_PRE_TEXT} {PRICE_PRICE} {PRICE_POST_TEXT}</p>
+			<p><a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{ROOMTYPE}">{MOREINFORMATION}</a></p>
+		</div>
+	</div>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

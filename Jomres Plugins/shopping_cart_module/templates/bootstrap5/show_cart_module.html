@@ -1,0 +1,37 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<!-- <h2>{_JOMRES_CART_TITLE}</h2> -->
+<div class="row">
+	<div class="col-md-7">
+		<strong>{_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME}</strong>
+	</div>
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL}</strong>
+		<!-- <th>{_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL}</th> -->
+		<!-- <th>{_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE}</th> -->
+		<!-- <th>{_JOMRES_COM_MR_ROOM_DELETE}</th> -->
+	</div>
+</div>
+<patTemplate:tmpl name="rows" unusedvars="nbsp">
+<div class="row">
+	<div class="col-md-7">
+		{PROPERTYNAME}
+	</div>
+	<div class="col-md-5">
+		{CONTRACT_TOTAL}
+		<!-- <td>{ARRIVAL}</td> -->
+		<!--<td>{DEPARTURE}</td>-->
+		<!--<td><a href="{DELETELINK}"><img src="{DELETELINK_IMAGE}" width="20px" height="20px" /></a></td>-->
+	</div>
+</div>
+</patTemplate:tmpl>
+<hr />
+<div class="row">
+	<div class="col-md-7">
+		<strong>{_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL}</strong>
+	</div>
+	<div class="col-md-5">
+		<strong>{GRANDTOTAL}</strong>
+	</div>
+</div>
+<button type="button" onclick="location.href='{LINKTOSHOWCART}'" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> {_JOMRES_CART_VIEWCART}</button>
+</patTemplate:tmpl>

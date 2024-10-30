@@ -1,0 +1,210 @@
+/*THE MAP*/
+#google_select .htitle h3 {
+	display:block;
+	margin:0;
+}
+#googlemap{
+	margin: 0;
+	padding: 0;
+	z-index: 100;
+}
+
+
+/*GENERAL START*/
+#googlecontainer {
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+h1.componentheading{
+	margin: 10px 0 20px 0;
+	padding: 0;
+}
+
+#pretext{
+	margin: 0;
+	padding: 0;
+}
+
+#aftertext{
+	margin: 10px 0 0 0;
+	padding: 0;
+}
+
+.google_link_author {
+	margin: 20px 0 20px 0;
+	padding: 5px 0 0 0;
+	border-top: 1px solid #999999; 
+}
+
+.clear {
+	clear: both;
+}
+/*GENERAL STOP*/
+
+/*STREETVIEW START*/
+#pano{
+	margin: 20px 0 20px 0;
+	padding: 0;
+}
+
+#pano_feedback{
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	top: 80px;
+	left: 0;
+	border: 2px solid #b2b2b2;
+	background-color: #fffdd6;
+	background-image: url(../images/notice-info.gif);
+	background-repeat: no-repeat;
+	background-position: 10px center; 
+	z-index: 10000000;
+	display: none;
+}
+
+#pano_feedback span{
+	line-height: 50px;
+	padding: 0 0 0 50px;
+}
+/*STREETVIEW STOP*/
+
+/*DIRECTIONS START*/
+#directions{
+	margin-top: 10px;
+	padding: 0;
+}
+
+#google_select {
+	border:0 none;
+	margin:10px 0 0;
+	padding:0;
+}
+
+#google_select legend {
+	margin: 0 0 10px 0;
+	padding: 0;
+	font-size: 16px;
+}
+
+#google_select #from_address {
+	margin:0 0 0 10px;
+}
+
+#google_select #from_zipcode {
+	margin:0 0 0 10px;
+}
+
+#google_select #from_town {
+	margin:0 0 0 10px;
+}
+
+#google_select select {
+	width: 150px;
+	padding: 3px 0 3px 0;
+	margin: 0;
+	border: 1px solid #999999;
+	font-size: 10px;
+	float: left;
+}
+
+#google_select label {
+}
+
+#google_select .btn {
+	margin-left:5px;
+}
+
+.print_btn {
+	margin:5px 0 0;
+}
+
+#direction_feedback {
+}
+
+#direction_started {
+	margin: 0 0 0 10px;
+}
+
+/*DIRECTIONS STOP*/
+
+/*UPLOAD FORM START*/
+#userform {
+	margin: 20px 0 20px 0;
+	padding: 0 0 0 10px;
+	border: 0;
+	background-color: #EEE;
+}
+
+#userform legend {
+	margin: 0 0 10px 0;
+	padding: 0 0 10px 0;
+	font-size: 16px;
+}
+
+#userform input {
+	width: 310px;
+	height:15px;
+	padding: 3px 0 3px 5px;
+	margin: 0;
+	border: 1px solid #999999;
+	font-size: 10px;
+	float: left;
+}
+
+#userform select {
+	width: 100px;
+	padding: 3px 0 3px 0;
+	margin: 0;
+	border: 1px solid #999999;
+	font-size: 10px;
+	float: left;
+}
+
+#userform textarea {
+	width: 315px;
+	height: 80px;
+	padding: 3px 0 3px 0;
+	margin: 0;
+	border: 1px solid #999999;
+	font-size: 10px;
+	float: left;
+}
+
+#userform textarea {
+	width: 315px;
+	height: 80px;
+	padding: 3px 0 3px 0;
+	margin: 0;
+	border: 1px solid #999999;
+	font-size: 10px;
+	float: left;
+}
+
+#userform #picture {
+	height: 24px;
+}
+
+#userform .btn {
+	width: 100px;
+	height: 23px;
+	margin: 0;
+	border: 1px solid #999999;
+	background-color: #DCDCDE;
+	cursor: pointer;
+	font-size: 10px;
+	float: left;
+}
+/*UPLOAD FORM STOP*/
+
+/*LIST OF DESTINATIONS START*/
+#google_list {
+	width: 200px;
+	margin: 20px 0 20px 0;
+}
+
+#google_list td {
+	width: 150px;
+}
+/*LIST OF DESTINATIONS STOP*/

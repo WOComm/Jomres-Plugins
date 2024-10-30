@@ -1,0 +1,56 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header" id="tour_target_local_events">{PAGETITLE}</h2>
+
+<div class="row-striped">
+	<div class="row">
+		<div class="col-md-3">
+			<strong>{HEVENT_TITLE}</strong>
+		</div>
+		<div class="col-md-3">
+			<strong>{HSTARTDATE}</strong>
+		</div>
+		<div class="col-md-3">
+			<strong>{HENDDATE}</strong>
+		</div>
+		<div class="col-md-3">
+			&nbsp;
+		</div>
+	</div>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<div class="row">
+		<div class="col-md-3">
+			<a href="#event_{ID}" role="button" data-toggle="modal"><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/information.png"/></a> <a href="https://{WEBSITE_URL}" target="_blank">{TITLE}</a>
+		</div>
+		<div class="col-md-3">
+			{START_DATE}
+		</div>
+		<div class="col-md-3">
+			{END_DATE}
+		</div>
+		<div class="col-md-3">
+			<img src="https://{EVENT_LOGO}" width="50" height="50"/>
+		</div>
+	</div>
+	<script>
+	   jomresJquery(document).ready(function(){
+		 jomresJquery('#event_{ID}').appendTo("body");
+		});
+	</script>
+	<div id="event_{ID}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="event_title_{ID}" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 id="event_title_{ID}">{TITLE}</h4>
+				</div>
+				<div class="modal-body">
+					<p>{DESCRIPTION}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+</div>
+
+</patTemplate:tmpl>

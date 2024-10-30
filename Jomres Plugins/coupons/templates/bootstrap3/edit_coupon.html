@@ -1,0 +1,65 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{PAGETITLE}</h2>
+<p>{INFO}</p>
+
+<form method="post" name="adminForm" class="form-horizontal" role="form">
+<div class="form-group">
+	<label class="col-md-2 control-label" for="coupon_code">{HCOUPONCODE}</label>
+	<div class="col-md-10">
+		<input class="form-control" type="text" name="coupon_code" value="{COUPONCODE}" placeholder="{HCOUPONCODE}"/>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="valid_from">{HVALIDFROM}</label>
+	<div class="col-md-10">
+		{VALIDFROM}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="valid_to">{HVALIDTO}</label>
+	<div class="col-md-10">
+		{VALIDTO}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="booking_valid_from">{_JRPORTAL_COUPONS_BOOKING_VALIDFROM}</label>
+	<div class="col-md-10">
+		{BOOKING_VALIDFROM}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="booking_valid_to">{_JRPORTAL_COUPONS_BOOKING_VALIDTO}</label>
+	<div class="col-md-10">
+		{BOOKING_VALIDTO}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="amount">{HAMOUNT}</label>
+	<div class="col-md-10">
+		<input class="form-control" name="amount" value="{AMOUNT}" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" />
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="is_percentage">{HISPERCENTAGE}</label>
+	<div class="col-md-10">
+		{ISPERCENTAGE}
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="guest_uid">{_JRPORTAL_COUPONS_GUESTNAME}</label>
+	<div class="col-md-10">
+		{GUEST_DROPDOWN}
+	</div>
+</div>
+<div class="form-actions">
+	<div class="col-md-10 col-md-offset-2">
+		{JOMRESTOOLBAR}
+	</div>
+</div>
+<input type="hidden" name="coupon_id" value="{COUPON_ID}"/>
+<input type="hidden" name="task" value="saveCoupon"/>
+<input type="hidden" name="no_html" value="1"/>
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

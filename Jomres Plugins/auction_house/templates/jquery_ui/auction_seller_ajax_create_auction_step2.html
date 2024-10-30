@@ -1,0 +1,107 @@
+<patTemplate:tmpl name="pageoutput" >
+	<style>
+	#feedback { font-size: 1.4em; }
+	#selectable .ui-selecting { background: #FECA40; }
+	#selectable .ui-selected { background: #F39814; color: white; }
+	#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+	#selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+	</style>
+
+<form action="" method="post" name="adminForm">
+<ul id="messageBox" class="ui-state-error">
+{_JOMRES_AUCTIONHOUSE_AUCTION_TITLE_ERROR} 
+{_JOMRES_AUCTIONHOUSE_AUCTION_DESCRIPTION_ERROR} 
+</ul> 
+<br/>
+
+<div id="auction_details">
+	<table width="100%">
+		<tr>
+			<td>
+				{_JOMRES_AUCTIONHOUSE_AUCTION_TITLE}
+			</td>
+			<td>
+				<input class="inputbox" type="text" size="15" id="auction_title" name="auction_title" value="{AUCTION_TITLE}" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{_JOMRES_AUCTIONHOUSE_AUCTION_DESCRIPTION}
+			</td>
+			<td>
+				<textarea class="inputbox" cols="40" rows="3" id="auction_desc" name="auction_desc">{AUCTION_DESCRIPTION}</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{_JOMRES_AUCTIONHOUSE_AUCTION_VALUE}
+			</td>
+			<td>
+				<input class="inputbox" type="text" size="9" id="auction_value" name="auction_value" value="{AUCTION_VALUE}" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{_JOMRES_AUCTIONHOUSE_AUCTION_RESERVE}
+			</td>
+			<td>
+				<input class="inputbox" type="text" size="9" id="auction_reserve" name="auction_reserve" value="{AUCTION_RESERVE}" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{_JOMRES_AUCTIONHOUSE_AUCTION_BUYNOW_PRICE}
+			</td>
+			<td>
+				<input class="inputbox" type="text" size="9" id="auction_buynow" name="auction_buynow" value="{AUCTION_BUYNOW_PRICE}" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{_JOMRES_AUCTIONHOUSE_AUCTION_DAYSTORUN}
+			</td>
+			<td>
+				{DAYSTORUNDROPDOWN}
+			</td>
+		</tr>
+		<patTemplate:tmpl name="room_selection" type="simpleCondition" requiredVars="arrival">
+		<tr>
+			<td colspan="2">
+				  
+			</td>
+		<tr>
+		</tr>
+			<td colspan="2">
+				{_JOMRES_AUCTIONHOUSE_AUCTION_CREATE_SELECTROOMS}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" size="10" name="auction_booking_start" id="auction_booking_start" value="{ARRIVAL}" readonly="readonly" />
+				
+			</td>
+			<td>
+				<input type="text" size="10" name="auction_booking_end" id="auction_booking_end" value="{DEPARTURE}" readonly="readonly"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div id = "rooms_list">
+				
+				</div>
+			</td>
+		</tr>
+		</patTemplate:tmpl>
+	</table>
+		<div class="fg-buttonset ui-helper-clearfix">
+			<div class="fg-button ui-state-default ui-priority-primary ui-corner-all" onClick="auction_page('auction_seller_ajax_create_auction_step2',['auction_title','auction_desc','auction_value','auction_reserve','auction_buynow','chosen_property','include_rooms','auction_days_to_run','selected_rooms','auction_booking_start','auction_booking_end']);">
+				{_PN_NEXT}
+			</div>
+		</div>
+</div>
+<br/>
+<input type="hidden" name="chosen_property" value="{CHOSENPROPERTY}" id="chosen_property">
+<input type="hidden" name="include_rooms" value="{INCLUDE_ROOMS}" id="include_rooms">
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

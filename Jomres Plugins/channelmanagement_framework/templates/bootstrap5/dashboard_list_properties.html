@@ -1,0 +1,33 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_PAGETITLE}</h2>
+
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('channel_manager_framework_properties_list', '{CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_PAGETITLE}', '{LIVESITE}');
+});
+//-->
+</script>
+
+<table id="channel_manager_framework_properties_list" width="100%" class="table table-striped">
+	<thead>
+	<tr>
+		<th>{CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_PROPERTY_NAME}</th>
+		<th>{CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_CHANNEL_NAME}</th>
+		<th>{CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_LOCAL_PROPERTY_UID}</th>
+		<th>{CHANNELMANAGEMENT_FRAMEWORK_DASHBOARD_LIST_PROPERTIES_REMOTE_PROPERTY_UID}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{PROPERTY_NAME} {BADGE_REMOTE_EDIT} {BADGE_LOCAL_EDIT} {BADGE_LOCAL_DELETE} </td>
+			<td>{CHANNEL}</td>
+			<td>{LOCAL_PROPERTY_UID}</td>
+			<td>{REMOTE_PROPERTY_UID}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+
+</patTemplate:tmpl>

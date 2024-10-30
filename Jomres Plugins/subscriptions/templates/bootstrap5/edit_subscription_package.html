@@ -1,0 +1,114 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+{JOMRESTOOLBAR}
+
+
+	<fieldset class="form-group border p-3">
+		<legend class="w-auto px-2">{HPACKAGE_DETAILS}</legend>
+
+		<div class="control-group">
+			<label class="control-label" for="name">{HNAME}</label>
+		
+			<div class="controls">
+				<input type="text" name="name" value="{NAME}" class="input-large"/>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="description">{HDESCRIPTION}</label>
+		
+			<div class="controls">
+				<textarea  type="text" name="description" class="input-large" rows="4" cols="50" />{DESCRIPTION}</textarea>
+			</div>
+			<div class="col-sm-6">
+				{MARKDOWN_BUTTON}
+			</div>
+		</div>
+		
+		<patTemplate:comment>
+			<div class="control-group">
+				<label class="control-label" for="frequency">{HFREQUENCY}</label>
+				
+				<div class="controls">
+					<input type="text" name="frequency" value="{FREQUENCY}" class="input-mini"/>
+					<span class="help-block">
+					{HFREQUENCY_DESC}
+				</span>
+				</div>
+			</div>
+		</patTemplate:comment>
+
+		
+		<div class="control-group">
+			<label class="control-label" for="full_amount">{HFULLAMOUNT}</label>
+		
+			<div class="controls">
+				<input type="text" name="full_amount" value="{FULLAMOUNT}" class="input-mini"/>
+			</div>
+		</div>
+		
+		<patTemplate:comment>
+			<div class="control-group">
+				<label class="control-label" for="renewal_price">{HRENEWALPRICE}</label>
+				
+				<div class="controls">
+					<input type="text" name="renewal_price" value="{RENEWALPRICE}" class="input-mini"/>
+					<span class="help-block">
+					{HRENEWALPRICEDESC}
+				</span>
+				</div>
+			</div>
+		</patTemplate:comment>
+
+		
+		<div class="control-group">
+			<label class="control-label" for="currencycode">{HCURRENCYCODE}</label>
+		
+			<div class="controls">
+				{CURRENCYCODE}
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="taxrate">{HTAXCODE}</label>
+		
+			<div class="controls">
+				{TAXCODEDROPDOWN}
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="published">{HPUBLISHED}</label>
+		
+			<div class="controls">
+				{PUBLISHED}
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset class="form-group border p-3">
+		<legend class="w-auto px-2">{HPACKAGE_FEATURES}</legend>
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+		<div class="control-group">
+			<label class="control-label" for="{NAME}">{NAME}</label>
+		
+			<div class="controls">
+				{SETTING}
+				<span class="help-block">
+					{DESC}
+				</span>
+			</div>
+		</div>
+		</patTemplate:tmpl>
+	</fieldset>
+</div>
+
+<input type="hidden" name="id" value="{ID}"/>
+<input type="hidden" name="option" value="com_jomres"/>
+<input type="hidden" name="task" value="save_subscription_package"/>
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

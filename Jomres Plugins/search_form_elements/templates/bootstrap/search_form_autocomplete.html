@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="page_output"  unusedvars="import">
+	<div class="input-group mb-3">
+		<span class="input-group-text" style="background-color:transparent"><i class="fas fa-map-marker-alt"></i></span>
+		<input autocomplete="off" type="text" id="autocomplete_field{FORM_ID}" name="autocomplete_field" class="form-control" style="border-left: 0;" placeholder="{_JOMRES_SEARCH_FORM_WHERE_TO_GO}"/>
+		<input type="hidden" name="autocomplete_value" id="autocomplete_value" value=""/>
+	</div>
+	<script>
+        var datasrc{FORM_ID} = [
+            <patTemplate:tmpl name="place_names">
+                {label: "{LABEL}", value: "{VALUE}_{SEARCH_FORM_FIELD}"},</patTemplate:tmpl>
+        ]
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const ac = new Autocomplete(document.getElementById('autocomplete_field'), {
+                data: datasrc{FORM_ID},
+                treshold: 1,
+                maximumItems: 8,
+                onSelectItem: ({label, value}) => {
+                    document.getElementById("autocomplete_value").value = value;
+                }
+            });
+        });
+	</script>
+</patTemplate:tmpl>

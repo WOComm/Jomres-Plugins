@@ -1,0 +1,37 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+.je-top-destinations > .row-fluid [class*="span"]:nth-child(2n+1){
+margin-left:0;
+clear:both;
+}
+.je-top-destinations-details{margin-left:5px;}
+.je-top-destinations{margin-bottom:18px;}
+.je-top-destinations hr {margin:10px 0;}
+</style>
+<div class="je-top-destinations">
+	<div class="row-fluid">
+		<patTemplate:tmpl name="rows">
+			<div class="span6 je-top-destinations-town">
+				<div class="row-fluid">
+					<div class="span5 thumbnail">
+						{TOWN_IMAGE}
+					</div>
+					<div class="span7">
+						<div class="je-top-destinations-details">
+							<h4>{TOWN}</h4>
+							<p class="small">{REGION}</p>
+							<p class="small">{COUNTRY_FLAG}&nbsp;{COUNTRY}</p>
+							<h5>{COUNTER}&nbsp;{HPROPERTIES}</h5>
+						</div>
+					</div>
+				</div>
+				<hr />
+			</div>
+		</patTemplate:tmpl>
+	</div>
+	<div class="clearfix"></div>
+	<div align="center">
+		<a href="{URL}" title="{HBROWSEALLDESTINATIONS}" class="btn btn-primary">{HBROWSEALLDESTINATIONS}</a>
+	</div>
+</div>
+</patTemplate:tmpl>

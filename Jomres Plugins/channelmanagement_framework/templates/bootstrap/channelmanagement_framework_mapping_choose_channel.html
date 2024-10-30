@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{CHANNELMANAGEMENT_FRAMEWORK_CHOOSE_CHANNEL}</h2>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+{JOMRESTOOLBAR}
+<div class="control-group">
+	<div class="control-label">
+		{CHANNELMANAGEMENT_FRAMEWORK_CHOOSE_CHANNEL}
+	</div>
+	<div class="controls">
+		{CHANNEL_DROPDOWN}
+    </div>
+</div>
+
+
+<input type="hidden" name="task" value="channelmanagement_framework_resource_mapping_choose_channel_dictionary_types" />
+<input type="hidden" name="puid" value="{PUID}" />
+{CSRF_TOKEN}
+</form>
+
+
+
+</patTemplate:tmpl>

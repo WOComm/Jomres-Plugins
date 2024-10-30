@@ -1,0 +1,63 @@
+<patTemplate:tmpl name="pageoutput" >
+<h2>{BEDS24_ROOM_TYPES_TITLE} - <strong>{PROPERTYNAME}</strong></h2>
+<p class="lead">{BEDS24_ROOM_TYPES_INFO}<p>
+
+<p>{BEDS24_ROOM_TYPES_INFO2}</p>
+<p>{BEDS24_ROOM_TYPES_INFO3}</p>
+
+<form method="post" name="adminForm" class="form-horizontal" role="form">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>
+                {BEDS24_ROOM_TYPES_YOURS}
+            </th>
+            <th>
+                {BEDS24_ROOM_TYPES_BEDS24}
+            </th>
+        </thead>
+        <tbody>
+        <patTemplate:tmpl name="rows" >
+        <tr>
+            <td>
+                {JOMRES_ROOM_TYPE}
+            </td>
+            <td>
+                {BEDS24_ROOM_TYPE_DROPDOWN}
+            </td>
+        </tr>
+        </patTemplate:tmpl>
+        </tbody>
+    </table>
+	<input type="hidden" name="task" value="beds24v2_associate_room_types"/>
+	<input type="hidden" name="no_html" value="1"/>
+    <input type="hidden" name="property_uid" value="{PROPERTY_UID}"/>
+	{CSRF_TOKEN}
+</form>
+
+{JOMRESTOOLBAR}
+<hr/>
+
+{TARIFF_LINKS}
+
+<p>{BEDS24_IMPORT_NOTIFICATION_URLS}</p>
+<input type="text" value="{NOTIFICATION_URL}" class="required form-control" readonly/>
+<p><a href="{LINK}" class="btn btn-default" target="_blank">{_BEDS24_CONTROL_PANEL_DIRECT}</a>
+       
+<p>{BEDS24V2_DISPLAY_PROPERTY_APIKEY}</p>       
+<input type="text" value="{PROPERTY_APIKEY}" class="required form-control" readonly/>
+
+
+<hr/>
+<p>{BEDS24_IMPORT_EXPORT}</p>
+<a href="{JOMRES_SITEPAGE_URL}&task=beds24v2_import_bookings&property_uid={PROPERTY_UID}" class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+{BEDS24_IMPORT_BOOKINGS} </a>
+<a href="{JOMRES_SITEPAGE_URL}&task=beds24v2_export_bookings&property_uid={PROPERTY_UID}" class="btn btn-warning"><i class="fa fa-arrow-right" aria-hidden="true"></i>
+{BEDS24_EXPORT_BOOKINGS} </a>
+
+
+
+
+
+
+</patTemplate:tmpl>

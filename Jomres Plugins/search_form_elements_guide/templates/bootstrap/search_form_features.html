@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<select class="form-select" aria-label="{_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES}"  name="feature_uids[]">
+		<option value=""></option>
+	<patTemplate:tmpl name="features" unusedvars="import">
+		<option {SELECTED}  value="{ID}">{TITLE}</option>
+			<patTemplate:comment>
+				["DESCRIPTION"]=>
+				string(17) "24hr Room service"
+				["TITLE"]=>
+				string(12) "24hr service"
+				["IMAGE"]=>
+				string(69) "http://localhost/Joomla_4/jomres/uploadedimages/pfeatures//24hour.png"
+				["ID"]=>
+				int(32)
+				["CHECKED"]=>
+				string(0) ""
+				["SELECTED"]=>
+				string(0) ""
+				["ACTIVE_CLASS"]=>
+				string(13) " btn-default "
+			</patTemplate:comment>
+	</patTemplate:tmpl>
+	</select>
+</patTemplate:tmpl>

@@ -1,0 +1,44 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#jintours_managartour_list').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+</script>
+<h2>{_JINTOUR_PROFILES_TITLE_LIST}</h2>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm"> 
+{JOMRESTOOLBAR}
+<table id="jintours_managartour_list" border="0" width="100%">
+	<thead>
+        <tr>
+            <th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
+            <th></th>
+            <th>{HPROFILE_TITLE}</th>
+            <th>{HPRICE_ADULTS}</th>
+            <th>{HPRICE_KIDS}</th>
+            <th>{HADULTSPACES}</th>
+            <th>{HCHILDSPACES}</th>
+            <th>{HDATE}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows"  type="simpleCondition" requiredVars="title" unusedvars="nbsp">
+        <tr>
+            <td>{CHECKBOX}</td>
+            <td>{EDITLINK}</td>
+            <td>{TITLE}</td>
+            <td>{PRICE_ADULTS}</td>
+            <td>{PRICE_KIDS}</td>
+            <td>{SPACES_ADULTS}</td>
+            <td>{SPACES_KIDS}</td>
+            <td>{TOURDATE}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
+</table>
+<input type="hidden" name="boxchecked" value="0" />
+<input type="hidden" name="task" value="jintour_batch_delete_tours" />
+</form>
+</patTemplate:tmpl>

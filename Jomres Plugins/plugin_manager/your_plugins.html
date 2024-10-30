@@ -1,0 +1,28 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script>
+        document.addEventListener('DOMContentLoaded', function(){
+            make_datatable('your_plugins', 'Your Community Plugins', '{LIVESITE}');
+        }, false);
+	</script>
+	
+	<h2 class="page-header">Your Community Plugins</h2>
+	
+	<p class='alert alert-info'>Here you can see a list of plugins that you have uploaded to the Community Plugins Hub</p>
+	
+	<table id="your_plugins" class="table table-striped" width="100%">
+		<thead>
+		<tr>
+			<th></th>
+			<th>Plugin name</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<tr>
+				<td>{JOMRESTOOLBAR}</td>
+				<td>{PLUGIN_NAME}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

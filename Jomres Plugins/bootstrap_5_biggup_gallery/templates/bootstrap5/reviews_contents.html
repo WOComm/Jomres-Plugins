@@ -1,0 +1,23 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	{REVIEWS_SUMMARY}
+	<hr/>
+	<div id="" style="overflow-y: scroll; overflow-x: hidden; height:600px;">
+			<patTemplate:tmpl name="rows">
+			<div class="row">
+				<div class="col-12">
+					<p>
+						<em>{USER}</em>
+					<div class="{RATING_TEXT_COLOUR}">
+					{RATING_STARS}
+				</div>
+					</p>
+					<div class="readmore-wrapper">
+						{PROS}
+					</div>
+				</div>
+			</div>
+			<hr/>
+			</patTemplate:tmpl>
+	</div>
+</patTemplate:tmpl>
+

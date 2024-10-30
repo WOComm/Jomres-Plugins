@@ -1,0 +1,8 @@
+{
+	"_OAUTH_SCOPE_CATEGORY_PROPERTIES": [{
+		"scope": "channel_management",
+		"user_type": "manager",
+		"definition": "_OAUTH_SCOPE_CHANNEL_MANAGEMENT",
+		"description": "_OAUTH_SCOPE_CHANNEL_MANAGEMENT_DESC"
+	}]
+}

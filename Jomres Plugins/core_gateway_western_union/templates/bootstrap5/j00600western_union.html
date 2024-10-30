@@ -1,0 +1,329 @@
+<patTemplate:tmpl name="interrupt_outgoing">
+<script>
+	function handleCopyText(id) {
+		const cb = navigator.clipboard;
+		var content = jomresJquery('#'+id).text();
+		cb.writeText(content.trim());
+	}
+</script>
+
+<div class="print_gateway_info">
+	<p><strong>{JR_GATEWAY_SENDDEPOSITTO} {DEPOSIT} {JR_GATEWAY_BELOWADDRESS}</strong></p>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HACCOUNT_HOLDER}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="ACCOUNT_HOLDER">
+						{ACCOUNT_HOLDER}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('ACCOUNT_HOLDER')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_IBAN}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_IBAN">
+						{BANK_IBAN}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_IBAN')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_SWIFT}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_SWIFT">
+						{BANK_SWIFT}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_SWIFT')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_BIC}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_BIC">
+						{BANK_BIC}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_BIC')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_NAME}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_NAME">
+						{BANK_NAME}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_NAME')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br />
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HACCOUNT_HOLDER1}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="ACCOUNT_HOLDER1">
+						{ACCOUNT_HOLDER1}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('ACCOUNT_HOLDER1')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_IBAN1}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_IBAN1">
+						{BANK_IBAN1}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_IBAN1')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_SWIFT1}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_SWIFT1">
+						{BANK_SWIFT1}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_SWIFT1')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_BIC1}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_BIC1">
+						{BANK_BIC1}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_BIC1')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_NAME1}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_NAME1">
+						{BANK_NAME1}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_NAME1')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br />
+
+		<div class="row">
+			<div class="col-md-4">
+				<em>{HACCOUNT_HOLDER2}</em>
+			</div>
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-6 text-end">
+						<div id="ACCOUNT_HOLDER2">
+							{ACCOUNT_HOLDER2}
+						</div>
+					</div>
+					<div class="col-md-6 text-start">
+						<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('ACCOUNT_HOLDER2')">
+							<i class="fas fa-copy"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_IBAN2}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_IBAN2">
+						{BANK_IBAN2}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_IBAN2')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_SWIFT2}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_SWIFT2">
+						{BANK_SWIFT2}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_SWIFT2')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_BIC2}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_BIC2">
+						{BANK_BIC2}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_BIC2')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<em>{HBANK_NAME2}</em>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-6 text-end">
+					<div id="BANK_NAME2">
+						{BANK_NAME2}
+					</div>
+				</div>
+				<div class="col-md-6 text-start">
+					<button class="btn btn-outline-primary btn-sm" onclick="handleCopyText('BANK_NAME2')">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<p><a class="btn btn-secondary" href="javascript:jomres_print('.print_gateway_info');">{PRINT}</a></p>
+	{JR_GATEWAY_CONTACTUS1} <em>{PROP_TEL}</em> {JR_GATEWAY_CONTACTUS2} <a href="mailto:{PROP_EMAIL}&subject={_JOMRES_BOOKING_NUMBER}%20{BOOKING_NUMBER}">{PROP_EMAIL}</a>.
+</div>
+<form action="" method="post" name="bookingForm">
+<div class="form-actions">
+	<input type="submit" value="{SUBMIT}" class="btn btn-primary" />
+</div>
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="processpayment" />
+<input type="hidden" name="interrupted" value="1" />
+{HIDDEN}
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

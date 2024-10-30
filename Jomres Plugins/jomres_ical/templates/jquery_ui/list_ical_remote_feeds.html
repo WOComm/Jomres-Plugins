@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<script type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('list_ical_remote_feeds', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
+	});
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table width="100%" id="list_ical_remote_feeds" class="table table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>{_JOMRES_ICAL_REMOTE_FEED_ROOM_NAME}</th>
+			<th>{_JOMRES_ICAL_REMOTE_FEED_URL}</th>
+			<th>{_JOMRES_ICAL_REMOTE_FEED_ROOM_UID}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" >
+		<tr>
+			<td>{DELETE}</td>
+			<td>{ROOM_NAME_NUMBER}</td>
+			<td>{URL}</td>
+			<td>{ROOM_UID}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+<input type="hidden" name="no_html" value="1" />
+<input type="hidden" name="task" value="" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

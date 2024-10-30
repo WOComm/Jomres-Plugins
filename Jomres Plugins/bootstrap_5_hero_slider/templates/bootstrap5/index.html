@@ -1,0 +1,28 @@
+<patTemplate:tmpl name="search">
+	<form action="{SUBMITURL}" method="get" name="{FORMNAME}" role="form" class="bg-light p-3 m-3 text-dark">
+		<input type="hidden" name="option" value="com_jomres"/>
+		{HIDDEN}
+		<div class="row">
+			<div class="col-sm-3">
+				<label class="form-label" for="arrivalDate">{HARRIVALDATE}</label>
+				<div class="">{ARRIVALDATE}</div>
+			</div>
+			<div class="col-sm-3">
+				<label class="form-label" for="departureDate">{HDEPARTUREDATE}</label>
+				<div class="">{DEPARTUREDATE}</div>
+			</div>
+
+			<div class="col-sm-2">
+				<label class="form-label" for="guestnumber">{_JOMRES_SEARCH_FORM_ADULTS}</label>
+				<div class="">{SLEEPS_ADULTS_DROPDOWN}</div>
+			</div>
+			<div class="col-sm-2">
+				<label class="form-label" for="guestnumber">{_JOMRES_SEARCH_FORM_CHILDREN}</label>
+				<div class="">{SLEEPS_CHILDREN_DROPDOWN}</div>
+			</div>
+			<div class="col align-self-end">
+				{THEBUTTON}
+			</div>
+		</div>
+	</form>
+</patTemplate:tmpl>

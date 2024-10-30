@@ -1,0 +1,29 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{CHANNELMANAGEMENT_FRAMEWORK_TITLE}</h2>
+
+
+<h3>{CHANNELMANAGEMENT_FRAMEWORK_INSTALLED_CHANNELS}</h3>
+<patTemplate:tmpl name="channel_reports" unusedvars="strip">
+	<p>{FRIENDLY_NAME}</p>
+</patTemplate:tmpl>
+
+<div class="row">
+	
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+		 <div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3>{TITLE}</h3>
+			</div>
+			<div class="panel-body">
+				<p>{DESCRIPTION}</p>
+				<a href="{JOMRES_SITEPAGE_URL_ADMIN}&task={TASK}">{TITLE}</a>
+			</div>
+		</div>
+		</div>
+		</patTemplate:tmpl>
+	
+</div>
+
+</patTemplate:tmpl>

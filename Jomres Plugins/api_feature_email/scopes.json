@@ -1,0 +1,8 @@
+{
+	"_OAUTH_SCOPE_CATEGORY_USER": [{
+		"scope": "email_get",
+		"user_type": "user",
+		"definition": "_OAUTH_SCOPE_EMAIL_GET",
+		"description": "_OAUTH_SCOPE_EMAIL_GET_DESC"
+	}]
+}

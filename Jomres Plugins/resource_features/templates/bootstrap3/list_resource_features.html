@@ -1,0 +1,33 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('list_room_features', '{PAGETITLE}', '{LIVESITE}');
+	});
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+<div class="well">
+	{JOMRESTOOLBAR}
+</div>
+
+<table class="table table-striped" id="list_room_features" width="100%">
+	<thead>
+		<tr>
+			<th>{COMMON_EDIT}</th>
+			<th>{HROOM_FEATURE}</th>
+			<th>{HIMAGE}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="room_feature_uid">
+		<tr>
+			<td>{BUTTONS}</td>
+			<td>{FEATURE}</td>
+			<td><img src="{FEATURE_IMAGE}" /></td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

@@ -1,0 +1,28 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	make_datatable('cleaning_schedule','{PAGETITLE}','{LIVESITE}');
+} );
+//-->
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+<table width="100%" id="cleaning_schedule" class="table tabble-striped">
+	<thead>
+		<tr>
+			<th>{HPROPERTYNAME}</th>
+			<th>{HROOMNAMENUMBER}</th>
+			<th>{HARRIVAL}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{PROPERTYNAME}</td>
+			<td>{ROOMNAMENUMBER}</td>
+			<td>{ARRIVAL}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

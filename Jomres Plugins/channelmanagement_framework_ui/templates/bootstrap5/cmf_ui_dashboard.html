@@ -1,0 +1,45 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+<style>
+    pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+    .string { color: green; }
+    .number { color: darkorange; }
+    .boolean { color: blue; }
+    .null { color: magenta; }
+    .key { color: red; }
+</style>
+
+<script>
+	let token = '{TOKEN}';
+    let channel_name = '{CHANNEL_NAME}';
+	let api_url = '{API_URL}';
+
+    const request = { paramsComplete: false };
+</script>
+	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">CMF User Interface</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Properties
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<li><a class="dropdown-item links_to_bind" href="/cmf/properties/all" onclick="return false;" >GET properties/all</a></li>
+							<li><a class="dropdown-item links_to_bind" href="/cmf/properties/available/prices" onclick="return false;">GET properties/available/prices</a></li>
+							<li><a class="dropdown-item links_to_bind" href="/cmf/properties/change/logs" onclick="return false;">GET properties/change/logs</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div id="json_response" style="min-height: 50px">
+	
+	</div>
+	
+</patTemplate:tmpl>

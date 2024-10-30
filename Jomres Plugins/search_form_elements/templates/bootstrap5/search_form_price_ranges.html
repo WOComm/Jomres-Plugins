@@ -1,0 +1,20 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+
+	<patTemplate:tmpl name="price_ranges" >
+
+	</patTemplate:tmpl>
+	
+	<input type="range"
+		   class="form-control-range"
+		   id="formControlRange"
+		   onInput="jomresJquery('#rangeval').html(jomresJquery(this).val())"
+		   min="{MINPRICE}"
+		   max="{MAXPRICE}"
+		   step="10"
+		   name="pricerange_value_to"
+		   value="{DEFAULT_PRICE}"
+	>
+	{PREPRICE}<span id="rangeval">{DEFAULT_PRICE}</span>{POSTPRICE}
+	
+	<input type="hidden" name="pricerange_value_from" value="0" id="search_form_elements_price_ranges"/>
+</patTemplate:tmpl>

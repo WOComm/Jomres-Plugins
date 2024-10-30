@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="javascript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('today_checkouts', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
+	});
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<table class="table table-striped" id="today_checkouts" width="100%">
+	<thead>
+		<tr>
+			<th>{COMMON_ACTION}</th>
+			<th>{HFIRSTNAME}</th>
+			<th>{HSURNAME}</th>
+			<th>{HARRIVAL}</th>
+			<th>{HDEPARTURE}</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+</patTemplate:tmpl>

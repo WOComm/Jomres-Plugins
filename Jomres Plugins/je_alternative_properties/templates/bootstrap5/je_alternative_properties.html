@@ -1,0 +1,12 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	{JOMRES_POPUPURL_GLOBALVAR}
+	<h2 class="page-header" style="margin-top:20px;">{PAGETITLE}</h2>
+	<div class="row">
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+			<div class="jomres_property_list_propertywrapper photo-view col-xs-12 col-sm-12 col-md-6 col-lg-4" id="{UID}">
+				{PROPERTY}
+			</div>
+		</patTemplate:tmpl>
+	</div>
+	<div class="clearfix"></div>
+</patTemplate:tmpl>

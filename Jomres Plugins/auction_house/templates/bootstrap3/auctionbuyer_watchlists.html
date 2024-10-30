@@ -1,0 +1,22 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="row-striped">
+	<div class="row visible-desktop">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			{_JOMRES_AUCTIONHOUSE_LISTS}
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			{_JOMRES_AUCTIONHOUSE_LISTS_COUNT}
+		</div>
+	</div>
+	<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="listname" >
+	<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<a href="{LISTLINK}">{LISTNAME}</a>
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<a href="{LISTLINK}">{COUNT}</a>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>

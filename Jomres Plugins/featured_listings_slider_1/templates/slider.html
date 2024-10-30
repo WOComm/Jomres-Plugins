@@ -1,0 +1,69 @@
+<patTemplate:tmpl name="pageoutput" >
+	<script type="text/javascript">
+		var theInt = null;
+		var $crosslink, $navthumb;
+		var curclicked = 0;
+		
+		theInterval = function(cur){
+			clearInterval(theInt);
+			
+			if( typeof cur != 'undefined' )
+				curclicked = cur;
+			
+			$crosslink.removeClass("active-thumb");
+			$navthumb.eq(curclicked).parent().addClass("active-thumb");
+				jomresJquery(".stripNav ul li a").eq(curclicked).trigger('click');
+			
+			theInt = setInterval(function(){
+				$crosslink.removeClass("active-thumb");
+				$navthumb.eq(curclicked).parent().addClass("active-thumb");
+				jomresJquery(".stripNav ul li a").eq(curclicked).trigger('click');
+				curclicked++;
+				if( 6 == curclicked )
+					curclicked = 0;
+				
+			}, 3000);
+		};
+		
+		jomresJquery(function(){
+			
+			jomresJquery("#main-photo-slider").codaSlider();
+			
+			$navthumb = jomresJquery(".nav-thumb");
+			$crosslink = jomresJquery(".cross-link");
+			
+			$navthumb
+			.click(function() {
+				var $this = jomresJquery(this);
+				theInterval($this.parent().attr('href').slice(1) - 1);
+				return false;
+			});
+			
+			theInterval();
+		});
+	</script>
+
+<div id="page-wrap">
+	<div class="slider-wrap">
+		<div id="main-photo-slider" class="csw">
+			<div class="panelContainer">
+				<patTemplate:tmpl name="rows" >
+				<div class="panel" title="{PROPERTY_NAME}">
+					<div class="featured_wrapper">
+						<a href="{MOREINFORMATIONLINK}"><img src="{PROPERTY_IMAGE}" alt="" width="445" height="315"/></a>
+						<div class="photo-meta-data">{PROPERTY_NAME}<br />
+						<span>{PROPERTY_DESCRIPTION}</span></div>
+					</div>
+				</div>
+				</patTemplate:tmpl>
+			</div>
+		</div>
+		<a href="#1" class="cross-link active-thumb"><img src="{FIRST_PROPERTY_IMAGE_THUMB}" class="nav-thumb" alt="temp-thumb" width="75" height="50"/></a>
+		<div id="movers-row">
+			<patTemplate:tmpl name="rows2" >
+			<div><a href="#{ID}" class="cross-link"><img src="{PROPERTY_IMAGE_THUMB}" class="nav-thumb" alt="temp-thumb" width="75" height="50" /></a></div>
+			</patTemplate:tmpl>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>

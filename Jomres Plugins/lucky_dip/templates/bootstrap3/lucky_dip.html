@@ -1,0 +1,56 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+.element_button {
+    min-width: 120px;
+    max-width: 180px;
+	text-align: left;
+}
+</style>
+<form method="post" id="lucky_dip" name="adminform" class="form-horizontal">
+		<div class="alert alert-info">
+			<button type="button" class="btn btn-default" data-dismiss="alert">&times;</button>
+			{_JOMRES_TAGS_LUCKY_DIP_INFO}
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<legend>{_JOMRES_TAGS_LUCKY_DIP}</legend>
+				<label>{_JOMRES_TAGS_LUCKY_DIP_COST}</label>
+				<span class="add-on">{CURRENCY_SYMBOL_PRE}</span>
+				<input type="text" name="cost" placeholder="{_JOMRES_TAGS_LUCKY_DIP_COST_PLACEHOLDER}" value="{COST}" />
+				<span class="add-on">{CURRENCY_SYMBOL_POST}</span>
+			</div>
+		</div>
+		<br/>
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+		<label class="btn btn-default element_button {ACTIVE}" id="button_luckydip_feature_{ID}" for="luckydip_feature_{ID}" onClick="toggle_button_class(this);">{FEATURE_ABBV}</label><input type="checkbox" {CHECKED} class="hidden" id="luckydip_feature_{ID}" name="luckydip_features[]" value="{ID}" autocomplete="off" /> 
+		</patTemplate:tmpl>
+		
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">{COMMON_SUBMIT}</button>
+		</div>
+<input type="hidden" name="task" value="lucky_search" />
+<input type="hidden" name="option" value="com_jomres" />
+{CSRF_TOKEN}
+</form>
+
+<script>
+jomresJquery(function(jomresJquery) {
+	jomresJquery('div.btn-group[data-toggle-name="*"]').each(function(){
+		var group   = jomresJquery(this);
+		var form    = group.parents('form').eq(0);
+		var name    = group.attr('data-toggle-name');
+		var hidden  = jomresJquery('input[name="' + name + '"]', form);
+		jomresJquery('button', group).each(function(){
+			var button = jomresJquery(this);
+			button.live('click', function(){
+				hidden.val(jomresJquery(this).val());
+				});
+			if(button.val() == hidden.val()) {
+				button.addClass('btn-primary active');
+			  }
+			});
+		});
+	});
+</script>
+
+</patTemplate:tmpl>

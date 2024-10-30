@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	jomresJquery("#featured_listings_slider_1").carousel();
+});
+-->
+</script>
+<style type="text/css">
+.carousel {margin:0;}
+.carousel-caption{background:none repeat scroll 0 0 rgba(240, 240, 240, 0.75)}
+.carousel-caption h4, .carousel-caption p {color:inherit;}
+#featured_listings_slider_1 {
+    background: none repeat scroll 0 0 #DFEFFC;
+    border-radius: 4px 4px 4px 4px;
+    padding: 10px 20px 20px;
+}
+</style>
+
+<div id="featured_listings_slider_1" class="carousel slide">
+	<h4 style="text-transform:uppercase;">{TITLE}</h4>
+	<!-- Carousel items -->
+	<div class="carousel-inner">
+		<patTemplate:tmpl name="rows">
+		<div class="{ACTIVE} item">
+			<a href="{MOREINFORMATIONLINK}"><img src="{PROPERTY_IMAGE}" alt="slide" /></a>
+			<div class="carousel-caption">
+				<h4>{PROPERTY_NAME}</h4>
+				<p>{PROPERTY_DESCRIPTION}</p>
+			</div>
+		</div>
+		</patTemplate:tmpl>
+	</div>
+	<!-- Carousel nav -->
+	<a class="carousel-control left" href="#featured_listings_slider_1" data-slide="prev">&lsaquo;</a>
+	<a class="carousel-control right" href="#featured_listings_slider_1" data-slide="next">&rsaquo;</a>
+</div>
+</patTemplate:tmpl>

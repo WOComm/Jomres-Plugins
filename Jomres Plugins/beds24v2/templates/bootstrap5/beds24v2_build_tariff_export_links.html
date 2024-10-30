@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="tariff_output" type="simpleCondition" requiredVars="beds24v2_tariffs_title">
+<h2>{BEDS24V2_TARIFFS_TITLE}</h2>
+<p>{BEDS24V2_TARIFF_EXPORT_DESC}</p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                {BEDS24V2_TARIFF_EXPORT_TARIFFNAME}
+            </th>
+            <th>
+                {BEDS24V2_TARIFF_EXPORT_TARIFF_ROOM_TYPE}
+            </th>
+        </thead>
+        <tbody>
+        <patTemplate:tmpl name="tariff_rows" >
+        <tr>
+            <td>
+                {EXPORT_LINK_P1} {EXPORT_LINK_P2} {EXPORT_LINK_P3} {EXPORT_LINK_P4} {EXPORT_LINK_P5} {EXPORT_LINK_P6} {EXPORT_LINK_P7} {EXPORT_LINK_P8} {EXPORT_LINK_P9} {EXPORT_LINK_P10}
+            </td>
+            <td>
+                {TITLE}
+            </td>
+            <td>
+                {ROOMCLASS}
+            </td>
+        </tr>
+        </patTemplate:tmpl>
+        </tbody>
+    </table>
+</patTemplate:tmpl>

@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+jomresJquery(document).ready(function () {
+	make_datatable('jomres_users', '{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}', '{LIVESITE}');
+});
+</script>
+
+<h2 class="page-header">{PAGE_TITLE}</h2>
+
+<table width="100%" id="list_guests" class="table table-striped">
+	<thead>
+		<tr>
+			<th>{_JOMRES_INCOME_TABLE_MONTH}</th>
+			<th>{_JOMRES_INCOME_TABLE_INCOME}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows">
+		<tr>
+			<td>{MONTH}</td>
+			<td>{INCOME}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+
+</patTemplate:tmpl>

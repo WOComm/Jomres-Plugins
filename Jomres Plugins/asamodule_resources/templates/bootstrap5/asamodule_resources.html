@@ -1,0 +1,20 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<div class="row">
+		<patTemplate:tmpl name="rows">
+			<div class="col">
+				<div class="card" style="width: 18rem;">
+					<img src="{IMAGEMEDIUM}" alt="{ROOMTYPE}" class="card-img-top"/></a>
+					<div class="card-body">
+						<h4 class="card-title">{ROOMTYPE}</h4>
+						<div class="card-text">
+							<p>{HMAXPEOPLE}&nbsp;{MAXPEOPLE}</p>
+							<div class="clearfix">{ROOM_FEATURES}</div>
+							<p>{PRICE_PRE_TEXT} {PRICE_PRICE} {PRICE_POST_TEXT}</p>
+							<p><a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{ROOMTYPE}">{MOREINFORMATION}</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</patTemplate:tmpl>
+	</div>
+</patTemplate:tmpl>

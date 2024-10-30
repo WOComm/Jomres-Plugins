@@ -1,0 +1,81 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">New auction - Step 2</h2>
+
+<form method="post" name="adminForm" role="form" role="form" class="form-horizontal">
+<div id="messageBox" class="alert alert-error alert-block">
+	<h4>{_JOMRES_AUCTIONHOUSE_AUCTION_TITLE_ERROR}</h4> 
+	{_JOMRES_AUCTIONHOUSE_AUCTION_DESCRIPTION_ERROR} 
+</div>
+
+<div id="auction_details">
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="auction_title">{_JOMRES_AUCTIONHOUSE_AUCTION_TITLE}</label>
+		<div class="col-md-10">
+			<input class="form-control" type="text" size="15" id="auction_title" name="auction_title" value="{AUCTION_TITLE}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="auction_desc">{_JOMRES_AUCTIONHOUSE_AUCTION_DESCRIPTION}</label>
+		<div class="col-md-10">
+			<textarea class="form-control" rows="3" id="auction_desc" name="auction_desc">{AUCTION_DESCRIPTION}</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="auction_value">{_JOMRES_AUCTIONHOUSE_AUCTION_VALUE}</label>
+		<div class="col-md-10">
+			<input class="form-control" type="text" id="auction_value" name="auction_value" value="{AUCTION_VALUE}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="auction_reserve">{_JOMRES_AUCTIONHOUSE_AUCTION_RESERVE}</label>
+		<div class="col-md-10">
+			<input class="form-control" type="text" id="auction_reserve" name="auction_reserve" value="{AUCTION_RESERVE}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="auction_buynow">{_JOMRES_AUCTIONHOUSE_AUCTION_BUYNOW_PRICE}</label>
+		<div class="col-md-10">
+			<input class="form-control" type="text" id="auction_buynow" name="auction_buynow" value="{AUCTION_BUYNOW_PRICE}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="auction_days_to_run">{_JOMRES_AUCTIONHOUSE_AUCTION_DAYSTORUN}</label>
+		<div class="col-md-10">
+			{DAYSTORUNDROPDOWN}
+		</div>
+	</div>
+	
+	<patTemplate:tmpl name="room_selection" type="simpleCondition" requiredVars="arrival">
+	<p>{_JOMRES_AUCTIONHOUSE_AUCTION_CREATE_SELECTROOMS}</p>
+	<div class="form-group">
+		<patTemplate:tmpl name="room_selection_labels1" unusedvars="strip"><label class="col-md-2 control-label" for="auction_booking_start">{_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL}</label></patTemplate:tmpl>
+		<div class="col-md-10">
+			<input type="text" name="auction_booking_start" id="auction_booking_start" value="{ARRIVAL}" readonly="readonly" />
+		</div>
+	</div>
+	<div class="form-group">
+		<patTemplate:tmpl name="room_selection_labels2" unusedvars="strip"><label class="col-md-2 control-label" for="auction_booking_end">{_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE}</label></patTemplate:tmpl>
+		<div class="col-md-10">
+			<input type="text" name="auction_booking_end" id="auction_booking_end" value="{DEPARTURE}" readonly="readonly"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<patTemplate:tmpl name="room_selection_labels3" unusedvars="strip"><label class="col-md-2 control-label" for="selectable">{_JOMRES_AJAXFORM_AVAILABLEROOMS}</label></patTemplate:tmpl>
+		<div class="col-md-10">
+			<div id="rooms_list"></div>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+	
+	<div class="form-actions">
+		<div class="col-md-10 col-md-offset-2">
+			<a class="btn btn-primary" onClick="auction_page('auction_seller_ajax_create_auction_step2',['auction_title','auction_desc','auction_value','auction_reserve','auction_buynow','chosen_property','include_rooms','auction_days_to_run','selected_rooms','auction_booking_start','auction_booking_end']);">{_PN_NEXT}</a>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="chosen_property" value="{CHOSENPROPERTY}" id="chosen_property">
+<input type="hidden" name="include_rooms" value="{INCLUDE_ROOMS}" id="include_rooms">
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

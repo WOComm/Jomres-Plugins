@@ -1,0 +1,26 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="container">
+	<div class="well">
+		<h2>{JOMRES_COUPONS_SCAN}</h2>
+		<div class="row">
+			<div class="col-md-2">
+				<img src="{QR_CODE}" class="img-responsive" alt="qrcode"/>
+			</div>
+			<div class="col-md-6">
+				{JOMRES_COUPONS_GETADISCOUNT} <strong>{DISCOUNT_VALUE}</strong> {JOMRES_COUPONS_OFFACCOMMODATION} {JOMRES_COUPONS_IFYOUBOOKBETWEEN}<br/>
+				{VALID_FROM} {JOMRES_COUPONS_AND} {VALID_TO} {JOMRES_COUPONS_FORDATESBETWEEN} {BOOKING_VALID_FROM} {JOMRES_COUPONS_AND} {BOOKING_VALID_TO}.
+				<br/><br/>
+				{JOMRES_COUPONS_ALTERNATIVELY} <strong>{COUPON_CODE}</strong>.
+			</div>
+			<div class="col-md-2">
+				<img class="img-responsive" src="{PROPERTY_IMAGE}" title="{PROPERTY_NAME}"/>
+			</div>
+			<div class="col-md-2">
+				<strong>{PROPERTY_NAME}</strong><br/> {PROPERTY_STREET}, {PROPERTY_TOWN}, {PROPERTY_REGION}, {PROPERTY_COUNTRY}, {PROPERTY_POSTCODE}.
+			</div>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>
+
+

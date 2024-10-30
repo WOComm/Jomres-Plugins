@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+.je_overview .well h2.page-header {
+	font-size:1.2em;
+}
+</style>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<div class="row je_overview">
+	<div class="col-md-6">
+		<div class="well">
+			{TODAY_CHECKINS}
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="well">
+			{TODAY_CHECKOUTS}
+		</div>
+	</div>
+</div>
+<div class="row je_overview">
+	<div class="col-md-12">
+		<div class="well">
+			{TODAY_RESIDENTS}
+		</div>
+	</div>
+</div>
+
+</patTemplate:tmpl>

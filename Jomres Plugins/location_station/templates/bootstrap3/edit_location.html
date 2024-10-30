@@ -1,0 +1,15 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}&task=save_location_station" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+{LOCATION_INFORMATION}
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="location_country" value="{LOCATION_COUNTRY}" />
+<input type="hidden" name="location_region" value="{LOCATION_REGION}" />
+<input type="hidden" name="location_town" value="{LOCATION_TOWN}" />
+<input type="hidden" name="task" value="save_location_station" />
+<input type="hidden" name="no_html" value="1" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

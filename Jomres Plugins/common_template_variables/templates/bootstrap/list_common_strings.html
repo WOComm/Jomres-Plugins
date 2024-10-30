@@ -1,0 +1,28 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	make_datatable('list_common_strings','{TITLE}','{LIVESITE}');
+} );
+//-->
+</script>
+<h2 class="page-header">{TITLE}</h2>
+<p>{_COMMON_STRINGS_INFO}</p>
+
+<table id="list_common_strings" width="100%" class="table table-striped">
+	<thead>
+		<tr>
+			<th>{_COMMON_STRINGS_CONSTANT}</th>
+			<th>{_COMMON_STRINGS_VALUE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{CONSTANT}</td>
+			<td>{VALUE}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

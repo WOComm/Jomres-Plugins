@@ -1,0 +1,26 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<p>{INSTRUCTIONS}</p>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table width="100%" class="table table-striped">	
+	<tr>
+		<th>{HCONFIGTITLE}</th>
+		<th>{HKEY}</th>
+		<th>{HCURRENTVAL}</th>
+		<th>{_JRPORTAL_DEFAULT_PROPERTY_SETTINGS_NEWVALUE}</th>
+	</tr>
+	<patTemplate:tmpl name="rows" >
+	<tr>
+		<td>{CONFIGTITLE}</td>
+		<td>{KEY}</td>
+		<td>{SETTING}</td>
+		<td><input type="text" name="cfg_{KEY}" value="{SETTING}" class="input-small"/></td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<input type="hidden" name="no_html" value="1" />
+<input type="hidden" name="task" value="save_defaultPropertySettings" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

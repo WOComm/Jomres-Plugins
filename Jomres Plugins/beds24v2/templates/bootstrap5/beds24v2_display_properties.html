@@ -1,0 +1,59 @@
+<patTemplate:tmpl name="pageoutput" >
+<h2>{BEDS24V2_DISPLAY_PROPERTIES_TITLE}</h2>
+<p class="lead">{BEDS24V2_DISPLAY_PROPERTIES_INFO}<p>
+
+
+<div class="well">
+    <span id="helpBlock" class="help-block">{BEDS24V2_REST_API_INTRO}</span>
+
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="client_id">{BEDS24V2_REST_API_CLIENT_ID}</label>
+            <div class="col-md-8">
+                <input name="client_id" type="text" value="{CLIENT_ID}" readonly class="form-control" />
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="client_secret">{BEDS24V2_REST_API_CLIENT_SECRET}</label>
+            <div class="col-md-8">
+                <input name="client_secret" type="text" value="{CLIENT_SECRET}" readonly class="form-control" />
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="endpoint">{BEDS24V2_REST_API_ENDPOINT}</label>
+            <div class="col-md-8">
+                <input name="endpoint" type="text" value="{ENDPOINT}" readonly class="form-control" />
+            </div>
+        </div> 
+    </form>
+</div>
+
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>
+        </th>
+        <th>
+            {BEDS24V2_DISPLAY_PROPERTIES_PROPERTY_UID}
+        </th>
+        <th>
+            {BEDS24V2_DISPLAY_PROPERTIES_PROPERTY_NAME}
+        </th>
+        <th>
+            {BEDS24V2_DISPLAY_PROPERTY_APIKEY}
+        </th>
+        <th>
+            {BEDS24V2_DISPLAY_PROPERTIES_BEDS24_PROPERTY_UID}
+        </th>
+        <th>
+            {BEDS24V2_DISPLAY_PROPERTIES_BEDS24_PROPERTY_NAME}
+        </th>
+    </thead>
+    <tbody>
+    <patTemplate:tmpl name="rows" >
+    {ROW}
+    </patTemplate:tmpl>
+    </tbody>
+</table>
+</patTemplate:tmpl>

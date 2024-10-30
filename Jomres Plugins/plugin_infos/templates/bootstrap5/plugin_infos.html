@@ -1,0 +1,111 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<link rel="stylesheet" href="{PLUGIN_RELATIVE}/vendor/scrivo/highlight.php/styles/gruvbox-dark.css">
+	<style>
+        .toc{
+            overflow: auto;
+            max-height: 100vh;
+        }
+	
+	</style>
+	<h2>{JOMRES_PLUGIN_INFOS}</h2>
+	<p class="lead">
+		{JOMRES_PLUGIN_INFOS_INFO}
+	</p>
+	
+	<div class="row" id="myGroup">
+		<div class="btn-group flex-wrap">
+			<patTemplate:tmpl name="rows" unusedvars="strip">
+				<div class="pb-1 pe-1">
+					<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{PLUGIN_NAME}" aria-expanded="false" aria-controls="{PLUGIN_NAME}">
+						{PLUGIN_FRIENDLY_NAME}
+					</button>
+				</div>
+			</patTemplate:tmpl>
+		</div>
+		<patTemplate:tmpl name="rows2" unusedvars="strip">
+			<div class="collapse" id="{PLUGIN_NAME}" data-bs-parent="#myGroup">
+				<div class="">
+					<h5 class="card-title">Name :{PLUGIN_FRIENDLY_NAME}</h5>
+					<hr class="pb-5>"/>
+					{MARKUP}
+					<hr class="pb-5>"/>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-6">
+									<em>Plugin location :</em>
+								</div>
+								<div class="col-md-6" >
+									{LOCATION}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<em>Category :</em>
+								</div>
+								<div class="col-md-6">
+									{PLUGIN_DATA_CATEGORY}
+								</div>
+							</div>
+							<div class="row" >
+								<div class="col-md-6">
+									<em>Version :</em>
+								</div>
+								<div class="col-md-6">
+									{PLUGIN_DATA_VERSION}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<em>Marketing :</em>
+								</div>
+								<div class="col-md-6">
+									{PLUGIN_DATA_MARKETING}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<em>Last update :</em>
+								</div>
+								<div class="col-md-6">
+									{PLUGIN_DATA_LASTUPDATE}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<em>Minimum Jomres version :</em>
+								</div>
+								<div class="col-md-6">
+									{PLUGIN_DATA_MIN_JOMRES_VER}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<em>Retired? :</em>
+								</div>
+								<div class="col-md-6">
+									{PLUGIN_DATA_RETIRED}
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-title">Changelog</div>
+								<div class="card-body">
+									<div class="readmore-wrapper">
+										{PLUGIN_DATA_CHANGE_LOG}
+									</div>
+									<em>Scripts</em>
+									<div class="readmore-wrapper">
+										{SCRIPTS}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		</patTemplate:tmpl>
+	</div>
+</patTemplate:tmpl>

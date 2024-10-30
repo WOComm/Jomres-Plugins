@@ -1,0 +1,8 @@
+{
+	"_OAUTH_SCOPE_CATEGORY_USER": [{
+		"scope": "echo_get",
+		"user_type": "user",
+		"definition": "_OAUTH_SCOPE_ECHO_GET",
+		"description": "_OAUTH_SCOPE_ECHO_GET_DESC"
+	}]
+}

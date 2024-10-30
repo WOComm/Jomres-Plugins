@@ -1,0 +1,12 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<div class="row" id="gallery" data-bs-toggle="modal" data-bs-target="#biggupModal">
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+		<div class="col-12 col-sm-6 col-lg-3">
+			<img class="w-100" src="{SMALL}" alt="{SMALL}" data-bs-target="#carouselExample" data-bs-slide-to="{COUNTER}" style="cursor: pointer;">
+		</div>
+		</patTemplate:tmpl>
+	</div>
+
+	{MODAL_CONTENTS}
+</patTemplate:tmpl>
+

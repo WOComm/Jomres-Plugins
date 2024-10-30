@@ -1,0 +1,87 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+
+	<script>
+		function search_form_onchange_countries(selectObject) {
+			document.getElementById("townsSelect").style.display="none";
+			document.getElementById("regionsSelect").style.display="none";
+			var countrycode = selectObject.value;
+			var arr = [ '' ];
+			for (region in regions_datasrc) {
+				if ( regions_datasrc[region].value == countrycode) {
+					arr.push(regions_datasrc[region].label);
+				}
+			}
+			arr.map((op,i)=>{
+				options+=`<option value="${op}" id="${i}" style="border-radius: 5px;"">${op}</option>`
+			})
+
+			var options="";
+			arr.map((op,i)=>{
+				options+=`<option value="${op}" id="${i}" style="border-radius: 5px;"">${op}</option>`
+			})
+			document.getElementById("search_form_elements_regions").innerHTML=options;
+			document.getElementById("regionsSelect").style.display="block";
+		}
+
+		function search_form_onchange_regions(selectObject) {
+			document.getElementById("townsSelect").style.display="none";
+			var regionname = selectObject.value;
+			var arr = [ '' ];
+			for (region in towns_datasrc) {
+				if ( towns_datasrc[region].value == regionname) {
+					arr.push(towns_datasrc[region].label);
+				}
+			}
+			arr.map((op,i)=>{
+				options+=`<option value="${op}" id="${i}" style="border-radius: 5px;"">${op}</option>`
+			})
+
+			var options="";
+			arr.map((op,i)=>{
+				options+=`<option value="${op}" id="${i}" style="border-radius: 5px;"">${op}</option>`
+			})
+			document.getElementById("search_form_elements_towns").innerHTML=options;
+			document.getElementById("townsSelect").style.display="block";
+		}
+
+		function search_form_onchange_towns(selectObject) {
+
+		}
+
+	</script>
+
+
+
+<div class="row">
+	<div class="col-sm-4">
+		<div class="input-group mb-3">
+			<span class="input-group-text" style="background-color:transparent"><i class="fas fa-map-marker-alt"></i></span>
+			<select class="form-select shadow-none" style="border-left: 0;" aria-label="{_JOMRES_SEARCH_GEO_COUNTRYSEARCH}" name="country" id="search_form_elements_countries" onChange="search_form_onchange_countries(this)";>
+				<option value=""  {PLACEHOLDER_SELECTED}>{_JOMRES_SEARCH_GEO_COUNTRYSEARCH}</option>
+				<patTemplate:tmpl name="countries" unusedvars="import">
+					<option value="{VALUE}">{LABEL}</option>
+				</patTemplate:tmpl>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-4" id="regionsSelect" style="display:none;">
+		<div class="input-group mb-3" >
+			<span class="input-group-text" style="background-color:transparent"><i class="fas fa-map-marker-alt"></i></span>
+			<select class="form-select shadow-none" style="border-left: 0;" aria-label="{_JOMRES_SEARCH_GEO_REGIONSEARCH}" name="regions" id="search_form_elements_regions" onChange="search_form_onchange_regions(this)"; >
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-4" id="townsSelect" style="display:none;">
+		<div class="input-group mb-3" >
+			<span class="input-group-text" style="background-color:transparent"><i class="fas fa-map-marker-alt"></i></span>
+			<select class="form-select shadow-none" style="border-left: 0;" aria-label="{_JOMRES_SEARCH_GEO_TOWNSEARCH}" name="towns" id="search_form_elements_towns" onChange="search_form_onchange_towns(this)"; >
+			</select>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+</patTemplate:tmpl>

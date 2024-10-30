@@ -1,0 +1,28 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+
+<div class="input-group mb-3">
+	<span class="input-group-text" style="background-color:transparent"><i class="fas fa-hotel"></i></span>
+	<select class="form-select shadow-none" style="border-left: 0;" aria-label="{_JOMRES_SEARCH_PTYPES}"  name="ptype">
+		<option value="" {PLACEHOLDER_SELECTED}>{_JOMRES_SEARCH_PTYPES}</option>
+	<patTemplate:tmpl name="property_types" unusedvars="import">
+		<option {SELECTED}  value="{ID}">{TITLE}</option>
+			<patTemplate:comment>
+				array(6) {
+				["TITLE"]=>
+				string(9) "Camp Site"
+				["ID"]=>
+				int(4)
+				["RANDOM_ID"]=>
+				string(10) "IHbfMmoSBw"
+				["CHECKED"]=>
+				string(0) ""
+				["SELECTED"]=>
+				string(0) ""
+				["ACTIVE_CLASS"]=>
+				string(13) " btn-default "
+				}
+			</patTemplate:comment>
+	</patTemplate:tmpl>
+	</select>
+</div>
+</patTemplate:tmpl>

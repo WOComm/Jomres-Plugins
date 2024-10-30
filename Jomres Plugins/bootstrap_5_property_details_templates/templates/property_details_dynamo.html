@@ -1,0 +1,191 @@
+<pattemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<style>
+	.carousel-item {
+		height: 100vh;
+		min-height: 550px;
+		max-height: 550px;
+		background: no-repeat center center scroll;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+</style>
+
+<script>
+	jomresJquery(document).on('click', 'a[href^="#"]', function (event) {
+		event.preventDefault();
+
+		jomresJquery('html, body').animate({
+			scrollTop: jomresJquery(jomresJquery.attr(this, 'href')).offset().top
+		}, 1000);
+	});
+</script>
+		<div class="container-fluid">
+			<div class="row full-width">
+				<div class="col-sm-8">
+					<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+						<div class="carousel-indicators">
+							<pattemplate:tmpl name="slideshow_images" unusedvars="strip">
+								<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{COUNTER}" class="active" aria-current="true" aria-label="Slide {COUNTER}"></button>
+							</pattemplate:tmpl>
+						</div>
+						<div class="carousel-inner">
+						<pattemplate:tmpl name="slideshow_images2" unusedvars="strip">
+							<div class="carousel-item {ACTIVE} " data-bs-interval="3000" style="background-image: url('{LARGE_IMAGE}')">
+								<div class="carousel-caption">
+									<h2>{PROPERTY_NAME}</h2>
+									<pattemplate:comment><p>{PROPERTY_DESCRIPTION}</p></pattemplate:comment>
+								</div>
+							</div>
+						</pattemplate:tmpl>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col">
+							<a href="https://www.google.com/maps/place/{TOWN}/{REGION}/{COUNTRY}" target="_blank">{TABCONTENT_02_MAP_CONTENT}</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col p-5">
+							<pattemplate:tmpl name="bookinglink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+							<a href="{LINK}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+							</pattemplate:tmpl>
+						</div>
+						<div class="col">
+							{REVIEWS_SUMMARY}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h4> {PROPERTY_NAME} - {PROPERTY_TYPE_TITLE} </h4>
+				<p>
+					{DESCRIPTION}
+				</p>
+			</div>
+		</div>
+		<div class="row pt-3  mb-5">
+			<div class="col-sm-12">
+				{jomres_script show_property_features PROPERTY_UID={UID}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12" id="horiz_menu">
+				<div class="btn-group flex-wrap" data-bs-toggle="buttons" role="group" aria-label="Property details anchors">
+					<a href="#anchor_reviews" class="btn btn-info">{_JOMRES_REVIEWS}</a>
+					<pattemplate:tmpl name="weather_output" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
+						<a href="#anchor_weather" class="btn btn-info">{TITLE}</a>
+					</pattemplate:tmpl>
+					<a href="#anchor_availability" class="btn btn-info">{HAVAILABILITY}</a>
+					<a href="#anchor_extras" class="btn btn-info">{_JOMRES_COM_MR_EXTRA_TITLE}</a>
+					<a href="#anchor_rooms" class="btn btn-info">{HROOMS}</a>
+					<a href="#anchor_othertransport" class="btn btn-info">{HOTHERTRANSPORT}</a>
+					<a href="#anchor_tariffs" class="btn btn-info">{HTARIFFS}</a>
+					<a href="#anchor_terms" class="btn btn-info">{HPOLICIESDISCLAIMERS}</a>
+				</div>
+			</div>
+		</div>
+		<pattemplate:comment>CONTENT CHECKINTIMES START</pattemplate:comment>
+			<div class="border border-1 shadow-lg p-3 mb-5 ">
+				<div class="h3">{HCHECKINTIMES}</div>
+				{CHECKINTIMES}
+			</div>
+		<pattemplate:comment>CONTENT END</pattemplate:comment>
+
+		<pattemplate:comment>CONTENT REVIEWS START</pattemplate:comment>
+			<div class="border border-1 shadow-lg p-3 mb-5 ">
+				<div id="anchor_reviews" class="h3">{_JOMRES_REVIEWS} <div class="float-end"><a href="#horiz_menu">  <i class="fas fa-caret-square-up"></i> </a></div></div>
+				{jomres_script show_property_reviews PROPERTY_UID=N &reviews_limit=10}
+			</div>
+		<pattemplate:comment>CONTENT END</pattemplate:comment>
+
+		<pattemplate:tmpl name="weather_output_content" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
+			<div class="border border-1 shadow-lg p-3 mb-5 ">
+				<div id="anchor_weather" class="h3">{_JOMRES_REVIEWS} <div class="float-end"><a href="#horiz_menu">  <i class="fas fa-caret-square-up"></i> </a></div></div>
+				{jomres_script show_property_weather PROPERTY_UID=N}
+			</div>
+		</pattemplate:tmpl>
+
+		<pattemplate:comment>CONTENT CALENDAR START</pattemplate:comment>
+			<div class="border border-1 shadow-lg p-3 mb-5 ">
+				<div id="anchor_availability" class="h3">{HAVAILABILITY} <div class="float-end"><a href="#horiz_menu">  <i class="fas fa-caret-square-up"></i> </a></div></div>
+				{jomres_script show_property_calendar PROPERTY_UID=N}
+			</div>
+		<pattemplate:comment>CONTENT END</pattemplate:comment>
+		
+		<pattemplate:comment>CONTENT EXTRAS START</pattemplate:comment>
+			<div class="border border-1 shadow-lg p-3 mb-5 ">
+				<div id="anchor_extras" class="h3">{_JOMRES_COM_MR_EXTRA_TITLE} <div class="float-end"><a href="#horiz_menu">  <i class="fas fa-caret-square-up"></i> </a></div></div>
+				{jomres_script show_property_extras PROPERTY_UID=N}
+			</div>
+		<pattemplate:comment>CONTENT END</pattemplate:comment>
+		<pattemplate:comment>CONTENT OURROOMS START</pattemplate:comment>
+			<div class="border border-1 shadow-lg p-3 mb-5 ">
+				<div id="anchor_rooms" class="h3">{HROOMS}  <div class="float-end"><a href="#horiz_menu">  <i class="fas fa-caret-square-up"></i> </a></div> </div>
+				{jomres_script show_property_rooms PROPERTY_UID=N}
+			</div>
+		<pattemplate:comment>CONTENT END</pattemplate:comment>
+
+		<pattemplate:comment>CONTENT OTHERTRANSPORT START</pattemplate:comment>
+			<div class="border border-1 shadow-lg p-3 mb-5 ">
+				<div id="anchor_othertransport" class="h3">{HOTHERTRANSPORT} <div class="float-end"><a href="#horiz_menu">  <i class="fas fa-caret-square-up"></i> </a></div></div>
+				{OTHERTRANSPORT}
+		<pattemplate:comment>CONTENT END</pattemplate:comment>
+
+			<pattemplate:comment>CONTENT AIRPORTS START</pattemplate:comment>
+				<div class="h4">{HAIRPORTS}</div>
+				{AIRPORTS}
+			<pattemplate:comment>CONTENT END</pattemplate:comment>
+
+			<pattemplate:comment>CONTENT DRIVINGDIRECTIONS START</pattemplate:comment>
+				<div class="h4">{HDRIVINGDIRECTIONS}</div>
+				{DRIVINGDIRECTIONS}
+			<pattemplate:comment>CONTENT END</pattemplate:comment>
+
+			<pattemplate:comment>CONTENT AREAACTIVITIES START</pattemplate:comment>
+				<div class="h4">{HAREAACTIVITIES}</div>
+				{AREAACTIVITIES}
+			</div>
+			<pattemplate:comment>CONTENT END</pattemplate:comment>
+
+			<div class="border border-1 shadow-lg p-3 mb-5 ">
+				<div id="anchor_tariffs" class="h3">{HTARIFFS} <div class="float-end"><a href="#horiz_menu">  <i class="fas fa-caret-square-up"></i> </a></div></div>
+				{jomres_script show_property_tariffs PROPERTY_UID=N}
+			</div>
+
+			<pattemplate:comment>CONTENT TERMS START</pattemplate:comment>
+			<div class="border border-1 shadow-lg p-3 mb-5 ">
+				<div id="anchor_terms" class="h3">{HPOLICIESDISCLAIMERS} <div class="float-end"><a href="#horiz_menu">  <i class="fas fa-caret-square-up"></i> </a></div></div>
+				{jomres_script terms PROPERTY_UID=N}
+			</div>
+			<pattemplate:comment>CONTENT END</pattemplate:comment>
+
+		<div class="d-flex justify-content-center h1"><a href="#horiz_menu"> <i class="fas fa-caret-square-up"></i> </a></div>
+
+
+		<patTemplate:tmpl name="tabs_titles">
+			{TAB_TITLE}
+		</patTemplate:tmpl>
+
+		<patTemplate:tmpl name="tabs_content">
+			{TAB_CONTENT}
+		</patTemplate:tmpl>
+	</div>
+	{TABCONTENT_03_CONTACT_TAB_CONTENT}
+</pattemplate:tmpl>

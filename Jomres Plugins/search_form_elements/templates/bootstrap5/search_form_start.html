@@ -1,0 +1,31 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+    <script>
+        var countries_datasrc = [
+            <patTemplate:tmpl name="countries">
+                {label: "{COUNTRY_NAME}", value: "{COUNTRY_CODE}"},</patTemplate:tmpl>
+        ]
+
+        var regions_datasrc = [
+            <patTemplate:tmpl name="regions">
+                {label: "{REGION_NAME}", value: "{COUNTRY_CODE}"},</patTemplate:tmpl>
+        ]
+
+        var towns_datasrc = [
+            <patTemplate:tmpl name="towns">
+                {label: "{TOWN_NAME}", value: "{REGION_NAME}"},</patTemplate:tmpl>
+        ]
+
+/*        document.addEventListener("DOMContentLoaded", function() {
+            const ac = new Autocomplete(document.getElementById('countries_datasrc'), {
+                data: datasrc,
+                treshold: 1,
+                maximumItems: 8,
+                onSelectItem: ({label, value}) => {
+                    document.getElementById("autocomplete_value").value = value;
+                }
+            });
+        });*/
+    </script>
+
+    <form action="{SUBMITURL}" id="{FORM_ID}" role="form-horizontal" method="GET">
+</patTemplate:tmpl>

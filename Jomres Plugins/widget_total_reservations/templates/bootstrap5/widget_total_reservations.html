@@ -1,0 +1,22 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip"> 
+
+<div class="btn-group  btn-group-lg" role="group" aria-label="...">
+
+	<button class="btn btn-primary" type="button">
+	  {WIDGET_TOTAL_RESERVATIONS} <span class="badge">{TOTAL_RESERVATIONS}</span>
+	</button>
+
+	<button class="btn btn-warning" type="button">
+	  {WIDGET_TOTAL_RESERVATIONS_PENDING} <span class="badge">{TOTAL_PENDING}</span>
+	</button>
+
+	<button class="btn btn-success" type="button">
+	  {WIDGET_TOTAL_RESERVATIONS_COMPLETED} <span class="badge">{TOTAL_COMPLETED}</span>
+	</button>
+
+	<button class="btn btn-danger" type="button">
+	  {WIDGET_TOTAL_RESERVATIONS_CANCELLED} <span class="badge">{TOTAL_CANCELLED}</span>
+	</button>
+</div>
+
+</patTemplate:tmpl>

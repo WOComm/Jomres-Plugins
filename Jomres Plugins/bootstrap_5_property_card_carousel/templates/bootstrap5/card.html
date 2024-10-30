@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+    <div class="card shadow mb-3">
+        <div class="card-body">
+            <h5 class="card-title container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 text-truncate">
+                        {PROPERTY_NAME}<p>{STARSIMAGES}&nbsp;{SUPERIOR}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-truncate">
+                        {PROPERTY_REGION}</p>
+                    </div>
+                </div>
+            </h5>
+            <div class="card-text">
+                <div class="image-container ">
+                    <a href="{MOREINFORMATIONLINK}">
+                        <img src="{IMAGETHUMB}" alt="{PROPERTY_NAME}" class="card-img-top-sm" />
+                    </a>
+                </div>
+                <hr/>
+                <div class="text-truncate">{PROPERTY_DESCRIPTION}</div>
+            </div>
+            <div class="card-footer" align="center">
+                <a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{PROPERTY_NAME}">{MOREINFORMATION}</a>
+            </div>
+        </div>
+    </div>
+</patTemplate:tmpl>

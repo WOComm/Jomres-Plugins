@@ -1,0 +1,47 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+{JOMRES_POPUPURL_GLOBALVAR}
+<h2 class="page-header" style="margin-top:20px;">{PAGETITLE}</h2>
+<div class="row">
+<patTemplate:tmpl name="rows" unusedvars="strip">
+	<div class="jomres_property_list_propertywrapper photo-view col-xs-12 col-sm-12 col-md-6 col-lg-4" id="{UID}">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h2 class="panel-title"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h2>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<a href="#module_{RANDOM_IDENTIFIER}_popup" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}"><img src="{IMAGE}" alt="{PROPERTYNAME}" align="middle" class="img-responsive" /></a>
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div><span class="label label-default">{PROPERTY_TYPE}</span> <span>{STARS} {SUPERIOR}</span></div>
+						<p><em>{TOWN}, {REGION}, {COUNTRY}</em></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+						<div class="well align-center">
+							&nbsp;{PRICE_PRE_TEXT}&nbsp;
+							<span class="big-price">{PRICE_PRICE}</span>
+							&nbsp;{PRICE_POST_TEXT}&nbsp;
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<a class="btn btn-info" href="{MOREINFORMATIONLINK}">{MOREINFORMATION}</a>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal -->
+	<script>
+	   jomresJquery(document).ready(function(){
+		 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').appendTo("body");
+		});
+	</script>
+	</patTemplate:tmpl>
+</div>
+<div class="clearfix"></div>
+</patTemplate:tmpl>

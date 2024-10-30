@@ -1,0 +1,42 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<div class="modal fade" id="biggupModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-fullscreen" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-8 offset-md-1">
+							<div id="biggupModalControls" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel" data-interval="10000">
+								<div class="carousel-inner">
+									<patTemplate:tmpl name="rows" unusedvars="strip">
+										<div class="carousel-item {ACTIVE}">
+											<img class="d-block w-100 img-fluid" src="{LARGE}" alt="{LARGE}">
+										</div>
+									</patTemplate:tmpl>
+								</div>
+								<button class="carousel-control-prev" type="button" data-bs-target="#biggupModalControls" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button" data-bs-target="#biggupModalControls" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
+						</div>
+						<div class="col-3">
+							<h3>
+								{PROPERTY_NAME} {STARSIMAGES} <a href="{BOOKING_LINK}" class="btn btn-primary">{BOOKING_BUTTON_TEXT}</a>
+							</h3>
+							{REVIEWS}
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{COMMON_CLOSE}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</patTemplate:tmpl>
+

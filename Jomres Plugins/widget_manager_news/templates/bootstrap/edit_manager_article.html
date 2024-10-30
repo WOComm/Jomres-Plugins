@@ -1,0 +1,56 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<p class="lead">{WIDGET_MANAGER_NEWS_DESCRIPTION}</p>
+
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+		{JOMRESTOOLBAR}
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="article_title">{WIDGET_MANAGER_NEWS_ARTICLE_TITLE}</label>
+
+				<div class="controls">
+					<input class="input-large" type="text" name="article_title" value="{ARTICLE_TITLE}"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="article_content">{WIDGET_MANAGER_NEWS_ARTICLE_CONTENT}</label>
+
+				<div class="controls">
+					<textarea class="form-control"  name="article_content" rows="3">{ARTICLE_CONTENT}</textarea>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="article_url">{WIDGET_MANAGER_NEWS_ARTICLE_URL}</label>
+
+				<div class="controls">
+					<input class="input-large" type="text" name="article_url" value="{ARTICLE_URL}"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="alert_style">{WIDGET_MANAGER_NEWS_ARTICLE_CONTEXT}</label>
+
+				<div class="controls">
+					{ALERT_STYLE}
+				</div>
+			</div>
+		
+			<div class="control-group">
+				<label class="control-label" for="alert_style">{WIDGET_MANAGER_NEWS_TARGET_PROPERTY}</label>
+
+				<div class="controls">
+					{PROPERTYNAMES}
+				</div>
+			</div>
+			
+			<input type="hidden" name="id" value="{ID}"/>
+			<input type="hidden" name="option" value="com_jomres"/>
+			<input type="hidden" name="task" value="save_manager_news"/>
+			<input type="hidden" name="no_html" value="1"/>
+			{CSRF_TOKEN}
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

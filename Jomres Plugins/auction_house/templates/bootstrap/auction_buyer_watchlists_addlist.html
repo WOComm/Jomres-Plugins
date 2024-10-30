@@ -1,0 +1,19 @@
+<patTemplate:tmpl name="pageoutput" >
+<h2 class="page-header">New watchlist</h2>
+<form action="" method="post" name="adminForm" class="form-horizontal">
+<div class="control-group">
+	<div class="control-label">
+		{_JOMRES_AUCTIONHOUSE_LISTS_NEWLIST_NAME}
+	</div>
+	<div class="controls">
+		<input class="input-medium" type="text" id="listname" name="auction_title" value="{AUCTION_TITLE}" />
+	</div>
+</div>
+<div class="form-actions">
+	<a class="btn btn-primary" onClick="auction_page('auction_buyer_ajax_savenew_watchlist',['listname']);">
+		{_JOMRES_AUCTIONHOUSE_LISTS_SAVENEWLIST}
+	</a>
+</div>
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

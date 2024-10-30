@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+<div class="input-group mb-3">
+	<span class="input-group-text" style="background-color:transparent"><i class="fas fa-parking"></i></span>
+	<select class="form-select shadow-none" style="border-left: 0;" aria-label="{_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES}"  name="feature_uids[]" id="search_form_elements_property_features">
+		<option value="" {PLACEHOLDER_SELECTED} class="text-muted">{_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES}</option>
+	<patTemplate:tmpl name="features" unusedvars="import">
+		<option {SELECTED}  value="{ID}">{TITLE}</option>
+			<patTemplate:comment>
+				["DESCRIPTION"]=>
+				string(17) "24hr Room service"
+				["TITLE"]=>
+				string(12) "24hr service"
+				["IMAGE"]=>
+				string(69) "http://localhost/Joomla_4/jomres/uploadedimages/pfeatures//24hour.png"
+				["ID"]=>
+				int(32)
+				["CHECKED"]=>
+				string(0) ""
+				["SELECTED"]=>
+				string(0) ""
+				["ACTIVE_CLASS"]=>
+				string(13) " btn-default "
+			</patTemplate:comment>
+	</patTemplate:tmpl>
+	</select>
+</div>
+</patTemplate:tmpl>

@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('list_global_strings', '{PAGETITLE}', '{LIVESITE}');
+});
+//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<p>{INFO}</p>
+
+<table id="list_global_strings" width="100%" class="table table-striped">
+	<thead>
+        <tr>
+			<th>{HDELETE}</th>
+            <th>{HID}</th>
+            <th>{HCONSTANT}</th>
+            <th>{HLANGUAGE}</th>
+			<th>{HLANGUAGE_CONTEXT}</th>
+            <th>{HCUSTOMTEXT}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <tr>
+			<td>{DELETELINK}</td>
+            <td>{ID}</td>
+            <td>{CONSTANT}</td>
+            <td>{LANGUAGE}</td>
+			<td>{LANGUAGE_CONTEXT}</td>
+            <td>{CUSTOMTEXT}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
+</table>
+</patTemplate:tmpl>

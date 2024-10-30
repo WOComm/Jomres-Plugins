@@ -1,0 +1,23 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{_OCCUPANCIES_EDIT} : {ROOM_TYPE}</h2>
+<p>{_OCCUPANCIES_DESCRIPTION_INFO}</p>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" role="form" class="form-horizontal">
+<patTemplate:tmpl name="rows">
+<div class="form-group">
+	<label class="col-md-2 control-label" for="{GUESTTYPE_TITLE}">{GUESTTYPE_TITLE}</label>
+	<div class="col-md-10">
+		{DROPDOWN}
+	</div>
+</div>
+</patTemplate:tmpl>
+<div class="form-actions">
+	<div class="col-md-10 col-md-offset-2">
+		{JOMRESTOOLBAR}
+	</div>
+</div>
+<input type="hidden" name="room_type_id" value="{ROOM_TYPE_ID}" />
+<input type="hidden" name="task" value="occupancies_save" />
+<input type="hidden" name="no_html" value="1" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

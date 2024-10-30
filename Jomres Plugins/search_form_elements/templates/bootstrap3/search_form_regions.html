@@ -1,0 +1,12 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<div class="input-group">
+		<span class="input-group-text" style="background-color:transparent"><i class="fas fa-map-marker-alt"></i></span>
+		<select class="form-select shadow-none " style="border-left: 0;" aria-label="{_JOMRES_SEARCH_GEO_REGIONSEARCH}" name="region">
+			<option value="" {PLACEHOLDER_SELECTED}>{_JOMRES_SEARCH_GEO_REGIONSEARCH}</option>
+			<patTemplate:tmpl name="regions" unusedvars="import">
+				<option {SELECTED}  value="{VALUE}">{LABEL}</option>
+				<patTemplate:comment> This array also has the URL element, which you can use if you prefer to build a list of regions as links instead {URL}</patTemplate:comment>
+			</patTemplate:tmpl>
+		</select>
+	</div>
+</patTemplate:tmpl>

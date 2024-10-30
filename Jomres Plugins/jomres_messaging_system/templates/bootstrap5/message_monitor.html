@@ -1,0 +1,56 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">{CONVERSATION_MODAL_TITLE}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p class="alert alert-primary">{CONVERSATION_MODAL_NUDGE}</p>
+				</div>
+				<div class="modal-footer">
+					<a href="{JOMRES_SITEPAGE_URL_NOSEF}&task=list_conversations" class="btn btn-primary">{CONVERSATION_MODAL_GO}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+<script>
+    const apiToken = '{TOKEN}';
+    const api_url = "{API_URL}";
+
+    var modalShown = false;
+	
+    function getMessages() {
+        jomresClearConsole();
+        if (! jomresJquery('#contactModal').is(':visible') ) {
+            fetch(api_url + 'messaging/unread_count', {
+                timeout: 500,
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + apiToken,
+                    'User-Agent': 'Jomres messaging system'
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                msg = result.data.response;
+                if ( msg.unread_count > 0 && !modalShown ) {
+                    jomresJquery('#exampleModal').modal('show');
+                    modalShown = true;
+                    
+                }
+            })
+        }
+    }
+    
+    var myInterval = setInterval(getMessages, 5000);
+   
+    
+
+</script>
+</patTemplate:tmpl>

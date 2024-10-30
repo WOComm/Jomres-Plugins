@@ -1,0 +1,143 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<link rel="stylesheet" href="{PLUGIN_RELATIVE}/vendor/scrivo/highlight.php/styles/gruvbox-dark.css">
+	<style>
+		.img-shadow {
+			border:2px solid #fff;
+			box-shadow: 10px 10px 5px #ccc;
+			-moz-box-shadow: 10px 10px 5px #ccc;
+			-webkit-box-shadow: 10px 10px 5px #ccc;
+			-khtml-box-shadow: 10px 10px 5px #ccc;
+		}
+	</style>
+	<h2>{JOMRES_PLUGIN_INFOS}</h2>
+	<p class="lead">
+		{JOMRES_PLUGIN_INFOS_INFO}
+	</p>
+
+	<p class="alert alert-info">
+		This page pulls information from installed plugins to give you complete and up-to-date information to help you build your site.
+	</p>
+	<p>
+		Core Jomres functionality and plugins provide many ways that you can output certain parts of Jomres content, such as displaying a property's images as a slideshow, or showing search forms as <a href="{JOMRES_SITEPAGE_URL_ADMIN}&task=asamodule_report">shortcodes.</a> The list of shortcodes available differs depending on the plugins installed on your site, so please refer to the Shortcodes page in the Tools section for a definitive list of shortcodes available to this installation.
+	</p>
+
+	<p>
+	There's also a lot of other information about individual plugins, ways that they can be used and hints and tips for how to best use these plugins when building your site.
+	</p>
+
+	<p>
+	Almost all Jomres plugins are CMS agnostic, which means that they work the same on Joomla or Wordpress with minor differences. For the most part any shortcodes mentioned here will be Wordpress shortcodes.
+	</p>
+
+	<p>
+	Shortcodes in both Joomla and Wordpress are very similar, with minor differences such as the shortcode boundary brackets, {} or [] and slightly different structures of the shortcodes themselves. For example the following shortcodes will provide a set of search results searching by country, in Joomla and Wordpress respectively.
+	</p>
+
+		<code class="language-php hljs html" data-lang="php">
+			{jomres search &country=GB}
+		</code>
+		<br/>
+		<code class="language-php hljs typescript" data-lang="php">
+			[jomres task="search" params="&country=GB"]
+		</code>
+
+
+	<div class="accordion" id="plugin_infos">
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle btn btn-primary" data-toggle="collapse" data-parent="#plugin_infos" href="#{PLUGIN_NAME}">
+					{PLUGIN_FRIENDLY_NAME}
+				</a>
+			</div>
+			<div id="{PLUGIN_NAME}" class="accordion-body collapse">
+				<div class="accordion-inner" >
+					<div class="row">
+						<div class="span6" style="width:45%">
+							<div class="panel panel-primary">
+								<div class="panel-heading">Name :{PLUGIN_FRIENDLY_NAME}</div>
+								<div class="panel-body">
+									<div class="row">
+										<div class="span6" style="width:30%">
+											<em>Plugin location :</em>
+										</div>
+										<div class="span6" >
+											{LOCATION}
+										</div>
+									</div>
+									<div class="row">
+										<div class="span6" style="width:30%">
+											<em>Category :</em>
+										</div>
+										<div class="span6">
+											{PLUGIN_DATA_CATEGORY}
+										</div>
+									</div>
+									<div class="row" >
+										<div class="span6" style="width:30%">
+											<em>Version :</em>
+										</div>
+										<div class="span6">
+											{PLUGIN_DATA_VERSION}
+										</div>
+									</div>
+									<div class="row">
+										<div class="span6" style="width:30%">
+											<em>Marketing :</em>
+										</div>
+										<div class="span6">
+											{PLUGIN_DATA_MARKETING}
+										</div>
+									</div>
+									<div class="row">
+										<div class="span6" style="width:30%">
+											<em>Last update :</em>
+										</div>
+										<div class="span6">
+											{PLUGIN_DATA_LASTUPDATE}
+										</div>
+									</div>
+									<div class="row">
+										<div class="span6" style="width:30%">
+											<em>Minimum Jomres version :</em>
+										</div>
+										<div class="span6">
+											{PLUGIN_DATA_MIN_JOMRES_VER}
+										</div>
+									</div>
+									<div class="row">
+										<div class="span6" style="width:30%">
+											<em>Retired? :</em>
+										</div>
+										<div class="span6">
+											{PLUGIN_DATA_RETIRED}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span6"  style="width:45%">
+							<div class="panel panel-primary">
+								<div class="panel-heading">Changelog</div>
+								<div class="panel-body">
+									<div class="readmore-wrapper">
+										{PLUGIN_DATA_CHANGE_LOG}
+									</div>
+									<br/>
+									<div class="readmore-wrapper">
+										{SCRIPTS}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					{MARKUP}
+				</div>
+			</div>
+		</div>
+
+	</patTemplate:tmpl>
+	</div>
+</patTemplate:tmpl>

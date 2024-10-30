@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	{JOMRES_POPUPURL_GLOBALVAR}
+	<div class="card">
+		<div class="image-container " >
+			<a href="{MOREINFORMATIONLINK}">
+				<img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="card-img-top-sm" />
+			</a>
+		</div>
+		<div class="card-body">
+			<h5 class="card-title bg-success text-light">
+				{PROPERTY_NAME}<span>{STARSIMAGES}&nbsp;{SUPERIOR}</span>
+			</h5>
+			<div class="card-text">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="text-truncate">{PROPERTY_DESCRIPTION}</div>
+						<hr/>
+						{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>
+					</div>
+					<div class="col-sm-6">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</patTemplate:tmpl>

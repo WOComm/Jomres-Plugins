@@ -1,0 +1,50 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	{JOMRES_POPUPURL_GLOBALVAR}
+
+	{HEADER}
+
+	<patTemplate:comment>
+		<div class="row">
+			<div class="col-12">
+				{PAGING}
+			</div>
+		</div>
+	</patTemplate:comment>
+
+	<patTemplate:tmpl name="property_details" unusedvars="strip">
+		<div class="card mb-3 {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS} shadow" style="max-width: 550px;">
+			<div class="row g-0">
+				<div class="col-md-6">
+					{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
+				</div>
+				<div class="col-md-6">
+					<div class="card-body">
+						<h5 class="card-title"><a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" itemprop="name" style="text-decoration: none;">{PROP_NAME}</a></h5>
+						<p class="card-text">
+							<div class="row">
+								<div class="col-sm-12">
+									<span class="text-secondary">{PROPERTY_TYPE}</span><span>{STARS} {SUPERIOR}</span>
+									<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
+								</div>
+								<div class="col-sm-12">
+									<a href="{LINK}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
+								</div>
+							</div>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</patTemplate:tmpl>
+
+	<div id = "livescrolling_results" ></div>
+
+	<div class="row">
+		<div class="col-12">
+			{PAGING}
+		</div>
+	</div>
+
+	<patTemplate:comment>{HEADER}</patTemplate:comment>
+</patTemplate:tmpl>

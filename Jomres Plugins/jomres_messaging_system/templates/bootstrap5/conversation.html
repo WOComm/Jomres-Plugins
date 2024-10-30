@@ -1,0 +1,439 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- emojis code -->
+	<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+	<script type="module">
+        import 'https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js'
+        import insertText from 'https://cdn.jsdelivr.net/npm/insert-text-at-cursor@0.3.0/index.js'
+        document.querySelector('emoji-picker').addEventListener('emoji-click', e => {
+            insertText(document.querySelector('#chat-input'), e.detail.unicode)
+        })
+	</script>
+	<!-- emojis code -->
+	
+	<style>
+        .grad {
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        }
+        emoji-picker {
+            --num-columns: 6;
+            --emoji-size: 1.5rem;
+            --background: white;
+        }
+	</style>
+	<div class="msger p-1">
+		<header class="msger-header fw-bold grad text-light">
+			<div class="msger-header-title">
+				<i class="fas fa-comment-alt"></i> <span id="group-name-title" >{CONVERSATION} {TARGET_NAME}</span>
+			</div>
+			<!-- <span class="text-end ">{USER_NAME}</span> -->
+		</header>
+		<span class="text-end">
+		<div class="input-group p-2">
+   			<input type="text" class="form-control" id="Search" onkeyup="searchForm()" placeholder="{MESSAGING_SYSTEM_SEARCH_FIELD_PLACEHOLDER}" title="Type in a name">
+		</div>
+	</span>
+		
+		<div class="row d-none d-sm-block text-end" style="font-size: 12px;">
+			<div class="col-2 m-1 badge bg-success">
+				{MESSAGING_SYSTEM_USER_TYPES_REGISTERED}
+			</div>
+			<div class="col-2 badge bg-info text-dark">
+				{MESSAGING_SYSTEM_USER_TYPES_PROPERTY_MANAGER}
+			</div>
+			<div class="col-2 badge bg-warning text-light">
+				{MESSAGING_SYSTEM_USER_TYPES_ADMINISTRATOR}
+			</div>
+		</div>
+		
+		<div class="msger-header" id="group-members" >{CONVERSATIONS_MEMBERS}<div id="members" style="font-size: 12px;" ></div> </div>
+		<div class="row">
+			<div class="col-sm-8 d-block">
+				<main id="msger-chat-panel" class="msger-chat overflow-auto" >
+					<div class="msg left-msg">
+					
+					</div>
+					
+					<div class="msg right-msg" >
+					
+					</div>
+				</main>
+			
+			</div>
+			<!-- emojis code -->
+			<div class="col-4 d-none d-sm-block">
+				<emoji-picker></emoji-picker>
+			</div>
+			<!-- emojis code -->
+		</div>
+		<form class="msger-inputarea">
+			<input type="text" class="msger-input input-group" id="chat-input" placeholder="{CONVERSATIONS_PLACEHOLDER}">
+			<button type="submit" class="msger-send-btn" onsubmit="return false;">Send</button>
+		</form>
+	
+	</div>
+	
+	
+	
+	<script>
+        var msgerForm = get(".msger-inputarea");
+        var msgerInput = get(".msger-input");
+        var msgerChat = get(".msger-chat");
+        var PERSON_IMG = "{CONVERSATION_STARTER_IMAGE}";
+        var PERSON_NAME = "{USER_NAME}";
+        var api_url = "{API_URL}";
+        var apiToken = '{TOKEN}';
+        var userId = {USER_ID};
+        var targetImg = '{TARGET_IMAGE}';
+        var fetchInProgress = false;
+        var group_id = 0;
+        var property_uid = {PROPERTY_UID};
+        var group_members = {};
+        var params={};
+		
+        window.location.search
+            .replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str,key,value) {
+                    params[key] = value;
+                }
+            );
+        if (params.group_id == undefined) {
+            var group_id = 0;
+        } else {
+            var group_id = params.group_id;
+        }
+
+        msgerForm.addEventListener("submit", event => {
+            event.preventDefault();
+
+            const msgText = msgerInput.value;
+            if (!msgText) return;
+
+            appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText ,  new Date() , userId );
+            msgerInput.value = "";
+
+            if (group_id == 0) {
+                waitForGroupId();
+            }
+
+            let formData = new FormData();
+            formData.append('group_id', group_id );
+            formData.append('message_body', msgText);
+            send( 'messaging/reply/' , 'PUT' , formData );
+        });
+
+        (function() {
+            jomresClearConsole();
+
+            var w = window.innerWidth;
+            w=w*60/100;
+            document.getElementById("msger-chat-panel").style.maxHeight=w+"px";
+
+            if (group_id ==0) {
+                send( 'messaging/property/group/'+property_uid+'/' , 'GET' , [] ).then((response) => {
+                    group_id = msg.group.group_id;
+                    if (group_id == 0 ) { // There isn't an existing group for this user and this property, so we need to create a new conversation for this property
+                        newConversation();
+                    } else {
+                        send( 'messaging/group/members/'+group_id , 'GET' , [] ).then((response) => {
+                            group_members = msg.members;
+                            showGroupMembers();
+                            get_all_messages();
+                            monitorNewMessages();
+                        });
+                    }
+                });
+            } else {
+                send( 'messaging/group/members/'+group_id , 'GET' , [] ).then((response) => {
+                    group_members = msg.members;
+                    showGroupMembers();
+                    get_all_messages();
+                    // Now we'll start listening for new messages
+                    monitorNewMessages();
+                });
+            }
+        })();
+
+        function searchForm() {
+            input = document.getElementById("Search");
+            filter = input.value.toUpperCase();
+            //Show all div class target
+            $("div.target").show();
+            //All div class target that not contains filter will be hidden
+            $('div.target').each(function(index, elem){
+                if($(elem).text().toUpperCase().includes(filter)) { //Not hidden
+                } else { $(elem).hide(); }
+            });
+        }
+
+        function showGroupMembers() {
+            let members_html = ' ';
+            Object.keys(group_members).forEach(key => {
+                let badge = '';
+                let level = group_members[key]["level"];
+                if ( level == 0) { // It's a registered but non-manager user
+                    badge = 'success';
+                }
+                if ( level == 1) { // It's a property manager
+                    badge = 'info text-dark';
+                }
+                if ( level == 2) { // It's a super property manager
+                    badge = 'warning text-light';
+                }
+
+                let name = group_members[key]["name"];
+                let template = `<span class="badge bg-${badge}"> ${name} </span> `;
+                members_html = members_html+template;
+            });
+            document.getElementById('members').innerHTML = members_html;
+        }
+
+        function waitForGroupId(){
+            if(typeof group_id == 0){
+                return;
+            }
+            else{
+                setTimeout(waitForGroupId, 250);
+            }
+        }
+
+        function appendMessage(name, img, side, text , datetime , user_id ) {
+            let dateTimeUTC = new Date(datetime);
+            let d = new Date(dateTimeUTC);
+
+            let badge = '';
+
+            if (side == 'left') {
+                if (user_id == -1) {
+                    badge = 'secondary';
+                } else {
+                    let level = group_members[user_id]["level"];
+                    if ( level == 0) { // It's a registered but non-manager user
+                        badge = 'success';
+                    }
+                    if ( level == 1) { // It's a property manager
+                        badge = 'info text-dark';
+                    }
+                    if ( level == 2) { // It's a super property manager
+                        badge = 'warning text-light"';
+                    }
+                }
+            } else {
+                name = '';
+            }
+
+            const msgHTML = `
+    <div class="msg ${side}-msg target">
+      <div class="msg-img"><img src='${img}' alt="user-${name}" class="rounded mx-auto d-block" width="50" height="50"/></div>
+
+      <div class="msg-bubble  shadow">
+        <div class="msg-info">
+          <div class="msg-info-name"><span class="badge bg-${badge}">${name}</span></div>
+        </div>
+
+        <div class="msg-text text-break">${text}</div>
+        <p class="text-end" style="font-size: 10px;">${formatMsgDate(new Date(d))}</p>
+      </div>
+    </div>
+  `;
+
+            msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+            msgerChat.scrollTop += 500;
+        }
+
+        function formatMsgDate(date) {
+            let d = date.getDate();
+            let mon = date.getMonth() + 1; //Month from 0 to 11
+            let yr = date.getFullYear();
+            let hours = date.getHours();
+            let mins = date.getMinutes();
+            return '' + yr + '-' + (mon<=9 ? '0' + mon : mon) + '-' + (d <= 9 ? '0' + d : d) + ' '+hours+':'+mins;
+        }
+
+        // Utils
+        function get(selector, root = document) {
+            return root.querySelector(selector);
+        }
+
+        function formatDate(date) {
+            const h = "0" + date.getHours();
+            const m = "0" + date.getMinutes();
+
+            return `${h.slice(-2)}:${m.slice(-2)}`;
+        }
+
+        function random(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+
+        function send( endpoint , method , formData ) {
+            try {
+                if (method == 'GET' || method == 'DELETE' ) {
+                    return fetch(api_url+endpoint, {
+                        timeout: 500,
+                        method: method,
+                        headers: {
+                            'Accept': 'application/json',
+                            'Authorization': 'Bearer '+apiToken,
+                            'User-Agent': 'Jomres messaging system'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(result => {
+                            msg = result.data.response;
+                        })
+                } else {
+                    return fetch(api_url+endpoint, {
+                        timeout: 5000,
+                        method: method,
+                        headers: {
+                            'Accept': 'application/json',
+                            'Authorization': 'Bearer '+apiToken,
+                            'User-Agent': 'Jomres messaging system'
+                        },
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(result => {
+                            msg = result.data.response;
+                        })
+                }
+            } catch (error) {
+                console.log(error.name === 'AbortError');
+            }
+        }
+
+        function get_all_messages()
+        {
+            if (group_members.length == 0){
+                send( 'messaging/group/members/'+group_id , 'GET' , [] ).then((response) => {
+                    group_members = msg.members;
+                });
+            }
+
+            send( 'messaging/group/messages/'+group_id+'/0' , 'GET' , [] ).then((response) => {
+                document.title = msg.messages.group.group_name;
+                property_uid = parseInt(msg.messages.group.property_uid);
+                document.getElementById('group-name-title').innerHTML = msg.messages.group.group_name;
+                let group_messages = msg.messages.messages;
+                group_messages.forEach(element => {
+                    let alignment = 'left';
+                    if (element.creator_id == userId) {
+                        alignment = 'right';
+                    }
+
+                    appendMessage(element.creator_name, group_members[element.creator_id]["image"], alignment, element.message_body , element.create_date , element.creator_id );
+                    if (element.is_read == 0) {
+                        let formData = new FormData();
+                        formData.append('message_id', element.id);
+                        formData.append('is_read', 1);
+                        send( 'messaging/is_read/' , 'PUT' , formData );
+                    }
+
+                    //
+
+                });
+            });
+
+        }
+
+        function monitorNewMessages(){
+
+            if (group_members.length == 0){
+                send( 'messaging/group/members/'+group_id , 'GET' , [] ).then((response) => {
+                    group_members = msg.members;
+                    get_group_messages();
+                });
+            } else {
+                if (fetchInProgress != true) {
+                    get_group_messages();
+                }
+            }
+
+
+            jomresClearConsole();
+            setTimeout(monitorNewMessages, 6000);
+        }
+
+        function get_group_messages()
+        {
+            if (fetchInProgress == true) {
+                return;
+            }
+            fetchInProgress = true;
+            send( 'messaging/group/messages/'+group_id+'/1' , 'GET' , [] ).then((response) => {
+                fetchInProgress = false;
+                jomresClearConsole();
+                let group_messages = msg.messages.messages;
+                group_messages.forEach(element => {
+                    let alignment = 'left';
+                    if (element.creator_id == userId) {
+                        alignment = 'right';
+                    }
+
+                    if (element.message_body != '') {
+                        appendMessage(element.creator_name, group_members[element.creator_id]["image"], alignment, element.message_body , element.create_date , element.creator_id );
+                    }
+
+                    if (element.is_read == 0) {
+                        let formData = new FormData();
+                        formData.append('message_id', element.id);
+                        formData.append('is_read', 1);
+                        send( 'messaging/is_read/' , 'PUT' , formData );
+                    }
+                });
+            });
+        }
+
+        function newConversation()
+        {
+            let formData = new FormData();
+            formData.append('subject', 'New message for '+property_uid+' from '+userId);
+            formData.append('message', '');
+            formData.append('property_id', property_uid);
+            formData.append('is_read', 1 );
+            send( 'messaging/new_message/' , 'POST' , formData ).then((response) => {
+                group_id = msg.group_id;
+                property_uid = msg.property_uid;
+                send( 'messaging/group/members/'+group_id , 'GET' , [] ).then((response) => {
+                    group_members = msg.members;
+                    showGroupMembers();
+                    get_group_messages();
+                    startMessage();
+                    monitorNewMessages();
+                });
+            });
+        }
+
+
+
+        function startMessage()
+        {
+            startMsg = `
+            <div
+                className="msg-img"
+                style="background-image: url(${targetImg})"
+            ></div>
+
+            <div className="msg-bubble">
+                <div className="msg-info">
+                    <div className="msg-info-name">{TARGET_NAME}</div>
+                    <div className="msg-info-time"></div>
+                </div>
+
+                <div className="msg-text text-break">
+                    {WELCOME_1} <strong>{TARGET_NAME}</strong> {WELCOME_2}
+                </div>
+            </div>`;
+
+            appendMessage('{TARGET_NAME}', targetImg , 'left',  '{WELCOME_1} <strong>{TARGET_NAME}</strong>. {WELCOME_2}' , new Date() , -1 );
+        }
+	</script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</patTemplate:tmpl>

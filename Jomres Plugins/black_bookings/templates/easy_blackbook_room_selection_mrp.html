@@ -1,0 +1,15 @@
+<patTemplate:tmpl name="pageoutput" >
+<script type="text/javascript">
+jomresJquery(function(){
+	jomresJquery(".multiselect").multiselect({sortable: false, searchable: false });
+});
+</script>
+<br/>
+<div id="rooms_selection">
+	<select id="rooms" class="multiselect" multiple="multiple" name="rooms[]" style="width:350px;height:200px">
+		<patTemplate:tmpl name="rows" >
+			<option value="{ROOM_UID}">{ROOM_NO} {ROOM_NAME}</option>
+		</patTemplate:tmpl>
+	</select>
+</div>
+</patTemplate:tmpl>

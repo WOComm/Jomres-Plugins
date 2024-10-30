@@ -1,0 +1,234 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(function() {
+	if (jomresJquery("#slider-range").length) {
+		jomresJquery( "#slider-range")[0].slide = null;
+		jomresJquery( "#slider-range" ).slider({
+			range: true,
+			min: {MINPRICE},
+			max: {MAXPRICE},
+			values: [ {MINPRICE}, {MAXPRICE} ],
+			slide: function( event, ui ) {
+				jomresJquery( "#amount" ).val( "{PREPRICE}" + ui.values[ 0 ]+ "{POSTPRICE}" + " - " + "{PREPRICE}" + ui.values[ 1 ]+ "{POSTPRICE}" );
+			},
+			change: function(event,ui) {
+				value1 = jomresJquery( "#slider-range" ).slider( "values", 0 );
+				value2 = jomresJquery( "#slider-range" ).slider( "values", 1 );
+				jomresJquery('input[name$="pricerange_value_from"]').val(value1);
+				jomresJquery('input[name$="pricerange_value_to"]').val(value2);
+				submit_search('{FORM_NAME}');
+			}
+		});
+		jomresJquery( "#amount" ).val( "{PREPRICE}" + jomresJquery( "#slider-range" ).slider( "values", 0 )+ "{POSTPRICE}" +
+			" - " + "{PREPRICE}" + jomresJquery( "#slider-range" ).slider( "values", 1 )+ "{POSTPRICE}" );
+	}
+});
+
+function reset_form_buttons(form_id)
+	{
+	jomresJquery("#"+form_id+" input[type=checkbox]").each(function() {
+		var id = jomresJquery(this).attr('id');
+		if ('undefined'!=typeof(id)){
+			var val = jomresJquery(this).attr('checked');
+			if ('undefined'!=typeof(val)){
+				jomresJquery(this).attr('checked', false);
+				toggle_button_class('#button_'+id);
+				}
+			}
+		});
+	submit_search('{FORM_NAME}'); // This will save the reset options
+	}
+	
+jomresJquery(document).ready(function(){
+		jomresJquery('#flip').click(function() {
+			var link = jomresJquery(this);
+			jomresJquery('#search_panel').slideToggle('1500', "easeInOutCubic" , function() {
+				if (jomresJquery(this).is(':visible')) {
+					link.text('{_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS}');
+					}
+				else {
+					link.text('{_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS}');
+					}
+				});
+			});
+	});
+
+//-->
+</script>
+
+<style type="text/css">
+	
+.element_button {
+    min-width: 120px;
+    max-width: 180px;
+	text-align: left;
+}
+.price-range-input {
+	border:0 none !important;
+	background:none !important;
+	box-shadow:none !important;
+}
+</style>
+
+<div id="affixlink" style="z-index:99999">
+	<div class="row">
+		<div class="col-md-12">
+			<a class="btn btn-primary" onClick="submit_search('{FORM_NAME}')" >{_JOMRES_RETURN_TO_RESULTS}</a>
+			<a class="btn btn-warning" onClick="reset_form_buttons('{FORM_NAME}')" >{_JOMRES_COM_A_RESET}</a>
+			<div id="flip" class="btn btn-info">{_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS}</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<patTemplate:tmpl name="date_head" type="simpleCondition" requiredVars="_jomres_front_availability">
+			<h4 class="page-header"><a class="dates" href="#">{_JOMRES_FRONT_AVAILABILITY}</a></h4>
+			<span id="dates-content">
+				<patTemplate:tmpl name="date_rows" >
+				<div class="form-inline">
+					<div class="form-group">
+						<label class="control-label" for="arrivalDate">{_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL}</label>
+						<div class="input-group">{ARRIVALDATE}</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="departureDate">{_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE}</label>
+						<div class="input-group">{DEPARTUREDATE}</div>
+					</div>
+				</div>
+				</patTemplate:tmpl>
+			</span>
+			</patTemplate:tmpl>
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-12">
+					<patTemplate:tmpl name="stars_head" type="simpleCondition" requiredVars="_jomres_com_a_integratedsearch_bytars">
+					<h4 class="page-header"><a class="stars" href="#">{_JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS}</a></h4>
+					<div id="stars-content">
+						<patTemplate:tmpl name="stars_rows" >
+						<input type="checkbox" name="stars[]" value="{NUMBER}" {DISABLED} {CHECKED} id="{RANDOM_ID}"/> {IMAGE}{NUMBER} ({COUNT}) 
+						</patTemplate:tmpl>
+						<div>&nbsp;</div>
+					</div>
+					</patTemplate:tmpl>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<patTemplate:tmpl name="price_head" type="simpleCondition" requiredVars="_jomres_search_priceranges" >
+					<h4 class="page-header"><a class="priceranges" href="#">{_JOMRES_SEARCH_PRICERANGES}</a></h4>
+					<div id="priceranges-content">
+						<input type="hidden" name="pricerange_value_from" value="" />
+						<input type="hidden" name="pricerange_value_to" value="" />
+						<input type="text" id="amount"  class="input-medium disabled price-range-input" disabled="" value="" />
+						<div id="slider-range" class="ui-helper-clearfix"></div>
+						<div>&nbsp;</div>
+					</div>
+					</patTemplate:tmpl>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div id="search_panel" style="display:none;">
+		<div class="row">
+			<div class="col-md-2">
+				<patTemplate:tmpl name="country_head" type="simpleCondition" requiredVars="_jomres_search_geo_countrysearch" >
+				<a data-toggle="collapse" data-parent="#locale_accordion" href="#collapse_country"><h5 class="page-header">{_JOMRES_SEARCH_GEO_COUNTRYSEARCH}</h5></a>
+				</patTemplate:tmpl>
+				
+				<patTemplate:tmpl name="region_head" type="simpleCondition" requiredVars="_jomres_search_geo_regionsearch" >
+				<a data-toggle="collapse" data-parent="#locale_accordion" href="#collapse_region"><h5 class="page-header">{_JOMRES_SEARCH_GEO_REGIONSEARCH}</h5></a>
+				</patTemplate:tmpl>
+				
+				<patTemplate:tmpl name="town_head" type="simpleCondition" requiredVars="_jomres_search_geo_townsearch" >
+					<a data-toggle="collapse" data-parent="#locale_accordion" href="#collapse_town"><h5 class="page-header">{_JOMRES_SEARCH_GEO_TOWNSEARCH}</h5></a>
+				</patTemplate:tmpl>
+				
+				<patTemplate:tmpl name="room_type_head" type="simpleCondition" requiredVars="_jomres_search_rtypes" >
+				<a data-toggle="collapse" data-parent="#locale_accordion" href="#collapse_room_types"><h5 class="page-header">{_JOMRES_SEARCH_RTYPES}</h5></a>
+				</patTemplate:tmpl>
+
+				<patTemplate:tmpl name="property_type_head" type="simpleCondition" requiredVars="_jomres_search_ptypes" >
+				<a data-toggle="collapse" data-parent="#locale_accordion" href="#collapse_property_types"><h5 class="page-header">{_JOMRES_SEARCH_PTYPES}</h5></a>
+				</patTemplate:tmpl>
+
+				<patTemplate:tmpl name="guestnumber_head" type="simpleCondition" requiredVars="_jomres_com_a_integratedsearch_byguestnumber" >
+				<a data-toggle="collapse" data-parent="#locale_accordion" href="#collapse_guestnumbers"><h5 class="page-header">{_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER}</h5></a>
+				</patTemplate:tmpl>
+
+				<patTemplate:tmpl name="features_head" type="simpleCondition" requiredVars="_jomres_com_a_integratedsearch_byfeatures" >
+				<a data-toggle="collapse" data-parent="#locale_accordion" href="#collapse_features"><h5 class="page-header">{_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES}</h5></a>
+				</patTemplate:tmpl>
+			</div>
+			<div class="col-md-10">
+						
+				<div class="accordion" id="locale_accordion">
+					<div class="accordion-group">
+						<div id="collapse_country" class="panel-collapse collapse">
+							<div id="country-content">
+								<patTemplate:tmpl name="country_rows" >
+								<label class="btn element_button {ACTIVE_CLASS} btn-mini btn-default" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{COUNTRYNAME}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="countries[]" value="{COUNTRYCODE}" autocomplete=off />
+								</patTemplate:tmpl>
+							</div>
+						</div>
+						
+						<div id="collapse_region" class="panel-collapse collapse">
+							<div id="region-content">
+								<patTemplate:tmpl name="region_rows">
+								{REGIONS}
+								</patTemplate:tmpl>
+							</div>
+						</div>
+						
+						<div id="collapse_town" class="panel-collapse collapse">
+							<div id="town-content" >
+								<patTemplate:tmpl name="town_rows" >
+								{TOWNS}
+								</patTemplate:tmpl>
+							</div>
+						</div>
+						
+						<div id="collapse_room_types" class="panel-collapse collapse">
+							<div id="room_types-content" >
+							<patTemplate:tmpl name="room_type_rows" >
+								<label class="btn element_button {ACTIVE_CLASS} btn-mini btn-default" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{TITLE}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="room_type_uids[]" value="{ID}" autocomplete=off />
+								</patTemplate:tmpl>
+							</div>
+						</div>
+
+						<div id="collapse_property_types" class="panel-collapse collapse">
+							<div id="property_types-content" >
+								<patTemplate:tmpl name="property_type_rows" >
+								<label class="btn element_button {ACTIVE_CLASS} btn-mini btn-default" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{TITLE}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="property_type_uids[]" value="{ID}" autocomplete=off />
+								</patTemplate:tmpl>
+							</div>
+						</div>
+						
+						<div id="collapse_guestnumbers" class="panel-collapse collapse">
+							<div id="guestnumbers-content" >
+								<patTemplate:tmpl name="guestnumber_rows" >
+								<label class="btn element_button {ACTIVE_CLASS} btn-mini btn-default" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{NUMBER}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="guestnumbers[]" value="{NUMBER}" autocomplete=off />
+								</patTemplate:tmpl>
+							</div>
+						</div>
+						
+						<div id="collapse_features" class="panel-collapse collapse">
+							<div id="features-content" class="">
+								<patTemplate:tmpl name="features_rows" >
+								<label class="btn element_button {ACTIVE_CLASS} btn-mini btn-default" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{TITLE}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="feature_uids[]" value="{ID}" autocomplete=off />
+								</patTemplate:tmpl>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<input type="hidden" name = "search_form" value="ajax_search_composite" />
+<input type="hidden" name = "property_prefilter" value="{PROPERTY_PREFILTER}" />
+<input type="hidden" name = "ptype_prefilter" value="{PTYPE_PREFILTER}" />
+
+</patTemplate:tmpl>

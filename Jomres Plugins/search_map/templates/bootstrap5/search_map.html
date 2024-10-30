@@ -1,0 +1,194 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+    <style>
+        
+        .gm-style-iw {
+            width: 350px !important;
+            top: 0 !important;
+            left: 0 !important;
+            border-radius: 2px 2px 0 0;
+            padding: 0px !important;
+        }
+    
+    
+    </style>
+    
+    
+    <script>
+        
+        var map;
+        var AdvancedMarkerElement;
+        var markers = [];
+        var locations = [];
+        var curr_infw;
+        var gm_markers = new Array();
+        var bounds = new google.maps.LatLngBounds();
+        
+        async function initMap() {
+            var options = {
+                scrollwheel: true,
+                maxZoom: 11,
+                center: new google.maps.LatLng(0, 0),
+                mapTypeId: google.maps.MapTypeId.{MAPTYPE}{SUPPRESS_POIS},{MAP_STYLE},
+                mapId: "{EXTMAPS_MAP_ID}"
+            }
+            
+            // Request needed libraries.
+            const {Map} = await google.maps.importLibrary("maps");
+            const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
+            map = new google.maps.Map(document.getElementById('map_canvas'), options);
+            
+        }
+        
+        initMap();
+        
+        jomresJquery(document).ready(function () {
+            <!-- properties -->
+            <patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="icon" unusedvars="nbsp">
+                locations.push([{LAT},{LONG},'{POPUP}','{ICON}' , '{PROPERTY_UID}' , '{PRICE}' , `{MARKER}` ] );
+            </patTemplate:tmpl>
+            
+            for (var i = 0; i < locations.length; i++) {
+                makeMarker(locations[i]);
+            }
+            
+            {WEATHER_LAYER}
+            {PANORAMIO_LAYER}
+            {TRANSIT_LAYER}
+            {TRAFFIC_LAYER}
+            {BICYCLING_LAYER}
+        });
+        
+        
+        async function makeMarker(location) {
+            let lat = location[0];
+            let long = location[1];
+            let content = location[2];
+            let icon = location[3];
+            let property_uid = location[4];
+            let price = location[5];
+            let marker_template = location[6];
+            
+            let priceTag = document.createElement('div');
+            priceTag.className = "d-flex";
+            priceTag.innerHTML = marker_template;
+            
+            let {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
+            
+            let marker = new AdvancedMarkerElement({
+                map: map,
+                position: new google.maps.LatLng(lat, long),
+                content: priceTag,
+            });
+            gm_markers[property_uid] = marker;
+            
+            bounds.extend(new google.maps.LatLng(lat, long));
+            map.fitBounds(bounds);
+            map.panToBounds(bounds);
+            
+            
+            var infowindow = new google.maps.InfoWindow({
+                content: content,
+                maxWidth: 350,
+                maxHeight: 350,
+                property_uid: property_uid
+            });
+            google.maps.event.addListener(marker, 'click', function () {
+                if (curr_infw) {
+                    curr_infw.close();
+                } // We check to see if there is an info window stored in curr_infw, if there is, we use .close() to hide the window
+                curr_infw = infowindow; // Now we put our new info window in to the curr_infw variable
+                infowindow.open(map, marker); // Now we open the window
+                
+                let textElement = document.getElementById('#marker_' + infowindow.property_uid)
+                textElement.scrollIntoView({behavior: "smooth", block: "start"})
+            });
+            
+            
+            markers.push(marker);
+        }
+        
+        
+        function toggleHighlight(markerView, property) {
+            if (markerView.content.classList.contains("highlight")) {
+                markerView.content.classList.remove("highlight");
+                markerView.zIndex = null;
+            } else {
+                markerView.content.classList.add("highlight");
+                markerView.zIndex = 1;
+            }
+        }
+        
+        
+        jomresJquery(document).ready(function () {
+            var ajax_url = live_site_ajax + '&task=search_map_ajax';
+            const search_form_elements_countries = document.getElementById('search_form_elements_countries');
+            const search_form_elements_regions = document.getElementById('search_form_elements_regions');
+            const search_form_elements_towns = document.getElementById('search_form_elements_towns');
+            
+            search_form_elements_countries.addEventListener('change', function handleChange(event) {
+                jomresJquery.get(ajax_url + '&country=' + event.target.value, function (data) {
+                    var jsonString = JSON.parse(data);
+                    locations = [];
+                    markers.length = 0;
+                    bounds = new google.maps.LatLngBounds();
+                    for (mark in jsonString.rows) {
+                        bounds.extend(new google.maps.LatLng(jsonString.rows[mark].lat, jsonString.rows[mark].long));
+                    }
+                    map.fitBounds(bounds);
+                });
+            });
+            
+            
+            search_form_elements_regions.addEventListener('change', function handleChange(event) {
+                
+                var region = event.target.value;
+                if (region === 'undefined' || region === '') {
+                    var e = document.getElementById("search_form_elements_countries");
+                    var url = ajax_url + '&country=' + e.value;
+                } else {
+                    var url = ajax_url + '&region=' + region;
+                }
+                jomresJquery.get(url, function (data) {
+                    var jsonString = JSON.parse(data);
+                    bounds = new google.maps.LatLngBounds();
+                    for (mark in jsonString.rows) {
+                        bounds.extend(new google.maps.LatLng(jsonString.rows[mark].lat, jsonString.rows[mark].long));
+                    }
+                    map.fitBounds(bounds);
+                });
+            });
+            
+            search_form_elements_towns.addEventListener('change', function handleChange(event) {
+                var town = event.target.value;
+                if (town === 'undefined' || town === '') {
+                    var e = document.getElementById("search_form_elements_regions");
+                    var url = ajax_url + '&region=' + e.value;
+                } else {
+                    var url = ajax_url + '&town=' + town;
+                }
+                jomresJquery.get(url, function (data) {
+                    var jsonString = JSON.parse(data);
+                    bounds = new google.maps.LatLngBounds();
+                    for (mark in jsonString.rows) {
+                        bounds.extend(new google.maps.LatLng(jsonString.rows[mark].lat, jsonString.rows[mark].long));
+                        locations.push([jsonString.rows[mark].lat, jsonString.rows[mark].long, jsonString.rows[mark].POPUP, jsonString.rows[mark].ICON, jsonString.rows[mark].PROPERTY_UID, jsonString.rows[mark].PRICE, jsonString.rows[mark].MARKER]);
+                    }
+                    map.fitBounds(bounds);
+                });
+            });
+        });
+    
+    
+    </script>
+    
+    <div class="row">
+        <div id="map_canvas" style="max-height: 600px;min-height: 600px;" class="col-md-9"></div>
+        <div class="col-md-3 overflow-auto">
+            <div class="overflow-auto" style="max-height: 600px;" id="modules">
+                <patTemplate:tmpl name="property_modules" unusedvars="strip">
+                    {MODULE_DATA}
+                </patTemplate:tmpl>
+            </div>
+        </div>
+    </div>
+</patTemplate:tmpl>

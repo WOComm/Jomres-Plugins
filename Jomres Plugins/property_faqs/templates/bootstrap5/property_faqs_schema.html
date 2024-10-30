@@ -1,0 +1,17 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [<patTemplate:tmpl name="rows" unusedvars="import">{
+				"@type": "Question",
+				"name": "{QUESTION}",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "{ANSWER}"
+				}
+			},</patTemplate:tmpl>]
+		}
+	</script>
+
+</patTemplate:tmpl>

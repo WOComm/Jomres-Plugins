@@ -1,0 +1,45 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<style>
+		.sticky_login {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            -ms-transform: translate(-50%, -50%);
+            border: 2px solid #fff !important;
+            cursor: pointer;
+            font-weight: 600 !important;
+            text-align: center;
+            z-index: 10000;
+            display: block;
+            background-color: white;
+        }
+	</style>
+	
+	<!-- Button trigger modal -->
+
+	
+	<!-- Modal -->
+	<div class="modal fade" id="messengerLoginModal" tabindex="-1" aria-labelledby="messengerLoginModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					{module id={TITLE}}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{COMMON_CLOSE}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="sticky_login shadow rounded">
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messengerLoginModal">
+			<i class="fas fa-sign-in-alt" aria-hidden="true" style="font-size:18px;"></i>
+		</button>
+		
+	</div>
+</patTemplate:tmpl>

@@ -1,0 +1,26 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<p class="alert alert-warning">{INSTRUCTIONS}</p>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" role="form">
+<div class="form-group">
+	<label class="control-label" for="email_title">
+		{HEMAIL_TITLE}
+	</label>
+	<input type="text" class="form-control" name="email_title" value="{EMAIL_TITLE}" placeholder="{HEMAIL_TITLE}" />
+</div>
+<div class="form-group">
+	<label class="control-label" for="email_text">
+		{HCONTENT}
+	</label>
+	{CONTENT}
+</div>
+<div class="form-actions">
+	{JOMRESTOOLBAR}
+</div>
+<input type="hidden" name="contract_uid" value="{CONTRACT_UID}" />
+<input type="hidden" name="guestEmail" value="{GUEST_EMAIL}" />
+<input type="hidden" name="task" value="save_booking_approval" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

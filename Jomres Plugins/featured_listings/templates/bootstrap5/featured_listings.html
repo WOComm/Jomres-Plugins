@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<span class="inline-help">{_JRPORTAL_FEATUREDLISTINGS_EMPHASIS}</span><input type="text" name="emphasis" value="{FEATURED_LISTINGS_CLASS}" class="input-medium"/>
+<table width="100%" border="0" class="table table-striped">	
+	<tr>
+		<th>&nbsp;</th>
+        <th>{HORDER}</th>
+        <th>{HPROPERTYNAME}</th>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td>{CHECKBOX}</td>
+        <td><input type="text" name="orderarray[{PID}]" value="{ORDER}" class="input-mini"/></td>
+        <td>{PROPERTYNAME}</td>
+	</tr>		
+	</patTemplate:tmpl>
+</table>
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="save_featured_listings" />
+<input type="hidden" name="boxchecked" value="0">
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

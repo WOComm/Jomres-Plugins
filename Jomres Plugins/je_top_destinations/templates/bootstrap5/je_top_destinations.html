@@ -1,0 +1,18 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	
+	<div class="row">
+		<patTemplate:tmpl name="rows">
+			<div class="col-md-3 p-2">
+				<div class="card mb-3 border-0">
+					<div class="image-container ">
+						<a href="{TOWNLINK}" title="TOWN_NAME}, {REGION_NAME}, {COUNTRY}" class="stretched-link">
+							<img src="{TOWN_IMAGE_PATH}" class="card-img-top card-img-radius card-img-height"  alt="{TOWN_NAME}, {REGION_NAME}, {COUNTRY}" >
+						</a>
+						<div class="top-left text-white rounded-1 p-1">{TOWN_NAME}, {REGION_NAME}<patTemplate:comment>, {COUNTRY}</patTemplate:comment></div>
+					</div>
+				</div>
+			</div>
+		</patTemplate:tmpl>
+	</div>
+
+</patTemplate:tmpl>

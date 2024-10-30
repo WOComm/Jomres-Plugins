@@ -1,0 +1,29 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="row visible-desktop">
+	<div class="col-2"></div>
+	<div class="col-5"><strong>{_JOMRES_AUCTIONHOUSE_AUCTION_TITLE}</strong></div>
+	<div class="col-3"><strong>{_JOMRES_AUCTIONHOUSE_AUCTION_MAXIBID}</strong></div>
+	<div class="col-2"><strong>{_JOMRES_AUCTIONHOUSE_AUCTION_TIMELEFT}</strong></div>
+</div>
+
+<patTemplate:tmpl name="running_rows" unusedvars="strip">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">{VIEW_AUCTION_LINK}</h3>
+	</div>
+	<div class="panel-body">
+		<div class="col-12"><img class="img-responsive" src="{IMAGE}"/></div>
+		<div class="col-12">
+			<h4>{VIEW_AUCTION_LINK}</h4> {ANCILLARY}
+			{BR}
+			{HARRIVAL} {PACKAGE_START} {HDEPARTURE} {PACKAGE_DEPARTURE}
+		</div>
+		<div class="col-12">
+			{HIGHESTBID}<br />
+			<div class="jomres_message">{BIDSTATUS}</div>
+		</div>
+		<div class="col-12 ">{TIMEREMAINING}</div>
+	</div>
+</div>
+</patTemplate:tmpl>
+</patTemplate:tmpl>

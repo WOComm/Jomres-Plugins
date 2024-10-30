@@ -1,0 +1,17 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<div class="col-md-12">
+	<div class="row-striped">
+		<patTemplate:tmpl name="nearbyprops">
+		<div class="row">
+			<div class="col-md-8">
+				<strong><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></strong> {STARS} {DISTANCE}
+			</div>
+			<div class="col-md-4">
+				{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong> {PRICE_POST_TEXT}
+			</div>
+		</div>
+		</patTemplate:tmpl>
+	</div>
+</div>
+</patTemplate:tmpl>

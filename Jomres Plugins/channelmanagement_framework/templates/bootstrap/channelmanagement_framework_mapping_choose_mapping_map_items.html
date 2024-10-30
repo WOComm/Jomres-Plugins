@@ -1,0 +1,47 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('mapping_map_items', '{CHANNELMANAGEMENT_FRAMEWORK_MAPPING_TITLE}', '{LIVESITE}');
+});
+
+var channel = '{CHANNEL}';
+var local_jomres_type = '{LOCAL_JOMRES_TYPE}';
+var remote_item_type = '{REMOTE_ITEM_TYPE}';
+
+
+function change_item_map(remote_item_id, jomres_id) {
+console.log("Jomres item id " + jomres_id );
+	cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=channelmanagement_framework_resource_mapping_map_dictionary_item_ajax&channel=' + channel + '&remote_item_type=' + remote_item_type + '&local_jomres_type=' + local_jomres_type + '&remote_item_id=' + remote_item_id +  '&jomres_id=' + jomres_id;
+	jomresJquery.get(cmd, function (data) {
+		//	if (data == 1)
+		//		{
+		//		jomresJquery(div_name).attr("src",curr_img);
+		//		}
+	});
+}
+//-->
+</script>
+<h2 class="page-header">{CHANNELMANAGEMENT_FRAMEWORK_MAPPING_TITLE}</h2>
+
+<p class="alert alert-info">{CHANNELMANAGEMENT_FRAMEWORK_MAPPING_MAP_ITEM_TYPES_INSTRUCTIONS}</p>
+
+{JOMRESTOOLBAR}
+
+<table id="mapping_map_items" width="100%" class="table table-striped">
+	<thead>
+	<tr>
+		<th>Remote channel dictionary item</th>
+		<th>Available local items</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{REMOTE_DICTIONARY_ITEM}</td>
+			<td>{DROPDOWN}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

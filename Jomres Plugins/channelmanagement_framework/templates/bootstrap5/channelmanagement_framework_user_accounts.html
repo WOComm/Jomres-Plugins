@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{CHANNELMANAGEMENT_FRAMEWORK_USER_ACCOUNTS}</h2>
+
+
+<h3>{CHANNELMANAGEMENT_FRAMEWORK_USER_ACCOUNTS_DESC}</h3>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+	{SERVICE}
+	</patTemplate:tmpl>
+
+
+	<div class="form-actions">
+		<div class="col-md-10 col-md-offset-2">
+			{JOMRESTOOLBAR}
+		</div>
+	</div>
+	
+<input type="hidden" name="task" value="save_channel_manager_accounts" />
+<input type="hidden" name="nohtml" value="1" />
+<input type="hidden" name="return_url" value="{RETURN_URL}" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

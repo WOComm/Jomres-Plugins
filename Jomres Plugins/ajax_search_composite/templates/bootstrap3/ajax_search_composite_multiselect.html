@@ -1,0 +1,239 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+
+<script type="text/javascript">
+<!--
+jomresJquery(function() {
+	if (jomresJquery("#slider-range").length) {
+		jomresJquery( "#slider-range")[0].slide = null;
+		jomresJquery( "#slider-range" ).slider({
+			range: true,
+			min: {MINPRICE},
+			max: {MAXPRICE},
+			values: [ {MINPRICE}, {MAXPRICE} ],
+			slide: function( event, ui ) {
+				jomresJquery( "#amount" ).val( "{PREPRICE}" + ui.values[ 0 ]+ "{POSTPRICE}" + " - " + "{PREPRICE}" + ui.values[ 1 ]+ "{POSTPRICE}" );
+			},
+			change: function(event,ui) {
+				value1 = jomresJquery( "#slider-range" ).slider( "values", 0 );
+				value2 = jomresJquery( "#slider-range" ).slider( "values", 1 );
+				jomresJquery('input[name$="pricerange_value_from"]').val(value1);
+				jomresJquery('input[name$="pricerange_value_to"]').val(value2);
+				submit_search('{FORM_NAME}');
+			}
+		});
+		jomresJquery( "#amount" ).val( "{PREPRICE}" + jomresJquery( "#slider-range" ).slider( "values", 0 )+ "{POSTPRICE}" +
+			" - " + "{PREPRICE}" + jomresJquery( "#slider-range" ).slider( "values", 1 )+ "{POSTPRICE}" );
+	}
+});
+
+function reset_form_buttons(form_id)
+	{
+	jomresJquery("#"+form_id+" input[type=checkbox]").each(function() {
+		var id = jomresJquery(this).attr('id');
+		if ('undefined'!=typeof(id)){
+			var val = jomresJquery(this).attr('checked');
+			if ('undefined'!=typeof(val)){
+				jomresJquery(this).attr('checked', false);
+				toggle_button_class('#button_'+id);
+				}
+			}
+		});
+	submit_search('{FORM_NAME}'); // This will save the reset options
+	}
+	
+jomresJquery(document).ready(function(){
+		jomresJquery('#flip').click(function() {
+			var link = jomresJquery(this);
+			jomresJquery('#search_panel').slideToggle('1500', "easeInOutCubic" , function() {
+				if (jomresJquery(this).is(':visible')) {
+					link.text('{_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS}');
+					}
+				else {
+					link.text('{_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS}');
+					}
+				});
+			});
+	});
+//-->
+</script>
+
+<style type="text/css">
+.element_button {
+    min-width: 120px;
+    max-width: 180px;
+	text-align: left;
+}
+.price-range-input {
+	border:0 none !important;
+	background:none !important;
+	box-shadow:none !important;
+}
+</style>
+
+<div class="row">
+	<div class="col-md-12">
+		<a class="btn btn-primary" onClick="submit_search('{FORM_NAME}')" >{_JOMRES_RETURN_TO_RESULTS}</a>
+		<div id="flip" class="btn btn-info">{_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS}</div>
+		<patTemplate:tmpl name="date_head" type="simpleCondition" requiredVars="_jomres_front_availability">
+		<!--<h4 class="page-header"><a class="dates" href="#">{_JOMRES_FRONT_AVAILABILITY}</a></h4>-->
+		<span id="dates-content">
+			<patTemplate:tmpl name="date_rows" >
+				<div class="form-inline">
+					<div class="form-group">
+						<label class="control-label" for="arrivalDate">{_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL}</label>
+						<div class="input-group">{ARRIVALDATE}</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="departureDate">{_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE}</label>
+						<div class="input-group">{DEPARTUREDATE}</div>
+					</div>
+				</div>
+			</patTemplate:tmpl>
+		</span>
+		</patTemplate:tmpl>
+	</div>
+</div>
+<div id="search_panel" style="display:none;">
+	<div class="row">
+		<div class="col-md-4">
+			<patTemplate:tmpl name="stars_head" type="simpleCondition" requiredVars="_jomres_com_a_integratedsearch_bytars">
+			<h4 class="page-header"><a class="stars" href="#">{_JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS}</a></h4>
+			<div id="stars-content">
+				<patTemplate:tmpl name="stars_rows" >
+				<label><input type="checkbox" name="stars[]" value="{NUMBER}" {DISABLED} {CHECKED} id="{RANDOM_ID}"/> {IMAGE}{NUMBER} ({COUNT})</label><br/>
+				</patTemplate:tmpl>
+				<div>&nbsp;</div>
+			</div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="price_head" type="simpleCondition" requiredVars="_jomres_search_priceranges" >
+			<h4 class="page-header"><a class="priceranges" href="#">{_JOMRES_SEARCH_PRICERANGES}</a></h4>
+			<div id="priceranges-content">
+				<input type="hidden" name="pricerange_value_from" value="" />
+				<input type="hidden" name="pricerange_value_to" value="" />
+				<input type="text" id="amount"  class="input-medium disabled price-range-input" disabled="" value="" />
+				<div id="slider-range" class="ui-helper-clearfix"></div>
+				<div>&nbsp;</div>
+			</div>
+			</patTemplate:tmpl>
+			
+		</div>
+		<div class="col-md-8">
+
+			<patTemplate:tmpl name="country_head" type="simpleCondition" requiredVars="_jomres_search_geo_countrysearch" >
+			<div>
+				<script type="text/javascript">
+					jomresJquery(document).ready(function() {
+						jomresJquery('#countriez').multiselect( {nonSelectedText: "{_JOMRES_SEARCH_GEO_COUNTRYSEARCH}" , numberDisplayed: 10 } );
+					});
+				</script>
+				<select class="multiselect" multiple="multiple" name="countries[]" id="countriez">
+					<patTemplate:tmpl name="country_rows" >
+					<option  value="{COUNTRYCODE}" {SELECTED}>{COUNTRYNAME}</option>
+					</patTemplate:tmpl>
+				</select>
+			</div>
+			
+			</patTemplate:tmpl>
+
+			<patTemplate:tmpl name="region_head" type="simpleCondition" requiredVars="_jomres_search_geo_regionsearch" >
+			<div>
+				<script type="text/javascript">
+					jomresJquery(document).ready(function() {
+						jomresJquery('#regionsz').multiselect( {nonSelectedText: "{_JOMRES_SEARCH_GEO_REGIONSEARCH}" , numberDisplayed: 10 } );
+					});
+				</script>
+				<select class="multiselect" multiple="multiple" name="regions[]" id="regionsz">
+					<patTemplate:tmpl name="region_rows" >
+					{REGIONS}
+					</patTemplate:tmpl>
+				</select>
+			</div>
+			</patTemplate:tmpl>
+
+
+			<patTemplate:tmpl name="town_head" type="simpleCondition" requiredVars="_jomres_search_geo_townsearch" >
+			<div>
+				<script type="text/javascript">
+					jomresJquery(document).ready(function() {
+						jomresJquery('#townz').multiselect( {nonSelectedText: "{_JOMRES_SEARCH_GEO_TOWNSEARCH}" , numberDisplayed: 10 } );
+					});
+				</script>
+				<select class="multiselect" multiple="multiple" name="towns[]" id="townz">
+					<patTemplate:tmpl name="town_rows" >
+					{TOWNS}
+					</patTemplate:tmpl>
+				</select>
+			</div>
+			</patTemplate:tmpl>
+
+					
+			<patTemplate:tmpl name="room_type_head" type="simpleCondition" requiredVars="_jomres_search_rtypes" >
+			<div>
+				<script type="text/javascript">
+					jomresJquery(document).ready(function() {
+						jomresJquery('#room_typez').multiselect( {nonSelectedText: "{_JOMRES_SEARCH_RTYPES}" , numberDisplayed: 10 } );
+					});
+				</script>
+				<select class="multiselect" multiple="multiple" name="room_type_uids[]" id="room_typez">
+					<patTemplate:tmpl name="room_type_rows" >
+					<option  value="{ID}" {SELECTED}>{TITLE}</option>
+					</patTemplate:tmpl>
+				</select>
+			</div>
+			</patTemplate:tmpl>
+
+			<patTemplate:tmpl name="property_type_head" type="simpleCondition" requiredVars="_jomres_search_ptypes" >
+			<div>
+				<script type="text/javascript">
+					jomresJquery(document).ready(function() {
+						jomresJquery('#p_typez').multiselect( {nonSelectedText: "{_JOMRES_SEARCH_PTYPES}" , numberDisplayed: 10 } );
+					});
+				</script>
+				<select class="multiselect" multiple="multiple" name="property_type_uids[]" id="p_typez">
+					<patTemplate:tmpl name="property_type_rows" >
+					<option  value="{ID}" {SELECTED}>{TITLE}</option>
+					</patTemplate:tmpl>
+				</select>
+			</div>
+			</patTemplate:tmpl>
+
+			<patTemplate:tmpl name="guestnumber_head" type="simpleCondition" requiredVars="_jomres_com_a_integratedsearch_byguestnumber" >
+			<div>
+				<script type="text/javascript">
+					jomresJquery(document).ready(function() {
+						jomresJquery('#sleepz').multiselect( {nonSelectedText: "{_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER}" , numberDisplayed: 10 } );
+					});
+				</script>
+				<select class="multiselect" multiple="multiple" name="guestnumbers[]" id="sleepz">
+					<patTemplate:tmpl name="guestnumber_rows" >
+					<option  value="{NUMBER}" {SELECTED}>{NUMBER}</option>
+					</patTemplate:tmpl>
+				</select>
+			</div>
+			</patTemplate:tmpl>
+
+			<patTemplate:tmpl name="features_head" type="simpleCondition" requiredVars="_jomres_com_a_integratedsearch_byfeatures" >
+			<div>
+				<script type="text/javascript">
+					jomresJquery(document).ready(function() {
+						jomresJquery('#feetchuz').multiselect( {nonSelectedText: "{_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES}" , numberDisplayed: 10 } );
+					});
+				</script>
+				<select class="multiselect" multiple="multiple" name="feature_uids[]" id="feetchuz">
+					<patTemplate:tmpl name="features_rows" >
+					<option  value="{ID}" {SELECTED}>{TITLE}</option>
+					</patTemplate:tmpl>
+				</select>
+			</div>
+			</patTemplate:tmpl>
+		</div>
+	</div>
+</div>
+
+
+<input type="hidden" name = "search_form" value="ajax_search_composite" />
+<input type="hidden" name = "property_prefilter" value="{PROPERTY_PREFILTER}" />
+<input type="hidden" name = "ptype_prefilter" value="{PTYPE_PREFILTER}" />
+
+</patTemplate:tmpl>

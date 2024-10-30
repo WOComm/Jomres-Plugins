@@ -1,0 +1,24 @@
+
+<patTemplate:tmpl name="search">
+	<form action="{SUBMITURL}" method="get" name="{FORMNAME}" role="form" class="form-inline">
+		<input type="hidden" name="option" value="com_jomres"/>
+		{HIDDEN}
+		<div class="row">
+			<div class="form-group col-sm-12">
+				<label class="control-label" for="description">{JOMRES_SEARCH_DESCRIPTION_LABEL}</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-sm-6">
+
+				<div class="input-group search-form">{DESCRIPTION}</div>
+			</div>
+			<div class="col-sm-6">
+				{THEBUTTON}
+			</div>
+		</div>
+
+	</form>
+
+</patTemplate:tmpl>

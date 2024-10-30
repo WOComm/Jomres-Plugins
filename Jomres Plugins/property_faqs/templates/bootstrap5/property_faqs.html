@@ -1,0 +1,19 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<h2>{PROPERTY_FAQS_TITLE}</h2>
+	<div class="accordion" id="propertyFAQAccordion">
+		<patTemplate:tmpl name="rows" unusedvars="import">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="heading{COUNTER}">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{COUNTER}" aria-expanded="false" aria-controls="collapse{COUNTER}">
+						<h6>{QUESTION}</h6>
+					</button>
+				</h2>
+				<div id="collapse{COUNTER}" class="accordion-collapse collapse" aria-labelledby="heading{COUNTER}" data-bs-parent="#propertyFAQAccordion">
+					<div class="accordion-body">
+						{ANSWER}
+					</div>
+				</div>
+			</div>
+		</patTemplate:tmpl>
+	</div>
+</patTemplate:tmpl>

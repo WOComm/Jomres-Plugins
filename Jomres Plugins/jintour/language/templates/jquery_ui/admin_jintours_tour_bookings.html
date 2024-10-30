@@ -1,0 +1,82 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#admin_jintours_tour_bookings').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers",
+		"sDom": '<"H"lTfr>t<"F"ip>',
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{_JRPORTAL_CPANEL_LISTBOOKINGS}"
+				},
+				"print"
+			]
+		}
+	});
+} );
+</script>
+<h2>{_JINTOUR_PROFILES_TITLE_LIST}</h2>
+{JOMRESTOOLBAR}
+<table width="100%" class="ui-widget-content ui-corner-all" border="0">
+    <tr>
+        <td width="30%">{HPROFILE_TITLE}</td>
+        <td>{TITLE}</td>
+    </tr>
+    <tr>
+        <td>{HDATE}</td>
+        <td>{TOURDATE}</td>
+    </tr>
+    <tr>
+        <td>{HPRICE_ADULTS}</td>
+        <td>{PRICE_ADULTS}</td>
+    </tr>
+    <tr>
+        <td>{HPRICE_KIDS}</td>
+        <td>{PRICE_KIDS}</td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>{HAVLSPACES}</h3></td>
+    </tr>
+    <tr>
+        <td>{HADULTSPACES}</td>
+        <td>{SPACES_AVAILABLE_ADULTS}</td>
+    </tr>
+    <tr>
+        <td>{HCHILDSPACES}</td>
+        <td>{SPACES_AVAILABLE_KIDS}</td>
+    </tr>
+</table>
+<br />
+<table id="admin_jintours_tour_bookings" width="100%" border="0">
+	<thead>
+        <tr>
+            <th></th>
+            <th>Description</th>
+            <th>Guest name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows"  type="simpleCondition" requiredVars="editlink" unusedvars="nbsp">
+        <tr>
+            <td>{EDITLINK}</td>
+            <td>{DESCRIPTION}</td>
+            <td>{GUEST_NAME}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
+</table>
+</patTemplate:tmpl>

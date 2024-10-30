@@ -1,0 +1,76 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<p class="alert alert-info">{_JOMRES_PROPERTY_IMPORT_DESC}</p>
+<p class="alert alert-info">{_JOMRES_PROPERTY_IMPORT_CSV_FIELDS}</p>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" enctype="multipart/form-data"  class="form-horizontal">
+{JOMRESTOOLBAR}
+	<div class="control-group">
+		<label class="control-label" for="input-1">{_JOMRES_PROPERTY_IMPORT_SELECT}</label>
+		<div class="controls">
+			<input id="input-1" type="file" class="file" name="import_file">
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<label class="control-label" for="propertyType">{HPROPERTY_TYPE}</label>
+		<div class="controls">
+			{PROPERTY_TYPE_DROPDOWN}
+		</div>
+	</div>
+	<input type="hidden" name="task" value="property_import_file" />
+	{CSRF_TOKEN}
+</form>
+
+<br/><br/>
+<table class="table" width="100%">
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_NAME}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_NAME_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_ROOMS}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_ROOMS_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_PRICE}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_PRICE_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_EMAIL_ADDRESS}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_EMAIL_ADDRESS_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_STREET}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_STREET_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_TOWN}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_TOWN_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_REGION}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_REGION_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_COUNTRY}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_COUNTRY_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_POSTCODE}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_POSTCODE_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_TELEPHONE}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_TELEPHONE_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_DESCRIPTION}</td>
+			<td>{_JOMRES_PROPERTY_IMPORT_CSV_FIELD_DESCRIPTION_TYPE}</td>
+		</tr>
+
+	</tbody>
+</table>
+
+
+</patTemplate:tmpl>

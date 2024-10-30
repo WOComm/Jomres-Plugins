@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+
+	<script>
+
+		function search_form_onchange_towns(selectObject) {
+		}
+
+	</script>
+
+<input type="hidden" id="search_form_elements_countries" value="{COUNTRY}">
+<input type="hidden" id="search_form_elements_regions" value="{REGION}">
+
+<div class="row">
+	<div class="col-sm-12" id="townSelect">
+		<div class="input-group mb-3">
+			<span class="input-group-text" style="background-color:transparent"><i class="fas fa-map-marker-alt"></i></span>
+			<select class="form-select shadow-none" style="border-left: 0;" aria-label="{_JOMRES_SEARCH_GEO_TOWNSEARCH}" name="town" id="search_form_elements_towns" onChange="search_form_onchange_towns(this)";>
+				<option value="" {PLACEHOLDER_SELECTED}>{_JOMRES_SEARCH_GEO_TOWNSEARCH}</option>
+				<patTemplate:tmpl name="towns" unusedvars="import">
+					<option value="{VALUE}">{LABEL}</option>
+				</patTemplate:tmpl>
+			</select>
+		</div>
+	</div>
+</div>
+
+</patTemplate:tmpl>

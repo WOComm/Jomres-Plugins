@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<p class="alert alert-info">{TITLE}</p>
+	
+	<p class="alert alert-info">{BEDS24_LISTPROPERTIES_ASSOCIATE_ROOM_TYPES_DESC}</p>
+	<form method="post" name="adminForm" class="form-horizontal" role="form">
+		<table class="table table-condensed table-hover table-bordered">
+		 <thead>
+			<tr>
+				<th>{_BEDS24_DISPLAY_BOOKINGS_JOMRESROOMS_BEDS24TYPENAME}</th>
+				<th>{HROOMTYPEDROPDOWN}</th>
+			</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" >
+			<tr>
+				<td>{BEDS24_ROOM_TYPE}</td>
+				<td>{JOMRES_ROOM_TYPES_DROPDOWN}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+		</table>
+		<div class="form-actions">
+			<div class="col-md-10 col-md-offset-2">
+				{JOMRESTOOLBAR}
+			</div>
+		</div>
+		<input type="hidden" name="task" value="beds24v2_import_property"/>
+		<input type="hidden" name="no_html" value="1"/>
+		<input type="hidden" name="propId" value="{PROPID}"/>
+		{CSRF_TOKEN}
+	</form>
+</patTemplate:tmpl>

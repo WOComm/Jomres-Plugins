@@ -1,0 +1,76 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{_JRPORTAL_LOCAL_EVENTS_EDIT}</h2>
+<p>{NOTES}</p>
+<form method="post" name="adminForm" class="form-horizontal">
+{JOMRESTOOLBAR}
+<div class="control-group">
+	<div class="control-label">
+		{HEVENT_TITLE}
+	</div>
+	<div class="controls">
+       <input class="input-medium" type="text" name="event_title" value="{TITLE}" />
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HSTARTDATE}
+	</div>
+	<div class="controls">
+        {START_DATE}
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HENDDATE}
+	</div>
+	<div class="controls">
+        {END_DATE}
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HLATITUDE}
+	</div>
+	<div class="controls">
+        <input class="input-medium" type="text" name="latitude" value="{LATITUDE}" />
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HLONGITUDE}
+	</div>
+	<div class="controls">
+        <input class="input-medium" type="text" name="longitude" value="{LONGITUDE}" />
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HWEBSITEURL}
+	</div>
+	<div class="controls">
+        <input class="input-medium" type="text" name="websiteurl" value="{WEBSITE_URL}" />
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HEVENTLOGORELPATH}
+	</div>
+	<div class="controls">
+        <input class="input-medium" type="text" name="eventlogorelpath" value="{EVENT_LOGO}"/>
+    </div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HDESCRIPTION}
+	</div>
+	<div class="controls">
+        <textarea class="input-medium" type="text" name="description" rows="3">{DESCRIPTION}</textarea>
+    </div>
+</div>
+
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="save_local_event" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

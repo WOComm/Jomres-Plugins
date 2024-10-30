@@ -1,0 +1,34 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="javascript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('ical_import_result', '{PAGETITLE}', '{LIVESITE}');
+	});
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<table class="table table-striped" id="ical_import_result" width="100%">
+	<thead>
+		<tr>
+			<th>{_JOMRES_ICAL_RESULT_HEADER_SUMMARY}</th>
+			<th>{_JOMRES_ICAL_RESULT_HEADER_DESCRIPTION}</th>
+			<th>{_JOMRES_ICAL_RESULT_HEADER_START}</th>
+			<th>{_JOMRES_ICAL_RESULT_HEADER_END}</th>
+			<th>{_JOMRES_ICAL_RESULT_HEADER_RESULT}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows">
+		<tr>
+			<td>{SUMMARY}</td>
+			<td>{DESCRIPTION}</td>
+			<td>{DTSTART}</td>
+			<td>{DTEND}</td>
+			<td>{RESULT}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

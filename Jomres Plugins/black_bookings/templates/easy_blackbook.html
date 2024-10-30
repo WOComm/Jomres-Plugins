@@ -1,0 +1,59 @@
+<patTemplate:tmpl name="pageoutput" >
+<script type="text/javascript">
+var availableText = '{_JOMRES_AVLCAL_NOBOOKINGS}';
+var fullText = '{_JOMRES_AVLCAL_FULLYBOOKED}';
+var quarterText = '{_JOMRES_AVLCAL_QUARTER}';
+var halfText = '{_JOMRES_AVLCAL_HALF}';
+var threequarterText = '{_JOMRES_AVLCAL_THREEQUARTER}';
+var mustSelectARoom = '{_JOMRES_BLACKBOOKINGS_IMPROVED_SELECTAROOM}';
+var is_srp = {ISSRP};
+var multiselect_addall = '{_JOMRES_BLACKBOOKINGS_IMPROVED_ADDALL}';
+var multiselect_removalall = '{_JOMRES_BLACKBOOKINGS_IMPROVED_REMOVEALL}';
+var multiselect_itemsselcted = '{_JOMRES_BLACKBOOKINGS_IMPROVED_ITEMSSELCTED}';
+
+jomresJquery(document).ready(function(){
+	jomresJquery('#backend').DOPBookingCalendar({
+		'Type':'BackEnd',
+		'MonthNames':['{_JRPORTAL_MONTHS_LONG_0}', '{_JRPORTAL_MONTHS_LONG_1}', '{_JRPORTAL_MONTHS_LONG_2}', '{_JRPORTAL_MONTHS_LONG_3}', '{_JRPORTAL_MONTHS_LONG_4}', '{_JRPORTAL_MONTHS_LONG_5}', '{_JRPORTAL_MONTHS_LONG_6}', '{_JRPORTAL_MONTHS_LONG_7}', '{_JRPORTAL_MONTHS_LONG_8}', '{_JRPORTAL_MONTHS_LONG_9}', '{_JRPORTAL_MONTHS_LONG_10}', '{_JRPORTAL_MONTHS_LONG_11}'],
+		'DayNames':['{_JOMRES_COM_MR_WEEKDAYS_SUNDAY}', '{_JOMRES_COM_MR_WEEKDAYS_MONDAY}', '{_JOMRES_COM_MR_WEEKDAYS_TUESDAY}', '{_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY}', '{_JOMRES_COM_MR_WEEKDAYS_THURSDAY}', '{_JOMRES_COM_MR_WEEKDAYS_FRIDAY}', '{_JOMRES_COM_MR_WEEKDAYS_SATURDAY}'],
+		'DataURL':'{JOMRES_SITEPAGE_URL_AJAX}&task=ajax_dashboard_load',
+		'SaveURL':'{JOMRES_SITEPAGE_URL_AJAX}&task=ajax_dashboard_save',
+		'AvailableText' : '{_JOMRES_AVLCAL_NOBOOKINGS}'
+		});
+
+	jomresJquery('#refresh1').click(function(){
+		jomresJquery('#backend').html('');
+		jomresJquery('#backend').DOPBookingCalendar({'Type':'BackEnd'});
+	});
+	
+	jomresJquery.extend(jomresJquery.ui.multiselect, {
+		locale: {
+			addAll:multiselect_addall,
+			removeAll:multiselect_removalall,
+			itemsCount:multiselect_itemsselcted
+		}
+	});
+});
+</script>
+	
+<style>
+.calendar_background_quarter { background: #B1FB17 !important; }
+.calendar_background_half { background: #FFFC17 !important; }
+.calendar_background_threequarter { background: #F88017 !important; }
+.calendar_background_full { background: #FF0000 !important; }
+</style>
+
+{_JOMRES_BLACKBOOKINGS_IMPROVED_DESC}
+<br/>
+
+<div class="ui-corner-all ui-widget-header">{_JOMRES_BLACKBOOKINGS_IMPROVED_INSTRUCTIONS}</div>
+<br/>
+<div id="responses"></div>
+<br/>
+{ROOM_SELECTION}
+<br/>
+<div id="backend" style="height:500px"></div>
+
+
+
+</patTemplate:tmpl>

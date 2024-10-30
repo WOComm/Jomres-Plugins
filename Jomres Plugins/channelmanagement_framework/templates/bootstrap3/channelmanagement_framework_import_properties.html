@@ -1,0 +1,139 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		var properties_to_import = '{PROPERTY_ID_STRING}';
+		var channel_name = '{CHANNEL_NAME}';
+		var ajax_url = '{JOMRES_SITEPAGE_URL_AJAX}';
+		var loading_content = 'Please wait';
+		var property_imported = '{CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORTED}';
+		var failed_to_import = '{CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORT_FAILED}';
+		
+		function block_interface()	{
+			jomresJquery.blockUI({ 
+			message: '<h3>Importing properties</h3>Currently importing property : <div id="property_id_being_imported"></div><br/> The page will reload when the properties have been imported, but it is important that you do not interrupt the process.',
+			baseZ: 1030,
+			css: { 
+				border: 'none', 
+				padding: '15px', 
+				backgroundColor: '#000', 
+				'-webkit-border-radius': '10px', 
+				'-moz-border-radius': '10px', 
+				opacity: .8, 
+				color: '#fff' 
+			} });
+		};
+
+		function import_properties(properties_csv ){
+			if (properties_csv.length ){
+				setTimeout(function(){
+					properties = properties_csv.split(",");
+					for (var i = 0, l = properties.length; i < l; i++) {
+						property_id = properties[i];
+						if ( property_id != '' ) {
+							jomresJquery( "#property_id_being_imported" ).html( property_id );
+							jomresJquery.ajax({ url: '{JOMRES_SITEPAGE_URL_AJAX}&task=channelmanagement_framework_import_property_ajax&remote_property_id=' + property_id + '&channel_name='+channel_name, success: function (data) {
+								json = JSON.parse(data);
+								if (json.success == true ) {
+									populateDiv("wrapper_"+ property_id , '<div class="alert alert-success">'+property_imported+'</div>');
+								} else {
+									populateDiv("wrapper_"+ property_id , '<div class="alert alert-danger">'+failed_to_import+' '+json.message+'</div>');
+								}
+
+								return (data);
+							}, async: false
+							});
+						}
+						if ( i == properties.length-1 ) {
+							return true;
+						}
+					}
+				},3000);
+			}
+			else 
+	 			jomresJquery.unblockUI();
+	 			return false;
+		}
+
+		function import_remote_properties(){
+			block_interface();
+			$result = import_properties(properties_to_import);
+			if ( $result == true ) {
+				window.location = '{JOMRES_SITEPAGE_URL}&task=channelmanagement_framework';
+			}
+		}
+
+		function import_property(property_uid) {
+			// console.log("property uid" + property_uid );
+			$result = import_properties(property_uid + ",");
+		}
+		
+		jomresJquery('.btn').on('click', function() {
+			var $this = jomresJquery(this);
+			$this.button('loading');
+			setTimeout(function() {
+			   $this.button('reset');
+		   }, 8000);
+		});
+
+		jomresJquery(document).ready(function () {
+			make_datatable('list_remote_properties', 'Junk', '{LIVESITE}');
+		});
+
+
+		//-->
+	</script>
+
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<style>
+	.modal-body {
+		max-height: 600px;
+		overflow-y: auto;
+		}
+		
+	</style>
+
+	<div class="row-fluid">
+		<div class="col-md-12">
+			<a href="javascript:void(0);" onclick="import_remote_properties();" id="import_properties" class="btn btn-primary btn-large">Import properties</a>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+		<div class="col-md-12">
+			<div class="alert alert-info">
+				{CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORT_UNPUBLISHED_CANNOT_IMPORT}
+			</div>
+		</div>
+	</div>
+	<table id="list_remote_properties" width="100%" class="table table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th>{_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID}</th>
+				<th>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME}</th>
+				<th>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN}</th>
+				<th>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION}</th>
+				<th>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY}</th>
+				<th>{_JOMRES_FRONT_PTYPE}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<patTemplate:tmpl name="property_names" unusedvars="strip">
+			<tr>
+				<td>
+					<div id="wrapper_{REMOTE_PROPERTY_ID}">
+						<button class="btn btn-default" {DISABLED} onClick="import_property({REMOTE_PROPERTY_ID});">{CHANNELMANAGEMENT_FRAMEWORK_PROPERTY_IMPORT_ONE}</button>
+					</div>
+				</td>
+				<td>{REMOTE_PROPERTY_ID}</td>
+				<td>{REMOTE_PROPERTY_NAME}</td>
+				<td>{REMOTE_TOWN}</td>
+				<td>{REMOTE_REGION}</td>
+				<td>{REMOTE_COUNTRY}</td>
+				<td>{REMOTE_TYPE}</td>
+			</tr>
+			</patTemplate:tmpl>
+		</tbody>
+	</table>
+
+</patTemplate:tmpl>

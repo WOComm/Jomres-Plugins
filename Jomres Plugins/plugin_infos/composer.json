@@ -1,0 +1,6 @@
+{
+    "require": {
+        "league/commonmark": "^2.3",
+        "spatie/commonmark-highlighter": "^3.0"
+    }
+}

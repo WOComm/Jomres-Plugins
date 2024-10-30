@@ -1,0 +1,42 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header" id="tour_target_local_events">{PAGETITLE}</h2>
+<div class="row-striped">
+	<div class="row-fluid visible-desktop">
+		<div class="span3">
+			<strong>{HEVENT_TITLE}</strong>
+		</div>
+		<div class="span3">
+			<strong>{HSTARTDATE}</strong>
+		</div>
+		<div class="span3">
+			<strong>{HENDDATE}</strong>
+		</div>
+		<div class="span3">
+			&nbsp;
+		</div>
+	</div>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<div class="row-fluid">
+		<div class="span3">
+			<a href="#event_{ID}" role="button" data-toggle="modal"><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/information.png"/></a> <a href="http://{WEBSITE_URL}" target="_blank">{TITLE}</a>
+		</div>
+		<div class="span3">
+			{START_DATE}
+		</div>
+		<div class="span3">
+			{END_DATE}
+		</div>
+		<div class="span3">
+			<img src="http://{EVENT_LOGO}" width="50" height="50"/>
+		</div>
+	</div>
+	<div id="event_{ID}" class="modal hide">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<h4">{TITLE}</h4>
+		</div>
+		<p>{DESCRIPTION}</p>
+	</div>
+	</patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>

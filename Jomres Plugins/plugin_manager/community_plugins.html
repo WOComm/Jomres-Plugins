@@ -1,0 +1,179 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	
+	<h2 class="page-header">Community Plugins</h2>
+	
+	<p class='alert alert-info'>This page allows you to upload plugins from your server to the Community Hub. Users can then download your contributions through the Jomres plugin manager. If you're a developer and you want to drive business to your website to sell plugins then uploading free plugins via this feature is an excellent way of bringing customers to your site.</p>
+	<p>
+		When you visit this page, Jomres will scan the /jomres/remote_plugins directory. Any subdirectories found there are assumed to be individual plugins. If a plugin_info.php file is found in a subdirectory, then it will be used to populate forms below this information section (if they exist).
+		Plugin names are based on the name of the directory they reside in, so you are advised to give directories unique names.
+	</p>
+	
+	<p>
+		You can then choose to upload that plugin to the Community Plugins Hub. This will allow other Jomres users to download your plugin through their Jomres installation.
+	</p>
+	
+	<p>
+		If you have uploaded a plugin and you want to remove it again, visit the "Dashboard > Your Community Plugins" page and click the "Delete" button next to the plugin you want to remove. Once you have done that, the plugin will no longer be available to other users to download, however it will still be installed on your Jomres installation, and any other site that installed it before you deleted it from the Hub.
+	</p>
+	
+	<p>
+		When you click Upload to upload the plugin, the plugin info file will be updated with the information you have entered. The plugin will be zipped up and uploaded to the Community Hub. If the plugin already exists in the Community Hub against your license server account then it will be updated with the new information. Plugins you upload are associated with your account, so you can update them at any time.
+	</p>
+	
+	<p class='alert alert-warning'>By using this form you confirm that you are the copyright holder, or authorised by the copyright holder, to upload this plugin. You also confirm that this plugin will be offered, for free, to other Jomres users. Jomres.net retain the right to remove any and all plugins, at our discretion, and we reserve the right to moderate submissions. Any abuse detected will result in immediate account termination, regardless of the state of any active licenses.</p>
+	
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+		<hr/>
+		<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm{RANDOM_IDENTIFIER}" class="row g-3 needs-validation" novalidate>
+			<div class="row  pt-3 mb-3">
+				<div class="col">
+					<label for="plugin_name" class="form-label">Plugin name</label>
+					<input type="text" class="form-control" name="plugin_name" id="plugin_name" value="{PLUGIN_NAME}" disabled>
+				</div>
+			</div>
+			<div class="row  pt-3 mb-3">
+				<div class="col">
+					<label for="location" class="form-label">Plugin location</label>
+					<input type="text" class="form-control" name="location" id="location" value="{LOCATION}" disabled aria-describedby="locationHelp">
+					<div id="locationHelp" class="form-text">For your information</div>
+				</div>
+			</div>
+			
+			<div class="row mb-3">
+				<div class="col">
+					<label for="marketing" class="form-label">Tagline</label>
+					<input type="text" class="form-control" name="marketing" id="marketing" value="{MARKETING}" aria-describedby="marketingHelp">
+					<div id="marketingHelp" class="form-text">A short description of the plugin, typically used on pages where plugins are displayed</div>
+				</div>
+				<div class="col">
+					<div class="has-validation">
+						<label for="version" class="form-label">Version</label>
+						<input type="text" class="form-control" name="version" id="version" value="{VERSION}" required aria-describedby="versionHelp">
+						<div id="versionHelp" class="form-text">Use a version number like 1.1 or 2.4</div>
+						<div class="invalid-feedback">
+							Please set a version number
+						</div>
+					</div>
+				</div>
+			
+			</div>
+			<div class="row mb-3">
+				<div class="col">
+					<label for="description" class="form-label">Description</label>
+					<textarea class="form-control" name="description" id="description" style="height: 100px" required aria-describedby="descriptionHelp">{DESCRIPTION}</textarea>
+					<div id="descriptionHelp" class="form-text">This information will be displayed in the plugin manager, More Info popup modal</div>
+				</div>
+			</div>
+			
+			<div class="row mb-3">
+				<div class="col">
+					<div class="has-validation">
+						<label for="lastupdate" class="form-label">Last update</label>
+						<input type="text" class="form-control" name="lastupdate" id="lastupdate" value="{LASTUPDATE}" required aria-describedby="lastupdateHelp">
+						<div id="lastupdateHelp" class="form-text">Must be in the format of YYYY/MM/DD, e.g. 2023/06/20</div>
+						<div class="invalid-feedback">
+							Please set the last updated date
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="has-validation">
+						<label for="min_jomres_ver" class="form-label">Minimum Jomres Version</label>
+						<input type="text" class="form-control" name="min_jomres_ver" id="min_jomres_ver" value="{MIN_JOMRES_VER}" required aria-describedby="min_jomres_verHelp">
+						<div id="min_jomres_verHelp" class="form-text">e.g. 10.7.1</div>
+						<div class="invalid-feedback">
+							If in doubt, set this to the current version of Jomres
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row mb-3">
+				<div class="col">
+					<label for="change_log" class="form-label">Changelog</label>
+					<input type="text" class="form-control" name="change_log" id="change_log" value="{CHANGE_LOG}">
+				</div>
+				<div class="col">
+					<div class="has-validation">
+						<label for="author" class="form-label">Author</label>
+						<input type="text" class="form-control" name="author" id="author" value="{AUTHOR}" required  aria-describedby="authorHelp">
+						<div id="authorHelp" class="form-text">Your name or brand</div>
+						<div class="invalid-feedback">
+							This field is required
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row mb-3">
+				<div class="col">
+					<div class="has-validation">
+						<label for="authoremail" class="form-label">Author Email</label>
+						<input type="text" class="form-control" name="authoremail" id="authoremail" value="{AUTHOREMAIL}" required aria-describedby="authoremailHelp">
+						<div id="authoremailHelp" class="form-text">An address that customers can use to contact you</div>
+						<div class="invalid-feedback">
+							This field is required
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<label for="authorurl" class="form-label">Author url</label>
+					<input type="text" class="form-control" name="authorurl" id="authorurl" value="{AUTHORURL}">
+				</div>
+			</div>
+			
+			<div class="row mb-3">
+				<div class="col-12">
+					<label for="flexCheckDefaultBS2" class="form-label">Compatability</label>
+					<div class="form-check form-check-inline form-switch">
+						<input class="form-check-input" type="checkbox" value="2" name="compatability[]" id="flexCheckDefaultBS2" {BS2_CHECKED}>
+						<label class="form-check-label" for="flexCheckDefaultBS2">
+							Bootstrap 2
+						</label>
+					</div>
+					<div class="form-check form-check-inline form-switch">
+						<input class="form-check-input" type="checkbox" value="3" name="compatability[]" id="flexCheckDefaultBS3" {BS3_CHECKED}>
+						<label class="form-check-label" for="flexCheckDefaultBS3">
+							Bootstrap 3
+						</label>
+					</div>
+					<div class="form-check form-check-inline form-switch">
+						<input class="form-check-input" type="checkbox" value="5" name="compatability[]" id="flexCheckDefaultBS5" {BS5_CHECKED}>
+						<label class="form-check-label" for="flexCheckDefaultBS5">
+							Bootstrap 5
+						</label>
+					</div>
+					<div id="compatabilityHelp" class="form-text">If the plugin uses template files, indicate which versions of Bootstrap are supported</div>
+				</div>
+			</div>
+			
+			<input type="hidden" name="plugin" value="{PLUGIN_NAME}">
+			<input type="hidden" name="task" value="upload_plugin"/>
+			{CSRF_TOKEN}
+			<button type="submit" class="btn btn-primary">Upload</button>
+		</form>
+	
+	</patTemplate:tmpl>
+	
+	<script type="text/javascript">
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+	</script>
+</patTemplate:tmpl>

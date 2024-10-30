@@ -1,0 +1,322 @@
+<?php
+
+
+	class NBE_PropertyItemsOutputStrings
+	{
+		public function __construct(  $jrConfig  = array(), $mrConfig  = array(), $thisJRUser = object, $accommodation_tax_rate = 0.00 )
+		{
+			if (empty($jrConfig)) {
+				throw new NBE_BookingEngineException("Site configuration array is empty");
+			}
+
+			if (empty($mrConfig)) {
+				throw new NBE_BookingEngineException("Property configuration array is empty");
+			}
+
+			if (!isset($thisJRUser->accesslevel)) {
+				throw new NBE_BookingEngineException("User object does not appear to be instantiated");
+			}
+
+			$tax_output = '';
+			if ($accommodation_tax_rate > 0) {
+				$tax_output = ' ('.$accommodation_tax_rate.'%)';
+			}
+
+			$output = array();
+			if ($mrConfig[ 'wholeday_booking' ] == '1') {
+				$output[ 'HARRIVALDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY');
+			} else {
+				$output[ 'HARRIVALDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL');
+			}
+			if ($mrConfig[ 'showdepartureinput' ] == '1') {
+				if ($mrConfig[ 'fixedPeriodBookings' ] == '1') {
+					$output[ 'HDEPARTUREDATE' ] = jr_gettext('_JOMRES_FRONT_MR_FIXEDPRIOD1', '_JOMRES_FRONT_MR_FIXEDPRIOD1');
+				} else {
+					if ($mrConfig[ 'wholeday_booking' ] == '1') {
+						$output[ 'HDEPARTUREDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY');
+					} else {
+						$output[ 'HDEPARTUREDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE');
+					}
+				}
+			} else {
+				$output[ 'HDEPARTUREDATE' ] = '&nbsp;';
+			}
+
+			$output[ 'BOOKINGHEADER' ] = jr_gettext('_JOMRES_COM_MR_QUICKRESDESC', '_JOMRES_COM_MR_QUICKRESDESC');
+			$output[ 'ADDRESSHEADER' ] = jr_gettext('_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS', '_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS');
+			$output[ 'HEXTITLE' ] = jr_gettext('_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP', '_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP');
+
+			$output[ 'REQUIREDTEXT' ] = jr_gettext('_JOMRES_JAVASCRIPT_', '_JOMRES_JAVASCRIPT_');
+			if ($mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == '0') {
+				if ($mrConfig[ 'wholeday_booking' ] == '1') {
+					$output[ 'BILLING_ROOM' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY');
+				} else {
+					$output[ 'BILLING_ROOM' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM', '_JOMRES_AJAXFORM_BILLING_ROOM');
+				}
+			}
+			$output[ 'BILLING_ROOMTOTAL' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL');
+			if ($mrConfig[ 'showExtras' ] == '1') {
+				$output[ 'BILLING_EXTRAS' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_EXTRAS', '_JOMRES_AJAXFORM_BILLING_EXTRAS');
+			}
+			if (get_showtime('include_room_booking_functionality')) {
+				$output[ 'BILLING_TAX' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX', '_JOMRES_AJAXFORM_BILLING_TAX');
+			}
+
+			$output[ 'BILLING_DISCOUNT' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT', '_JOMRES_AJAXFORM_BILLING_DISCOUNT');
+
+			$output[ 'BILLING_TOTAL' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL', '_JOMRES_AJAXFORM_BILLING_TOTAL');
+			if ($mrConfig[ 'chargeDepositYesNo' ] == '1') {
+				$output[ 'DEPOSIT' ] = jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED');
+			}
+			//$output['CURRENCY_SYMBOL']		=$mrConfig['currency'];
+			$output[ 'BILLING_TOTALINPARTY' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY');
+			$output[ 'AJAXFORM_PARTICULARS' ] = jr_gettext('_JOMRES_AJAXFORM_PARTICULARS', '_JOMRES_AJAXFORM_PARTICULARS');
+			$output[ 'AJAXFORM_PARTICULARS_DESC' ] = jr_gettext('_JOMRES_AJAXFORM_PARTICULARS_DESC', '_JOMRES_AJAXFORM_PARTICULARS_DESC');
+			$output[ 'AJAXFORM_AVAILABLE' ] = jr_gettext('_JOMRES_AJAXFORM_AVAILABLE', '_JOMRES_AJAXFORM_AVAILABLE');
+			if ($thisJRUser->is_partner) {
+				$output[ 'AJAXFORM_ADDRESS' ] = jr_gettext('_JOMRES_PARTNERS_GUEST_ADDRESS', '_JOMRES_PARTNERS_GUEST_ADDRESS');
+			} else {
+				$output[ 'AJAXFORM_ADDRESS' ] = jr_gettext('_JOMRES_AJAXFORM_ADDRESS', '_JOMRES_AJAXFORM_ADDRESS');
+			}
+			$output[ 'AJAXFORM_ADDRESS_DESC' ] = jr_gettext('_JOMRES_AJAXFORM_ADDRESS_DESC', '_JOMRES_AJAXFORM_ADDRESS_DESC', false);
+
+			if ($mrConfig[ 'singleRoomProperty' ] == '0') {
+				$output[ 'AJAXFORM_AVAILABLEROOMS' ] = jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS', '_JOMRES_AJAXFORM_AVAILABLEROOMS');
+				$output[ 'AJAXFORM_SELECTEDROOMS' ] = jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS', '_JOMRES_AJAXFORM_SELECTEDROOMS', false);
+				$output[ 'AJAXFORM_AVAILABLE_DESC' ] = jr_gettext('_JOMRES_AJAXFORM_AVAILABLE_DESC', '_JOMRES_AJAXFORM_AVAILABLE_DESC', false);
+				$output[ 'AJAXFORM_INSTRUCTIONS' ] = jr_gettext('_JOMRES_AJAXFORM_INSTRUCTIONS', '_JOMRES_AJAXFORM_INSTRUCTIONS');
+			} else {
+				$output[ 'AJAXFORM_AVAILABLEROOMS' ] = '';
+				$output[ 'AJAXFORM_SELECTEDROOMS' ] = '';
+				$output[ 'AJAXFORM_AVAILABLE_DESC' ] = jr_gettext('_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP', '_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP', false);
+				$output[ 'AJAXFORM_INSTRUCTIONS' ] = jr_gettext('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', '_JOMRES_AJAXFORM_INSTRUCTIONS_SRP');
+			}
+
+			$output[ 'ACCOMMODATION_TOTAL' ] = jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', '_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL').$tax_output;
+
+			switch ($mrConfig['booking_form_daily_weekly_monthly']) {
+				case 'D':
+					if ($mrConfig[ 'wholeday_booking' ] == '1') {
+						$output[ 'ACCOMMODATION_NIGHTS' ] = jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY', '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY');
+					} else {
+						$output[ 'ACCOMMODATION_NIGHTS' ] = jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS');
+					}
+					break;
+				case 'W':
+					$output[ 'ACCOMMODATION_NIGHTS' ] = jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS');
+					break;
+				case 'M':
+					$output[ 'ACCOMMODATION_NIGHTS' ] = jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS');
+					break;
+			}
+
+			if ($mrConfig[ 'perPersonPerNight' ] == '0') {
+				switch ($mrConfig['booking_form_daily_weekly_monthly']) {
+					case 'D':
+						if ($mrConfig[ 'wholeday_booking' ] == '1') {
+							$output[ 'ACCOMMODATION_PERROOM' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY');
+						} else {
+							$output[ 'ACCOMMODATION_PERROOM' ] = jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY');
+						}
+						break;
+					case 'W':
+						$output[ 'ACCOMMODATION_PERROOM' ] = jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY');
+						break;
+					case 'M':
+						$output[ 'ACCOMMODATION_PERROOM' ] = jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY');
+						break;
+				}
+			} else {
+				switch ($mrConfig['booking_form_daily_weekly_monthly']) {
+					case 'D':
+						if ($mrConfig[ 'wholeday_booking' ] == '1') {
+							$output[ 'ACCOMMODATION_PERROOM' ] = jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON').' '.jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY');
+						} else {
+							$output[ 'ACCOMMODATION_PERROOM' ] = jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON').' '.jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY');
+						}
+						break;
+					case 'W':
+						$output[ 'ACCOMMODATION_PERROOM' ] = jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON').' '.jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY');
+						break;
+					case 'M':
+						$output[ 'ACCOMMODATION_PERROOM' ] = jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON').' '.jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY');
+						break;
+				}
+			}
+
+			$output[ 'PRICE_SUMMARY' ] = jr_gettext('_JOMRES_AJAXFORM_PRICE_SUMMARY', '_JOMRES_AJAXFORM_PRICE_SUMMARY');
+
+			$output[ 'ERRORBACKGROUNDCOLOUR' ] = $mrConfig[ 'inputBoxErrorBackground' ];
+			$output[ 'INPUTOKTOBOOK_BACKGROUND' ] = $mrConfig[ 'inputBoxOktobookBackground' ];
+
+			if ($mrConfig[ 'wholeday_booking' ] == '1') {
+				if ($mrConfig[ 'booking_form_daily_weekly_monthly' ] == 'D') {
+					$output[ 'STAYDAYS' ] = jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY');
+				} elseif ($mrConfig[ 'booking_form_daily_weekly_monthly' ] == 'W') {
+					$output[ 'STAYDAYS' ] = jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS');
+				} else {
+					$output[ 'STAYDAYS' ] = jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS');
+				}
+			} else {
+				if ($mrConfig[ 'booking_form_daily_weekly_monthly' ] == 'D') {
+					$output[ 'STAYDAYS' ] = jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS');
+				} elseif ($mrConfig[ 'booking_form_daily_weekly_monthly' ] == 'W') {
+					$output[ 'STAYDAYS' ] = jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS');
+				} else {
+					$output[ 'STAYDAYS' ] = jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS');
+				}
+			}
+
+			if ($mrConfig[ 'requireApproval' ] == '1' && !$thisJRUser->userIsManager) {
+				$output[ 'REVIEW_BOOKING_BUTTON' ] = jr_gettext('_JOMRES_BOOKING_ENQUIRY_REVIEW', '_JOMRES_BOOKING_ENQUIRY_REVIEW', false, false);
+			} else {
+				$output[ 'REVIEW_BOOKING_BUTTON' ] = jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false);
+			}
+
+			$output[ 'CREATE_BOOKING_BUTTON' ] = jr_gettext('_JOMRES_COM_MR_CONFIRMBOOKING', '_JOMRES_COM_MR_CONFIRMBOOKING', false, false);
+
+			$output[ 'ROOM_TOTAL_INC_TAX' ] = jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', '_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', false, false);
+			if ($jrConfig[ 'show_tax_in_totals_summary' ] == '1') {
+				$output[ 'ROOM_TOTAL_EX_TAX' ] = jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', '_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', false, false);
+				$output[ 'ROOM_TOTAL_ACCOM_TAX' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', '_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', false, false);
+				$output[ 'EXTRAS_TAX' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS', '_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS');
+			}
+			$output[ '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM' ] = jr_gettext('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM', '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM', false, false);
+			$output[ '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS' ] = jr_gettext('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS', '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS', false, false);
+			if ($mrConfig[ 'chargeDepositYesNo' ] == '1') {
+				$output[ '_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE' ] = jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE', '_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE', false, false);
+			}
+			$output[ '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' ] = jr_gettext('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER', '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER', false, false);
+
+			if (get_showtime('include_room_booking_functionality') && $mrConfig['singlePersonSuppliment'] == '1') {
+				$output[ 'SINGLE_PERSON_SUPPLIMENT' ] = jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST');
+			}
+
+			$output[ 'ESTIMATEWARNING' ] = jr_gettext('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING', '_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING' ,false );
+
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', false, false);
+
+			$output[ 'JOMRES_CHILDREN_BOOKING_FORM_LABEL' ] = jr_gettext('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'JOMRES_CHILDREN_BOOKING_FORM_LABEL', false, false);
+			$output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL' ] = jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL', 'JOMRES_GUEST_BOOKING_FORM_LABEL', false, false);
+			$output[ 'JOMRES_GUEST_BOOKING_FORM_LABELINFO' ] = jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'JOMRES_GUEST_BOOKING_FORM_LABELINFO', false, false);
+			$output[ '_JOMRES_HLIST_GUESTS' ] = jr_gettext('_JOMRES_HLIST_GUESTS', '_JOMRES_HLIST_GUESTS', false, false);
+
+			$output[ 'JOMRES_CITY_TAX_MODEL_PER_NIGHT' ] = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_NIGHT', false, false);
+
+
+
+			if (!isset($mrConfig['city_tax_value'])) {
+				$mrConfig['city_tax_value'] = 0;
+			}
+
+			$city_tax_model_string = '';
+
+			if ($mrConfig['city_tax_value'] > 0 ) {
+				if (!isset($mrConfig[ 'city_tax_models' ])) {
+					$mrConfig[ 'city_tax_models' ] = 'single';
+				}
+
+
+				switch ($mrConfig[ 'city_tax_models' ]) {
+					case 'single' :
+						$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_SINGLE', 'JOMRES_CITY_TAX_MODEL_SINGLE', false);
+						break;
+					case 'pernight' :
+						$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_NIGHT', false) ;
+						break;
+					case 'perguest' :
+						$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'JOMRES_CITY_TAX_MODEL_PER_GUEST', false) ;
+						break;
+					case 'perguestpernight' :
+						$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', false) ;
+						break;
+					case 'percentbookingtotal' :
+						$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', false);
+						break;
+				}
+
+				$city_tax_model_string .= " (".$mrConfig['city_tax_value'].")" ;
+			}
+
+			$output[ 'JOMRES_CITY_TAX_HEADING' ] = jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false, false)." : ".$city_tax_model_string;
+			$output[ 'JOMRES_CLEANING_FEE_HEADING' ] = jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false, false);
+			$output[ 'JOMRES_BOOKING_FORM_CHILDREN_AGES' ] = jr_gettext('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'JOMRES_BOOKING_FORM_CHILDREN_AGES', false, false);
+			$output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS' ] = jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', false, false);
+
+			$output[ '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL' ] = jr_gettext('_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', false, false);
+			$output[ '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL' ] = jr_gettext('_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', false, false);
+			$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL', false, false);
+			$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL', false, false);
+			$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL', false, false);
+			$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', false, false);
+			$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', false, false);
+			$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', false, false);
+			$output[ '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', false, false);
+			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false, false);
+			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false, false);
+
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', false, false);
+			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', false, false);
+
+
+			$output['LABEL_ADULTS']		= jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS' , false );
+			$output['LABEL_CHILDREN']	= jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN' , false );
+
+			$output[ 'COMMON_PLACEHOLDER_PROPERTYNAME'] = jr_gettext('COMMON_PLACEHOLDER_PROPERTYNAME', 'COMMON_PLACEHOLDER_PROPERTYNAME', false);
+			$output[ 'COMMON_PLACEHOLDER_FIRSTNAME' ] = jr_gettext('COMMON_PLACEHOLDER_FIRSTNAME', 'COMMON_PLACEHOLDER_FIRSTNAME', false);
+			$output[ 'COMMON_PLACEHOLDER_SURNAME' ] = jr_gettext('COMMON_PLACEHOLDER_SURNAME', 'COMMON_PLACEHOLDER_SURNAME', false);
+			$output[ 'COMMON_PLACEHOLDER_HOUSENUMBER' ] = jr_gettext('COMMON_PLACEHOLDER_HOUSENUMBER', 'COMMON_PLACEHOLDER_HOUSENUMBER', false);
+			$output[ 'COMMON_PLACEHOLDER_STREET' ] = jr_gettext('COMMON_PLACEHOLDER_STREET', 'COMMON_PLACEHOLDER_STREET', false);
+			$output[ 'COMMON_PLACEHOLDER_TOWN' ] = jr_gettext('COMMON_PLACEHOLDER_TOWN', 'COMMON_PLACEHOLDER_TOWN', false);
+			$output[ 'COMMON_PLACEHOLDER_LANDLINE' ] = jr_gettext('COMMON_PLACEHOLDER_LANDLINE', 'COMMON_PLACEHOLDER_LANDLINE', false);
+			$output[ 'COMMON_PLACEHOLDER_MOBILE' ] = jr_gettext('COMMON_PLACEHOLDER_MOBILE', 'COMMON_PLACEHOLDER_MOBILE', false);
+			$output[ 'COMMON_PLACEHOLDER_EMAIL' ] = jr_gettext('COMMON_PLACEHOLDER_EMAIL', 'COMMON_PLACEHOLDER_EMAIL', false);
+			$output[ 'COMMON_PLACEHOLDER_POSTCODE' ] = jr_gettext('COMMON_PLACEHOLDER_POSTCODE', 'COMMON_PLACEHOLDER_POSTCODE', false);
+
+			$output[ '_PN_NEXT' ] = jr_gettext('_PN_NEXT', '_PN_NEXT', false);
+
+			$output[ 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', false);
+			$output[ 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', false);
+
+			$output[ '_JOMRES_FRONT_TARIFFS_PPPN' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN', false);
+			$output[ '_JOMRES_FRONT_TARIFFS_PN' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_PN', '_JOMRES_FRONT_TARIFFS_PN', false);
+
+			$output[ '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
+			$output[ '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
+			$output[ '_JOMRES_FRONT_MR_BOOKINGMADE' ] = jr_gettext('_JOMRES_FRONT_MR_BOOKINGMADE', '_JOMRES_FRONT_MR_BOOKINGMADE', false);
+			$output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', false);
+			$output[ 'COMMON_CLOSE' ] = jr_gettext('COMMON_CLOSE', 'COMMON_CLOSE', false);
+
+			$output[ '_JOMRES_FRONT_TARIFFS_TITLE' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE', false);
+			$output[ '_JOMRES_COM_MR_VRCT_TAB_ROOM' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false);
+			$output[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', false);
+
+			$this->output_strings=$output;
+
+		}
+
+		function __destruct()
+		{
+
+		}
+	}
+

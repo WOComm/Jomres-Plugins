@@ -1,0 +1,45 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<p class="lead">{_JRPORTAL_EMBED_VIDEO_ADVICE}</p>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
+<div class="control-group">
+	<div class="control-label">
+		{HENABLED_YESNO}
+	</div>
+	<div class="controls">
+		{ENABLED_YESNO}
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{INSTRUCTIONS}
+	</div>
+	<div class="controls">
+		<input type="text" class="input-xlarge" name="video" value="{VIDEO}" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HWIDTH}
+	</div>
+	<div class="controls">
+		<input type="text" class="input-mini" name="width" value="100" disabled="disabled"/><p class="help-inline">%</p>
+	</div>
+</div>
+<div class="control-group">
+	<div class="control-label">
+		{HHEIGHT}
+	</div>
+	<div class="controls">
+		<input type="text" class="input-mini" name="height" value="{HEIGHT}" /><p class="help-inline">px</p>
+	</div>
+</div>
+<div class="form-actions">
+	{JOMRESTOOLBAR}
+</div>
+{JOMRESTOKEN}
+<input type="hidden" name="task" value="save_embed_video" />
+<input type="hidden" name="puid" value="{PUID}" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

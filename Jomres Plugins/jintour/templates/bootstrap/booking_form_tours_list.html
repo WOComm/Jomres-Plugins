@@ -1,0 +1,47 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="span12">
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="row">
+				<div class="span4">
+					<strong>{_JINTOUR_TOUR_TITLE}</strong> {TOURTITLE}
+				</div>
+				<div class="span8">
+					<img src="{IMAGE_LARGE}" class="img-responsive" />
+				</div>
+			</div>
+			<hr/>
+			<div class="row">
+				<div class="span2">
+					<strong>{_JINTOUR_TOUR_ITINERY}</strong> 
+				</div>
+				<div class="span8">
+					{DESCRIPTION}
+				</div>
+			</div>
+			<hr/>
+			<div class="row">
+				<div class="span4">{ADULT_STR} {ADULT_PRICE} {ADULT_DROPDOWN}</div>
+				<div class="span4">{KID_STR} {KID_PRICE} {KIDS_DROPDOWN}</div>
+				<div class="span4">{DATE}</div>
+			</div>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+</div>
+
+
+<patTemplate:comment>
+
+	More stuff that can be used in the pageoutput array
+	{_JINTOUR_TOUR_TITLE}
+	{ADULT_STR}
+	{KID_STR}
+	{_JINTOUR_TOUR_DATE}
+	{_JINTOUR_TOUR_ITINERY}
+
+
+</patTemplate:comment>
+
+</patTemplate:tmpl>

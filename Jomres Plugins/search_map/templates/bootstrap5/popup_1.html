@@ -1,0 +1,41 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	
+	{JOMRES_POPUPURL_GLOBALVAR}
+	<div class="card infowindow-inner-class" id="property_marker_{PROPERTY_UID}">
+		<div class="image-container " >
+			<a href="{MOREINFORMATIONLINK}">
+				<img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="card-img-top-sm" />
+			</a>
+			<div class="bottom-left bg-info text-white rounded-3 p-2">{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>{PRICE_POST_TEXT}</div>
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">
+				{PROPERTY_NAME}<span>{STARSIMAGES}&nbsp;{SUPERIOR}</span>
+			</h5>
+		</div>
+	</div>
+</patTemplate:tmpl>
+
+<patTemplate:comment>
+	These are included in the template in case you wish to use them.
+	{PROPERTY_STREET}
+	{PROPERTY_TOWN}
+	{PROPERTY_POSTCODE}
+	{PROPERTY_REGION}
+	{PROPERTY_COUNTRY}
+	{PROPERTY_COUNTRY_CODE}
+	{PROPERTY_TEL}
+	{PROPERTY_FAX}
+	{STARS}
+	{STARSIMAGES}
+	{LAT}
+	{LONG}
+	{PROPERTY_DESCRIPTION}
+	{PROPERTY_CHECKIN_TIMES}
+	{PROPERTY_AREA_ACTIVITIES}
+	{PROPERTY_DRIVING_DIRECTIONS}
+	{PROPERTY_AIRPORTS}
+	{PROPERTY_OTHERTRANSPORT}
+	{PROPERTY_POLICIES_DISCLAIMERS}
+</patTemplate:comment>

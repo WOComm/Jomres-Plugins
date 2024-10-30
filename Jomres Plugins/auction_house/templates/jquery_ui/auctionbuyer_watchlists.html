@@ -1,0 +1,23 @@
+<patTemplate:tmpl name="pageoutput">
+<br />
+	<table width="100%">
+		<tr valign="top">
+			<th width="150px">
+				{_JOMRES_AUCTIONHOUSE_LISTS}
+			</th>
+			<th width="150px">
+				{_JOMRES_AUCTIONHOUSE_LISTS_COUNT}
+			</th>
+		</tr>
+		<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="listname" >
+		<tr valign="top">
+			<td>
+				<a href="{LISTLINK}">{LISTNAME}<a/>
+			</td>
+			<td>
+				<a href="{LISTLINK}">{COUNT}<a/>
+			</td>
+		</tr>
+		</patTemplate:tmpl>
+	</table>
+</patTemplate:tmpl>

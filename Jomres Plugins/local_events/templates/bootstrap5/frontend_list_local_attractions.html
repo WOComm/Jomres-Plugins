@@ -1,0 +1,43 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header" id="tour_target_local_attractions" >{PAGETITLE}</h2>
+
+<div class="row-striped">
+	<div class="row">
+		<div class="col-md-3">
+			<strong>{HEVENT_TITLE}</strong>
+		</div>
+		<div class="col-md-3">
+			&nbsp;
+		</div>
+	</div>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<div class="row">
+		<div class="col-md-6">
+			<a href="#attraction_{ID}" role="button" data-bs-toggle="modal" class="btn btn-info btn-sm">{COMMON_VIEW}</a> <a href="https://{WEBSITE_URL}" target="_blank">{TITLE}</a>
+		</div>
+		<div class="col-md-6">
+			<img src="https://{EVENT_LOGO}" width="50" height="50"/>
+		</div>
+	</div>
+	<script>
+	   jomresJquery(document).ready(function(){
+		 jomresJquery('#attraction_{ID}').appendTo("body");
+		});
+	</script>
+	<div id="attraction_{ID}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="attraction_title_{ID}" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 id="attraction_title_{ID}">{TITLE}</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					{DESCRIPTION}
+				</div>
+			</div>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>

@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" >
+
+
+
+<br/>
+
+	<table width="100%">
+		<tr>
+			<td>
+				{_JOMRES_AUCTIONHOUSE_SELLER_CREATE_CHOOSEPROPERTY}
+			</td>
+			<td>
+				{PROPERTYDROPDOWN}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{_JOMRES_AUCTIONHOUSE_SELLER_CREATE_INCLUDINGROOMS}
+			</td>
+			<td>
+				{INCLUDEROOMS}
+			</td>
+		</tr>
+	</table>
+		<div class="fg-buttonset ui-helper-clearfix">
+			<div class="fg-button ui-state-default ui-priority-primary ui-corner-all" onClick="auction_page('auction_seller_ajax_create_auction_step2',['include_rooms','chosen_property']);">
+				{_PN_NEXT}
+			</div>
+		</div>
+<br/>
+
+</patTemplate:tmpl>

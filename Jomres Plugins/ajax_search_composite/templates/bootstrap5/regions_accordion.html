@@ -1,0 +1,7 @@
+<patTemplate:tmpl name="sub_pageoutput" unusedvars="strip">
+<div>{COUNTRY_NAME}</div>
+<patTemplate:tmpl name="region_rows">
+<label class="btn element_button {ACTIVE_CLASS} btn-mini btn-default" id="button_{RANDOM_ID}" for="{RANDOM_ID}" onClick="toggle_button_class(this)">{REGION}</label><input type="checkbox" {CHECKED} class="hidden" id="{RANDOM_ID}" name="regions[]" value="{REGION}" autocomplete=off />
+<!--<input type="checkbox" name="regions[]" value="{REGION}" /> {REGION}<br />-->
+</patTemplate:tmpl>
+</patTemplate:tmpl>

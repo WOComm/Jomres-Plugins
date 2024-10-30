@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+{JOMRESTOOLBAR}
+<table id="frontend_list_subscription_packages" width="100%" class="table table-striped">
+	<thead>
+	<tr>
+		<th></th>
+		<th>{HNAME}</th>
+		<th>{HDESCRIPTION}</th>
+		<th>{HFULLAMOUNT}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="name">
+		<tr>
+			<td><a class="btn btn-primary {DISABLED} " href="{SUBSCRIBE_URL}" {ARIA_DISABLED} >{HSUBSCRIBE}</a></td>
+			<td>{NAME}</td>
+			<td>{DESCRIPTION}</td>
+			<td>{FULLAMOUNT}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

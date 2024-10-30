@@ -1,0 +1,151 @@
+<patTemplate:tmpl name="edit_gateway" unusedvars="strip">
+<div style="margin:20px">
+
+
+<h2 class="page-header">{GATEWAYNAME} {GATEWAYLOGO}</h2>
+<form action="" method="post" name="adminForm" autocomplete="off">
+<div class="mb-3">
+	<label class="form-label" for="active" >
+		{JR_GATEWAY_CONFIG_ACTIVE}
+	</label>
+
+		{ACTIVE}
+
+</div>
+<div class="">
+	<label class="form-label"  for="accountholder">
+		{HACCOUNT_HOLDER}
+	</label>
+	<div >
+		<input class="form-control" type="text" name="accountholder" id="accountholder" value="{ACCOUNT_HOLDER}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label"  for="bankiban">
+		{HBANK_IBAN}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankiban" id="bankiban" value="{BANK_IBAN}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label"  for="bankswift">
+		{HBANK_SWIFT}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankswift" id="bankswift" value="{BANK_SWIFT}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label"  for="bankbic">
+		{HBANK_BIC}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankbic" id="bankbic" value="{BANK_BIC}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label"  for="bankname">
+		{HBANK_NAME}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankname" id="bankname" value="{BANK_NAME}" />
+	</div>
+</div>
+<hr />
+<div class="pt-2">
+	<label class="form-label"  for="accountholder1">
+		{HACCOUNT_HOLDER1}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="accountholder1" id="accountholder1" value="{ACCOUNT_HOLDER1}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label"  for="bankiban1">
+		{HBANK_IBAN1}
+	</label>
+	<div >
+		<input class="form-control" type="text" name="bankiban1" id="bankiban1" value="{BANK_IBAN1}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label"  for="bankswift1">
+		{HBANK_SWIFT1}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankswift1"  id="bankswift1" value="{BANK_SWIFT1}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label"  for="bankbic1">
+		{HBANK_BIC1}
+	</label>
+	<div >
+		<input class="form-control" type="text" name="bankbic1" id="bankbic1" value="{BANK_BIC1}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label"  for="bankname1">
+		{HBANK_NAME1}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankname1" id="bankname1" value="{BANK_NAME1}" />
+	</div>
+</div>
+<hr />
+<div class="pt-2">
+	<label class="form-label"  for="accountholder2">
+		{HACCOUNT_HOLDER2}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="accountholder2" id="accountholder2" value="{ACCOUNT_HOLDER2}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label"  for="bankiban2">
+		{HBANK_IBAN2}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankiban2" id="bankiban2" value="{BANK_IBAN2}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label" for="bankswift2">
+		{HBANK_SWIFT2}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankswift2" id="bankswift2" value="{BANK_SWIFT2}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label" for="bankbic2">
+		{HBANK_BIC2}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankbic2" id="bankbic2" value="{BANK_BIC2}" />
+	</div>
+</div>
+<div class="pt-2">
+	<label class="form-label" for="bankname2">
+		{HBANK_NAME2}
+	</label>
+	<div>
+		<input class="form-control" type="text" name="bankname2" id="bankname2" value="{BANK_NAME2}" />
+	</div>
+</div>
+	<div class="row pt-3">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-10">
+			<input type="submit" value="{COMMON_SUBMIT}" class="btn btn-success" >
+			
+		</div>
+	</div>
+{JOMRESTOKEN}
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="save_plugin" />
+{CSRF_TOKEN}
+</form>
+</div>
+</patTemplate:tmpl>

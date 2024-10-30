@@ -1,0 +1,11 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	<h2 class="page-header"><a href="{TITLE_URL}">{TITLE_TEXT}</a></h2>
+	<ul>
+		<patTemplate:tmpl name="rows" >
+		<li><a href="{URL}">{TEXT}</a></li>
+		{PROPERTIES}
+		</patTemplate:tmpl>
+	</ul>
+</div>
+</patTemplate:tmpl>

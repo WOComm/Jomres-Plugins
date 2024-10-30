@@ -1,0 +1,57 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript" src="{ELIVESITE}/iframe_resizer/iframeResizer.min.js"></script>
+	<script>
+		
+		var group = 0;
+        
+        document.addEventListener('DOMContentLoaded', function(){
+            make_datatable('list_conversations', '{CONVERSATIONS}', '{LIVESITE}');
+        }, false);
+        //-->
+        
+        function showModal(group) {
+            var url = jomresJquery(this).attr('href');
+            jomresJquery("#contactModalBody").html('<iframe src="{JOMRES_SITEPAGE_URL_NOSEF}&topoff=1&menuoff=1&tmpl=0&task=conversation&group_id='+group+'" class="contact_iframe" id="message_iframe" style="width:100%"></iframe>');
+            iFrameResize({ log: false ,  heightCalculationMethod: 'bodyOffset' }, '#message_iframe');
+        };
+
+        jomresJquery(document).on('hidden.bs.modal',"#contactModal", function () {
+            jomresJquery('#contactModalBody').empty();
+        })
+        
+	</script>
+	<style>
+        contact_iframe {
+            display: block;
+            background: #fff;
+            border: none;
+            width: 100%;
+        }
+
+        .modal-tall .modal-body
+        {
+            position: relative;
+            min-height: 400px;
+            padding: 15px;
+        }
+	
+	</style>
+	
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal" id="modalTrigger" onclick="showModal({GROUP_ID})">
+		{CONVERSATIONS}</span>
+	</button>
+
+	
+	<!-- Modal -->
+	<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl" >
+			<div class="modal-content modal-tall">
+				<div class="modal-body"  id="contactModalBody">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{COMMON_CLOSE}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</patTemplate:tmpl>

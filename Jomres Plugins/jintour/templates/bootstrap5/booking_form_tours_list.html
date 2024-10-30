@@ -1,0 +1,39 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="row">
+	
+
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+	<div class="col-2">
+		<div class="card">
+			<div class="card-body">
+				<strong>{TOURTITLE} {DATE}</strong>
+				<img src="{IMAGE_MEDIUM}" class="img-responsive"/>
+				{DESCRIPTION}
+				<hr/>
+				<div class="row">
+					<div class="col-12">{ADULT_STR} {ADULT_PRICE} {ADULT_DROPDOWN}</div>
+					<div class="col-12">{KID_STR} {KID_PRICE} {KIDS_DROPDOWN}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+</div>
+
+
+<patTemplate:comment>
+	More stuff that can be used in the rows array
+	{IMAGE_SMALL}
+	{IMAGE_MEDIUM}
+	{IMAGE_LARGE}
+	More stuff that can be used in the pageoutput array
+	{_JINTOUR_TOUR_TITLE}
+	{ADULT_STR}
+	{KID_STR}
+	{_JINTOUR_TOUR_DATE}
+	{_JINTOUR_TOUR_ITINERY}
+
+
+</patTemplate:comment>
+
+</patTemplate:tmpl>

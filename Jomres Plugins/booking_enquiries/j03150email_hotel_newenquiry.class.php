@@ -1,0 +1,39 @@
+<?php
+/**
+* Jomres CMS Agnostic Plugin
+* @author Woollyinwales IT <sales@jomres.net>
+* @version Jomres 9 
+* @package Jomres
+* @copyright	2005-2015 Woollyinwales IT
+* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project.
+**/
+
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+// ################################################################
+
+class j03150email_hotel_newenquiry
+	{
+	function __construct( $componentArgs )
+		{
+
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false; return;
+			}
+
+		$ePointFilepath = get_showtime('ePointFilepath');
+		$default_template = $ePointFilepath.'templates'.JRDS.find_plugin_template_directory().JRDS.'email_hotel_newenquiry.html';
+		
+		$this->ret_vals = array ( "type" => "email_hotel_newenquiry", "name" => jr_gettext('_JOMRES_HOTEL_NEWENQUIRY_EMAILNAME','_JOMRES_HOTEL_NEWENQUIRY_EMAILNAME',false) , "desc" => jr_gettext('_JOMRES_HOTEL_NEWENQUIRY_EMAILDESC','_JOMRES_HOTEL_NEWENQUIRY_EMAILDESC',false), "default_template" => $default_template );
+		
+		}
+
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->ret_vals;
+		}
+	}

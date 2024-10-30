@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="import">
+	<h2>{PROPERTY_FAQS_TITLE}</h2>
+	<p class="alert alert-info">{PROPERTY_FAQS_DESC}</p>
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}"  method="post" name="adminForm" class="form-horizontal" role="form"  autocomplete="off">
+	<div class="form-group">
+
+		<patTemplate:tmpl name="rows" unusedvars="import">
+			<div class="mb-3">
+				<label for="faqQuestion[{COUNTER}]" class="form-label">Question</label>
+				<input type="text" class="form-control" id="faqQuestion[{COUNTER}]" name="faqQuestion[{COUNTER}]" aria-describedby="" value="{QUESTION}">
+			</div>
+			<div class="mb-3">
+				<label for="faqAnswer[{COUNTER}]" class="form-label">Question</label>
+				<input type="text" class="form-control" id="faqAnswer[{COUNTER}]" name="faqAnswer[{COUNTER}]" aria-describedby="" value="{ANSWER}">
+			</div>
+			<hr/>
+
+		</patTemplate:tmpl>
+
+		<div class="form-actions fixed-bottom bg-light text-center pt-1 border-top border-success">
+			<div class="col-md-10 col-md-offset-2">
+				{JOMRESTOOLBAR}
+			</div>
+		</div>
+		<input type="hidden" name="task" value="property_faq_save_answers">
+		{CSRF_TOKEN}
+	</div>
+
+	</form>
+</patTemplate:tmpl>

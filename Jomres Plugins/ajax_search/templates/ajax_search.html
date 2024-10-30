@@ -1,0 +1,22 @@
+<patTemplate:tmpl name="pageoutput" >
+
+
+<script type="text/javascript">
+
+// Submits the form results and populates the results div
+	{SUBMIT_FUNCTION}
+
+	{ONCHANGE_JAVASCRIPT}
+
+</script>
+
+<form action="" id="{FORM_NAME}">
+	<patTemplate:tmpl name="forms" >
+		{SEARCHFORM}
+	</patTemplate:tmpl>
+	
+	{SUBMITBUTTON}
+	
+</form>
+
+</patTemplate:tmpl>
